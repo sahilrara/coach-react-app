@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Press+Start+2P&display=swap");
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+:root {
+  --font-14: 14px;
+  --font-16: 16px;
+  --font-36: 36px;
+  --font-24: 24px;
+  --color: #dbdbdb;
+}
+
+.fs-16 {
+  font-size: var(--font-16);
+}
+
+.fs-24 {
+  font-size: var(--font-24);
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.edit-form {
+  background-color: white;
+  font-size: var(--font-16);
+  font-weight: 400;
+  font-family: "Josefin Sans", sans-serif;
+  border-radius: 10px;
+}
+
+.edit-input {
+  border: 1px solid #dbdbdb;
+  padding: 18px 12px;
+  color: #575757;
+  font-size: var(--font-16);
+  font-weight: 400;
+}
+
+.para-2 {
+  border: 1px solid #00000026;
+  padding: 25px 17px;
+  color: #808080;
+  font-size: var(--font-16);
+  font-weight: 400;
+  line-height: 34px;
+}
+
+.btn-skew {
+  transform: skewX(-22deg);
+  height: 50px;
+  width: 150px;
+}
+
+.black-btn-skew:hover {
+  background-color: rgb(59, 58, 58) !important;
+}
+
+.gray-btn-skew:hover {
+  background: #cfcccc !important;
+}
+
+.skew-text {
+  transform: skewX(22deg);
+}
+
+.bg-gray {
+  background: #dbdbdb;
+  color: #575757;
+}
+
+.mw-550 {
+  max-width: 550px;
+}
+
+.w-200 {
+  width: 200px;
+}
+
+.top-div {
+  padding: 16px;
+  box-shadow: 0px 4px 11px 0px #00000014;
+}
+
+/*================================== MODAL-CSS ==================================*/
+.mw-528 {
+  max-width: 528px;
+}
+
+.modal {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: var(--font-16);
+  font-weight: 400;
+}
+
+.modal-heading {
+  font-size: var(--font-36);
+  font-weight: 400;
+}
+
+.btn-secondary {
+  border: 1px solid transparent;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:focus-visible {
+  border: none;
+  box-shadow: none !important;
+  background-color: #dbdbdb;
+  color: #575757;
+}
+
+.btn:focus {
+  box-shadow: none !important;
+}
+
+@media (max-width: 576px) {
+  :root {
+    --font-16: 14px;
+    --font-36: 30px;
+    --font-24: 18px;
+    --font-14: 12px;
+  }
+
+  .w-101 {
+    width: 101px;
+  }
+}
+
+/* =============================NAV-BAR============================= */
+.search-input {
+  padding: 10px 42px;
+  border-radius: 50px;
+  font-size: var(--font-14);
+  border: 1px solid #00000036;
+}
+
+.search-input::placeholder {
+  color: #b9b9b9;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 8px;
+}
