@@ -1,5 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
+:root {
+  /*=========== FONTS ===========*/
+  --font-16: 16px;
+  --font-20: 20px;
+  --font-24: 24px;
+  --font-25: 25px;
+  /* ===============COLOR=============== */
+  --color-white: #ffffff;
+  --color-gray-55: #555555;
+  --color-gray-9C: #9C9C9C;
+  --color-gray-76: #767676;
+  --color-black-15: #151515;
+  --color-light-green: #D0FC3F;
+  --color-white-ff: #f5efff;
+  --color-black-1b: #1b1b1b;
+  --color-black-1e: #16191e;
+  --color-black-31: #313131;
+}
+
 .left {
   left: 0px;
 }
@@ -39,7 +58,7 @@
   width: 305px;
   min-height: 100vh;
   z-index: 1;
-  background-color: #1b1b1b;
+  background-color: var(--color-black-1b);
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
 }
 
@@ -48,21 +67,21 @@
 }
 
 .cn-sidebar-text {
-  font-size: 25px;
+  font-size: var(--font-25);
   font-weight: 500;
-  color: #16191e;
+  color: var(--color-black-1e);
   font-family: "Poppins", sans-serif;
 }
 
 .cn-sidebar-border {
-  border: 1px solid #ffffff;
+  border: 1px solid var(--color-white);
   opacity: 0.1;
 }
 
 .cn-sidebar-texts {
-  font-size: 25px;
+  font-size: var(--font-25);
   font-weight: 500;
-  color: #16191e;
+  color: var(--color-black-1e);
   opacity: 0.7;
   font-family: "Poppins", sans-serif;
 }
@@ -100,12 +119,12 @@
 }
 
 .sidebar-footer {
-  background-color: #313131;
+  background-color: var(--color-black-31);
   border-radius: 10px;
 }
 
 .user-img {
-  background-color: #f5efff;
+  background-color: var(--color-white-ff);
   background-image: url("../assets/img/Faces.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -120,47 +139,47 @@
 
 .side-item-text {
   font-family: "Josefin Sans";
-  font-size: 16px;
+  font-size: var(--font-16);
   font-weight: 400;
-  color: #ffffff;
+  color: var(--color-white);
   opacity: 0.6;
 }
 
 .dashboar-text {
   font-family: "Josefin Sans";
-  font-size: 25px;
+  font-size: var(--font-25);
   font-weight: 700;
 }
 
 .Dashboard-table-head {
-  background-color: #1f1f1e;
-  color: #ffffff;
+  background-color: var(--color-black-1e);
+  color: var(--color-white);
   font-family: "Josefin Sans";
-  font-size: 20px;
+  font-size: var(--font-20);
   font-weight: 400 !important;
 }
 
 .dash-body-text {
-  color: #767676;
+  color: var(--color-gray-76);
   font-family: "Josefin Sans";
-  font-size: 16px;
+  font-size: var(--font-16);
   font-weight: 400;
 }
 
 .edit-btn-dash {
   font-family: "Josefin Sans";
-  font-size: 16px;
+  font-size: var(--font-16);
   font-weight: 400;
-  background: #d0fc3f;
+  background: var(--color-light-green);
   border-radius: 22px;
-  color: #000000;
+  color: var(---color-black);
 }
 
 .remove-btn-dash {
-  background: #ffffff;
+  background: var(--color-white);
   border: 1px solid rgba(0, 0, 0, 0.12);
-  color: #000000;
-  font-size: 16px;
+  color: var(---color-black);
+  font-size: var(--font-16);
   font-weight: normal;
   font-family: "Josefin Sans";
   border-radius: 22px;
@@ -177,35 +196,35 @@ tbody td {
 
 
 .pagination-text-dash-active {
-  background: #D0FC3F;
+  background: var(--color-light-green);
   cursor: pointer;
   box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.12);
   border-radius: 9.21875px;
   padding: 6px 19px;
-  color: #151515;
+  color: var(--color-black-15);
   font-weight: 600;
   font-family: "Josefin Sans" !important;
-  font-size: 24px;
+  font-size: var(--font-24);
 }
 
 .pagination-text-dash {
   padding: 6px 19px;
-  color: #151515;
+  color: var(--color-black-15);
   font-weight: 600;
   box-shadow: 3px 5px 22px rgba(0, 0, 0, 0.08);
   font-family: "Josefin Sans" !important;
-  font-size: 24px;
+  font-size: var(--font-24);
   cursor: pointer;
   border-radius: 9.21875px;
 }
 
 .pagination-text-next {
-  border: 1px solid #9C9C9C;
+  border: 1px solid var(--color-gray-9C);
   border-radius: 9px;
   padding: 6px 15px;
   font-family: "Josefin Sans";
-  color: #555555;
-  font-size: 16px;
+  color: var(--color-gray-55);
+  font-size: var(--font-16);
   cursor: pointer;
   display: flex;
   flex-direction: column;
