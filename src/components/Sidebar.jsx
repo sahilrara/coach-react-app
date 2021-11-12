@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-// import "../src/submitForm/submit.css";
-import { Button, Offcanvas, OffCanvasExample } from "react-bootstrap";
+
 import Toggleimg from "../assets/img/Toggleimg.png";
 import Coachlogo from "../../src/assets/img/coachlogo.png";
 import { PlanList, Profile, Programs, Settings, Users } from "./icons/Icons";

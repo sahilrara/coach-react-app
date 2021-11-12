@@ -10,6 +10,11 @@ body {
   --font-36: 36px;
   --font-24: 24px;
   --color: #dbdbdb;
+  --color-bg-dark-grey: #e5e5e5;
+}
+
+.bg-dark-grey {
+  background-color: var(--color-bg-dark-grey);
 }
 
 .fs-16 {
@@ -53,6 +58,12 @@ body {
   transform: skewX(-22deg);
   height: 50px;
   width: 150px;
+}
+
+@media (max-width: 576px) {
+  .w-xs-110 {
+    width: 110px !important;
+  }
 }
 
 .black-btn-skew:hover {
@@ -145,6 +156,29 @@ body {
 
 .search-icon {
   position: absolute;
-  left: 10px;
+  left: 20px;
   top: 8px;
+}
+
+input:focus {
+  border: 1px solid #d0fc3f !important;
+  outline: #d0fc3f;
+}
+
+.upload-background-img {
+  background-image: url("../assets/img/Faces.png");
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 100px;
+}
+
+.dash-edit-modal .modal-header {
+  border-bottom: unset !important;
+}
+
+.dash-edit-modal .modal-footer {
+  border-top: unset !important;
 }

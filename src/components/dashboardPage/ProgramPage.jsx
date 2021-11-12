@@ -1,13 +1,10 @@
-import React, { useState } from "react";
-import SideBar from "../Sidebar";
-import { Table, Modal } from "react-bootstrap";
+import React from "react";
+import { useProfileJoyrideProvider } from "../useContext/SidebarProvider";
 import AdminHeader from "./AdminHeader";
-
-const Dashboard = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+import SideBar from "../Sidebar";
+import { Table } from "react-bootstrap";
+const ProgramPage = () => {
+  const { setShowSidebar, showSidebar } = useProfileJoyrideProvider();
   const dashboardData = [
     {
       name: "KathMurphy",
@@ -64,7 +61,7 @@ const Dashboard = () => {
           <AdminHeader />
           <div className="row">
             <div className="col-6">
-              <h1 className="dashboar-text mt-5 mb-4">Dashboard</h1>
+              <h1 className="dashboar-text mt-5 mb-4">Programs</h1>
             </div>
           </div>
           <Table responsive>
@@ -83,10 +80,13 @@ const Dashboard = () => {
                   Name
                 </th>
                 <th className="Dashboard-table-head white-space-norwap">
-                  Username
+                  Date
                 </th>
                 <th className="Dashboard-table-head white-space-norwap">
-                  Email
+                  Location
+                </th>
+                <th className="Dashboard-table-head white-space-norwap">
+                  Event Types
                 </th>
               </tr>
             </thead>
@@ -107,6 +107,9 @@ const Dashboard = () => {
                       {val.name}
                     </td>
                     <td className="dash-body-text white-space-norwap ">
+                      28/12/22
+                    </td>
+                    <td className="dash-body-text white-space-norwap ">
                       {val.userName}
                     </td>
                     <td>
@@ -115,10 +118,7 @@ const Dashboard = () => {
                         {" "}
                         <p className="my-auto dash-body-text ">{val.email}</p>
                         <div className="">
-                          <button
-                            onClick={handleShow}
-                            className=" px-4 mx-3 btn edit-btn-dash"
-                          >
+                          <button className=" px-4 mx-3 btn edit-btn-dash">
                             Edit
                           </button>
                           <button className="btn  px-4 remove-btn-dash">
@@ -143,90 +143,8 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-
-      <Modal
-        className="dash-edit-modal"
-        centered
-        show={show}
-        onHide={handleClose}
-      >
-        <Modal.Header>
-          <Modal.Title className="mx-auto">
-            <h1
-              className="modal-title  mt-2 pt-2 mb-0 modal-heading "
-              id="exampleModalToggleLabel"
-            >
-              Edit User
-            </h1>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <input
-            className="w-100 edit-input mt-2 ps-3"
-            type="text"
-            placeholder="Name"
-          />
-          <input
-            className="w-100 edit-input mt-2 ps-3"
-            type="text"
-            placeholder="Last Name"
-          />
-          <input
-            className="w-100 edit-input mt-2 ps-3"
-            type="text"
-            placeholder="Username"
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <div className="modal-footer mx-auto   pb-3 d-flex flex-row justify-content-center">
-            <button
-              type="button"
-              className="btn 
-                       
-                        rounded-1px
-                        fw-700
-                        fs-20 fs-xs-16
-                        px-4
-                        h-50px
-                        w-xs-110
-                        
-                bg-dark black-btn-skew
-                        btn-skew
-                        border-unset
-                        d-flex
-                        align-items-center
-                        justify-content-center
-                      "
-            >
-              <span className="position-absolute skew-text text-white">
-                Save
-              </span>
-            </button>
-            <button
-              onClick={handleClose}
-              type="button"
-              className="btn        rounded-1px
-                        fw-700
-
-                        fs-20 fs-xs-16 mt-sm-0
-                        px-4
-                        h-50px
-                      w-xs-110
-                bg-gray gray-btn-skew ms-4
-                        btn-skew
-                        border-unset
-                        d-flex
-                        align-items-center
-                        justify-content-center"
-              data-bs-dismiss="modal"
-            >
-              <span className="position-absolute skew-text ">Cancel</span>
-            </button>
-          </div>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };
 
-export default Dashboard;
+export default ProgramPage;
