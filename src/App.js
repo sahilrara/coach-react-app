@@ -8,14 +8,15 @@ import EditProgram from "./components/dashboardPage/EditProgram";
 import ProfilePage from "./components/dashboardPage/ProfilePage";
 import SettingPage from "./components/dashboardPage/SettingPage";
 import ProgramPage from "./components/dashboardPage/ProgramPage";
+import Router from "./components/common/Router";
 
 function App() {
   return (
     <ProfileJoyrideProvider>
-      {" "}
+      <Router />
       {/* <Dashboard /> */}
       {/* <ProgramPage /> */}
-      <EditProgram />
+      {/* <EditProgram /> */}
       {/* <ProfilePage /> */}
       {/* <SettingPage /> */}
     </ProfileJoyrideProvider>

@@ -19,7 +19,7 @@ const SettingPage = () => {
             <AdminHeader />
             <div className="row">
               <div className="col-12">
-                <h2 className="edit-program-text mt-5 mb-0">Profile</h2>
+                <h2 className="edit-program-text mt-5 mb-0">Setting</h2>
                 <p className="common-text-opacity mb-4">
                   Detail about your personal information
                 </p>

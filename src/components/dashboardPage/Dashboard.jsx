@@ -5,7 +5,6 @@ import AdminHeader from "./AdminHeader";
 
 const Dashboard = () => {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const dashboardData = [

@@ -182,3 +182,98 @@ input:focus {
 .dash-edit-modal .modal-footer {
   border-top: unset !important;
 }
+
+/* LOGIN */
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Press+Start+2P&display=swap");
+
+.form {
+  max-width: 528px;
+  height: 100%;
+  background-color: white;
+  padding: 40px;
+  margin: 10% auto;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  padding: 17px;
+  border-radius: 0px;
+  border: 1px solid #00000033;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.input:focus-visible,
+input:focus {
+  outline: none !important;
+}
+
+.form-heading {
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0em;
+}
+
+.text-green {
+  color: #d0fc3f;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+}
+
+.toggle-password::before {
+  position: absolute;
+  left: -14px;
+  bottom: -3px;
+}
+/* CALENDER */
+.calender {
+  width: 100%;
+  height: 800px;
+  border: 0px;
+  background-color: transparent;
+}
+/* .fa-eye {
+    background-image: url('../Img/Group\ \(3\).png') !important;
+} */
+
+.mw-342 {
+  max-width: 342px;
+}
+
+.opacity-75 {
+  opacity: 75%;
+}
+
+.lh-18 {
+  line-height: 18px;
+}
+
+@media (max-width: 576px) {
+  .w-xs-150 {
+    width: 150px;
+  }
+}
+.sidebar-text span svg path {
+  fill: white !important;
+  stroke: white;
+}
+.sidebar-text {
+  color: white;
+}

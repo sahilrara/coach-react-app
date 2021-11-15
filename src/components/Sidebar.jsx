@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import Toggleimg from "../assets/img/Toggleimg.png";
 import Coachlogo from "../../src/assets/img/coachlogo.png";
 import { PlanList, Profile, Programs, Settings, Users } from "./icons/Icons";
 import { useProfileJoyrideProvider } from "./useContext/SidebarProvider";
-function SideBar() {
+import { withRouter } from "react-router";
+function SideBar({ history }) {
   const { setShowSidebar, showSidebar } = useProfileJoyrideProvider();
   const [active, setActive] = useState(false);
   const [show, setShow] = useState(false);
+  const [activeSidebar, setActiveSidebar] = useState("userlist");
   const [chosenEmoji, setChosenEmoji] = useState(null);
-
   const [decWidth, setDecWidth] = useState(false);
   const clickHandler = () => {
     setActive(true);
@@ -17,9 +17,38 @@ function SideBar() {
   const closeOverlay = () => {
     setActive(false);
   };
-  // const decWidth=()=>{
 
-  // }
+  const path = window.location.pathname;
+  useEffect(() => {
+    if (path.includes("planlist")) {
+      setActiveSidebar("planlist");
+    } else if (path.includes("userlist")) {
+      setActiveSidebar("userlist");
+    } else if (path.includes("profile")) {
+      setActiveSidebar("profile");
+    } else if (path.includes("setting")) {
+      setActiveSidebar("setting");
+    } else if (path.includes("program")) {
+      setActiveSidebar("program");
+    }
+  }, [path]);
+
+  const openRoutes = (value) => {
+    setShowSidebar(false);
+    setActiveSidebar(value);
+    if (value === "user") {
+      history.push("/admin/dashboard/userlist");
+    } else if (value === "planlist") {
+      history.push("/admin/dashboard/planlist");
+    } else if (value === "profile") {
+      history.push("/admin/dashboard/profile");
+    } else if (value === "setting") {
+      history.push("/admin/dashboard/setting");
+    } else if (value === "program") {
+      history.push("/admin/dashboard/program");
+    }
+  };
+
   const onEmojiClick = (event, emojiObject) => {
     setChosenEmoji(emojiObject);
   };
@@ -56,15 +85,22 @@ function SideBar() {
           <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
-            }  "align-items-center  d-flex mt-sm-5 mt-3 pt-sm-5 " `}
-            onClick={() => setShowSidebar(false)}
+            }  "align-items-center  d-flex mt-sm-5 mt-3 pt-sm-5 "  cursor-pointer`}
+            // onClick={() => setShowSidebar(false)}
+            onClick={() => openRoutes("user")}
           >
-            <p className=" px-3 mb-0 text-white">
+            <p
+              className={`${
+                activeSidebar === "user" ? "sidebar-text" : "side-item-text"
+              }  px-3 mb-0  `}
+            >
               <span>
                 <Users />
               </span>
               <span
-                className={`${decWidth ? "d-none" : ""} side-item-text mx-2`}
+                className={`${decWidth ? "d-none" : ""}${
+                  activeSidebar ? "" : "side-item-text"
+                }  mx-2`}
               >
                 {" "}
                 Users
@@ -74,15 +110,22 @@ function SideBar() {
           <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
-            }  "align-items-center  d-flex my-4 " `}
-            onClick={() => setShowSidebar(false)}
+            }  "align-items-center  d-flex my-4 "  cursor-pointer`}
+            // onClick={() => setShowSidebar(false)}
+            onClick={() => openRoutes("planlist")}
           >
-            <p className="  px-3 mb-0 text-white">
+            <p
+              className={`${
+                activeSidebar === "planlist" ? "sidebar-text" : "side-item-text"
+              }  px-3 mb-0  `}
+            >
               <span>
                 <PlanList />
               </span>
               <span
-                className={`${decWidth ? "d-none" : ""} side-item-text mx-2`}
+                className={`${decWidth ? "d-none" : ""}${
+                  activeSidebar ? "" : "side-item-text"
+                }  mx-2`}
               >
                 {" "}
                 Plan List
@@ -92,16 +135,23 @@ function SideBar() {
           <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
-            }  "align-items-center  d-flex  " `}
-            onClick={() => setShowSidebar(false)}
+            }  "align-items-center  d-flex  " cursor-pointer`}
+            // onClick={() => setShowSidebar(false)}
+            onClick={() => openRoutes("profile")}
           >
-            <p className="  px-3 mb-0 text-white">
+            <p
+              className={`${
+                activeSidebar === "profile" ? "sidebar-text" : "side-item-text"
+              }  px-3 mb-0`}
+            >
               {" "}
               <span>
                 <Profile />
               </span>
               <span
-                className={`${decWidth ? "d-none" : ""} side-item-text mx-2`}
+                className={`${decWidth ? "d-none" : ""}${
+                  activeSidebar ? "" : "side-item-text"
+                }  mx-2`}
               >
                 {" "}
                 Profile
@@ -111,16 +161,23 @@ function SideBar() {
           <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
-            }  "align-items-center  d-flex my-4 " `}
-            onClick={() => setShowSidebar(false)}
+            }  "align-items-center  d-flex my-4 "  cursor-pointer `}
+            // onClick={() => setShowSidebar(false)}
+            onClick={() => openRoutes("program")}
           >
-            <p className="  px-3 mb-0 text-white">
+            <p
+              className={`${
+                activeSidebar === "program" ? "sidebar-text" : "side-item-text"
+              }  px-3 mb-0`}
+            >
               {" "}
               <span>
                 <Programs />
               </span>
               <span
-                className={`${decWidth ? "d-none" : ""} side-item-text mx-2`}
+                className={`${decWidth ? "d-none" : ""}${
+                  activeSidebar ? "" : "side-item-text"
+                }  mx-2`}
               >
                 Programs
               </span>
@@ -129,16 +186,23 @@ function SideBar() {
           <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
-            }  "align-items-center  d-flex" `}
-            onClick={() => setShowSidebar(false)}
+            }  "align-items-center  d-flex"  cursor-pointer `}
+            // onClick={() => setShowSidebar(false)}
+            onClick={() => openRoutes("setting")}
           >
-            <p className="  px-3 mb-0 text-white">
+            <p
+              className={`${
+                activeSidebar === "setting" ? "sidebar-text" : "side-item-text"
+              }  px-3 mb-0`}
+            >
               {" "}
               <span>
                 <Settings />
               </span>
               <span
-                className={`${decWidth ? "d-none" : ""} side-item-text mx-2`}
+                className={`${decWidth ? "d-none" : ""}${
+                  activeSidebar ? "" : "side-item-text"
+                }  mx-2`}
               >
                 Settings
               </span>
@@ -165,4 +229,4 @@ function SideBar() {
   );
 }
 
-export default SideBar;
+export default withRouter(SideBar);
