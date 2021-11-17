@@ -29,7 +29,7 @@ const Login = ({ history }) => {
 
                   <div className="my-4">
                     <input
-                      className="w-100 mt-2"
+                      className="w-100 mt-2 login-input"
                       type="text"
                       onChange={(e) =>
                         setInputData({
@@ -52,9 +52,9 @@ const Login = ({ history }) => {
                     <div className="position-relative">
                       {" "}
                       <input
-                        id="password-field-2"
+                        id="password-field-2 "
                         type={showPassword ? "text" : "password"}
-                        className="w-100 d-block mt-2"
+                        className="w-100 d-block mt-2 login-input"
                         name="password"
                         placeholder="Password"
                         onChange={(e) =>

@@ -205,11 +205,17 @@ body {
 }
 
 input {
-  /* padding: 17px; */
   border-radius: 0px;
   border: 1px solid #00000033;
   font-size: 16px;
   font-weight: 400;
+}
+.login-input {
+  border-radius: 0px;
+  border: 1px solid #00000033;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 17px;
 }
 
 .input:focus-visible,
