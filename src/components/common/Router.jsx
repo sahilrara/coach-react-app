@@ -14,7 +14,11 @@ const Router = () => {
         <Route exact path="/" component={Login} />
         <Route exact path="/admin/dashboard/userlist" component={Dashboard} />
         <Route exact path="/admin/dashboard/profile" component={ProfilePage} />
-        <Route exact path="/admin/dashboard/planlist" component={EditProgram} />
+        <Route
+          exact
+          path="/admin/dashboard/editprogram"
+          component={EditProgram}
+        />
         <Route exact path="/admin/dashboard/program" component={ProgramPage} />
         <Route exact path="/admin/dashboard/Setting" component={SettingPage} />
       </Switch>

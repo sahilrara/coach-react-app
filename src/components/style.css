@@ -166,7 +166,7 @@ input:focus {
 }
 
 .upload-background-img {
-  background-image: url("../assets/img/Faces.png");
+  /* background-image: url("../assets/img/Faces.png"); */
   height: 100px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -193,7 +193,11 @@ input:focus {
   padding: 40px;
   margin: 10% auto;
 }
-
+@media (max-width: 567px) {
+  .form {
+    padding: 20px;
+  }
+}
 body {
   font-family: "Josefin Sans", sans-serif;
   margin: 0;
@@ -276,4 +280,20 @@ input:focus {
 }
 .sidebar-text {
   color: white;
+}
+.social-icons {
+  position: absolute;
+  left: 15px;
+  top: 18px;
+}
+.active-line {
+  background-color: white;
+  width: 3px;
+  height: 100%;
+  border-radius: 30px;
+}
+.eye-icon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
 }

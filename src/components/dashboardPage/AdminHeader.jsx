@@ -1,6 +1,6 @@
 import React from "react";
 import AvtarIcon from "../../assets/img/Avatar.png";
-import { SearchIcon, BlackSunIcon, BlackBellIcon } from "../icons/Icons";
+import { SearchIcon } from "../icons/Icons";
 import { useProfileJoyrideProvider } from "../useContext/SidebarProvider";
 import SidebarTogle from "../../assets/img/sidbartogleicon.svg";
 
@@ -20,26 +20,20 @@ const AdminHeader = () => {
           </span>
         </div>
         <div className=" col-sm-6 order-1  order-sm-2 text-sm-end text-center col-12">
-          <select
-            className="bg-transparent cursor-pointer me-3 en-select-text border-0 "
-            name=""
-            id=""
-          >
-            <option selected disabled hidden value="">
+          <select className="bg-transparent cursor-pointer me-3 en-select-text border-0 ">
+            {/* <option selected disabled hidden>
               EN
-            </option>
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-            <option value="">4</option>
+            </option> */}
+            <option className="px-3 py-2">EN</option>
+            <option className="px-3 py-2">FR</option>
           </select>
-          <span className="cursor-pointer">
+          {/* <span className="cursor-pointer">
             <BlackSunIcon />
-          </span>
+          </span> */}
 
-          <span className="mx-3 cursor-pointer">
+          {/* <span className="mx-3 cursor-pointer">
             <BlackBellIcon />
-          </span>
+          </span> */}
           <img className="cursor-pointer" src={AvtarIcon} alt="" />
 
           <img

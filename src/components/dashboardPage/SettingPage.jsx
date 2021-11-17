@@ -28,7 +28,7 @@ const SettingPage = () => {
             {/* ENDS HERE... */}
             <div className="edit-form px-4 pt-4">
               <div className="row">
-                <div className="col-lg-6 col-12 mt-2">
+                <div className="col-lg-6 col-12 mt-2 number-input">
                   <input
                     className="w-100 edit-input"
                     type="number"
@@ -56,7 +56,18 @@ const SettingPage = () => {
                     placeholder="New Password:"
                   />
                 </div>
-                <div className="col-lg-6 col-12 mt-2">
+                <div className="col-lg-6 col-12 mt-2 position-relative">
+                  <input
+                    className="w-100 edit-input px-4"
+                    type="text"
+                    placeholder="Instagram@.com//abcd"
+                  />
+                  <span className="me-2 social-icons">
+                    {" "}
+                    <InstagramIcon />{" "}
+                  </span>
+                </div>
+                {/* <div className="col-lg-6 col-12 mt-2">
                   <div className="edit-input d-flex ">
                     {" "}
                     <span className="me-2">
@@ -65,8 +76,18 @@ const SettingPage = () => {
                     </span>
                     <p className="mb-0">Instagram@.com//abcd</p>
                   </div>
+                </div> */}
+                <div className="col-lg-6 col-12 mt-2 position-relative">
+                  <input
+                    className="w-100 edit-input px-4"
+                    type="text"
+                    placeholder="Facebook@.com//abcd"
+                  />
+                  <span className="me-2 social-icons">
+                    <FaceBookIcon />
+                  </span>
                 </div>
-                <div className="col-lg-6 col-12 mt-2">
+                {/* <div className="col-lg-6 col-12 mt-2">
                   <div className="edit-input d-flex ">
                     {" "}
                     <span className="me-2">
@@ -74,8 +95,18 @@ const SettingPage = () => {
                     </span>
                     <p className="mb-0"> Facebook@.com//abcd</p>
                   </div>
+                </div> */}
+                <div className="col-lg-6 col-12 mt-2 position-relative">
+                  <input
+                    className="w-100 edit-input px-4"
+                    type="text"
+                    placeholder="Linkdin@.com//abcd"
+                  />
+                  <span className="me-2 social-icons">
+                    <LinkdinIcon />
+                  </span>
                 </div>
-                <div className="col-lg-6 col-12 mt-2">
+                {/* <div className="col-lg-6 col-12 mt-2">
                   <div className="edit-input d-flex ">
                     {" "}
                     <span className="me-2">
@@ -83,8 +114,18 @@ const SettingPage = () => {
                     </span>
                     <p className="mb-0"> Linkdin@.com//abcd</p>
                   </div>
+                </div> */}
+                <div className="col-lg-6 col-12 mt-2 position-relative">
+                  <input
+                    className="w-100 edit-input px-4"
+                    type="text"
+                    placeholder="Twitter@.com//abcd"
+                  />
+                  <span className="me-2 social-icons">
+                    <TiwitterIcon />
+                  </span>
                 </div>
-                <div className="col-lg-6 col-12 mt-2  d-flex">
+                {/* <div className="col-lg-6 col-12 mt-2  d-flex">
                   <div className="edit-input d-flex w-100">
                     {" "}
                     <span className="me-2">
@@ -92,7 +133,7 @@ const SettingPage = () => {
                     </span>
                     <p className="mb-0">Twitter@.com//abcd</p>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="mt-4 pt-2 d-flex  flex-row pb-5 align-items-center align-items-sm-start">
                 <button

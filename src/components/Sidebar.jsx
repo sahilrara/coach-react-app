@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Toggleimg from "../assets/img/Toggleimg.png";
 import Coachlogo from "../../src/assets/img/coachlogo.png";
-import { PlanList, Profile, Programs, Settings, Users } from "./icons/Icons";
+import { Profile, Programs, Settings, Users } from "./icons/Icons";
 import { useProfileJoyrideProvider } from "./useContext/SidebarProvider";
 import { withRouter } from "react-router";
 function SideBar({ history }) {
   const { setShowSidebar, showSidebar } = useProfileJoyrideProvider();
   const [active, setActive] = useState(false);
   const [show, setShow] = useState(false);
-  const [activeSidebar, setActiveSidebar] = useState("userlist");
-  const [chosenEmoji, setChosenEmoji] = useState(null);
+  const [activeSidebar, setActiveSidebar] = useState("/userlist");
   const [decWidth, setDecWidth] = useState(false);
   const clickHandler = () => {
     setActive(true);
@@ -36,11 +35,14 @@ function SideBar({ history }) {
   const openRoutes = (value) => {
     setShowSidebar(false);
     setActiveSidebar(value);
-    if (value === "user") {
+    if (value === "userlist") {
       history.push("/admin/dashboard/userlist");
-    } else if (value === "planlist") {
-      history.push("/admin/dashboard/planlist");
-    } else if (value === "profile") {
+    }
+
+    // else if (value === "planlist") {
+    //   history.push("/admin/dashboard/planlist");
+    // }
+    else if (value === "profile") {
       history.push("/admin/dashboard/profile");
     } else if (value === "setting") {
       history.push("/admin/dashboard/setting");
@@ -49,9 +51,6 @@ function SideBar({ history }) {
     }
   };
 
-  const onEmojiClick = (event, emojiObject) => {
-    setChosenEmoji(emojiObject);
-  };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
@@ -85,7 +84,7 @@ function SideBar({ history }) {
           <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
-            }  "align-items-center  d-flex mt-sm-5 mt-3 pt-sm-5 "  cursor-pointer`}
+            }  "align-items-center  justify-content-between  d-flex mt-sm-5 mt-3 pt-sm-5 "  cursor-pointer`}
             // onClick={() => setShowSidebar(false)}
             onClick={() => openRoutes("user")}
           >
@@ -106,8 +105,43 @@ function SideBar({ history }) {
                 Users
               </span>
             </p>
+            {activeSidebar === "user" ? (
+              <span className="d-inline-block active-line"></span>
+            ) : (
+              ""
+            )}
           </div>
           <div
+            className={`${
+              decWidth ? " d-flex justify-content-center " : ""
+            }  "align-items-center justify-content-between  d-flex my-4 "  cursor-pointer `}
+            // onClick={() => setShowSidebar(false)}
+            onClick={() => openRoutes("program")}
+          >
+            <p
+              className={`${
+                activeSidebar === "program" ? "sidebar-text" : "side-item-text"
+              }  px-3 mb-0`}
+            >
+              {" "}
+              <span>
+                <Programs />
+              </span>
+              <span
+                className={`${decWidth ? "d-none" : ""}${
+                  activeSidebar ? "" : "side-item-text"
+                }  mx-2`}
+              >
+                Programs
+              </span>
+            </p>
+            {activeSidebar === "program" ? (
+              <span className="d-inline-block active-line"></span>
+            ) : (
+              ""
+            )}
+          </div>
+          {/* <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
             }  "align-items-center  d-flex my-4 "  cursor-pointer`}
@@ -131,11 +165,11 @@ function SideBar({ history }) {
                 Plan List
               </span>
             </p>
-          </div>
+          </div> */}
           <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
-            }  "align-items-center  d-flex  " cursor-pointer`}
+            }  "align-items-center justify-content-between  mb-4 d-flex  " cursor-pointer`}
             // onClick={() => setShowSidebar(false)}
             onClick={() => openRoutes("profile")}
           >
@@ -157,36 +191,17 @@ function SideBar({ history }) {
                 Profile
               </span>
             </p>
+            {activeSidebar === "profile" ? (
+              <span className="d-inline-block active-line"></span>
+            ) : (
+              ""
+            )}
           </div>
+
           <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
-            }  "align-items-center  d-flex my-4 "  cursor-pointer `}
-            // onClick={() => setShowSidebar(false)}
-            onClick={() => openRoutes("program")}
-          >
-            <p
-              className={`${
-                activeSidebar === "program" ? "sidebar-text" : "side-item-text"
-              }  px-3 mb-0`}
-            >
-              {" "}
-              <span>
-                <Programs />
-              </span>
-              <span
-                className={`${decWidth ? "d-none" : ""}${
-                  activeSidebar ? "" : "side-item-text"
-                }  mx-2`}
-              >
-                Programs
-              </span>
-            </p>
-          </div>
-          <div
-            className={`${
-              decWidth ? " d-flex justify-content-center " : ""
-            }  "align-items-center  d-flex"  cursor-pointer `}
+            }  "align-items-center d-flex justify-content-between "  cursor-pointer `}
             // onClick={() => setShowSidebar(false)}
             onClick={() => openRoutes("setting")}
           >
@@ -207,6 +222,11 @@ function SideBar({ history }) {
                 Settings
               </span>
             </p>
+            {activeSidebar === "setting" ? (
+              <span className="d-inline-block active-line"></span>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div

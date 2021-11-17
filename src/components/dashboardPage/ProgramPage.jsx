@@ -3,7 +3,8 @@ import { useProfileJoyrideProvider } from "../useContext/SidebarProvider";
 import AdminHeader from "./AdminHeader";
 import SideBar from "../Sidebar";
 import { Table } from "react-bootstrap";
-const ProgramPage = () => {
+import { withRouter } from "react-router-dom";
+const ProgramPage = ({ history }) => {
   const { setShowSidebar, showSidebar } = useProfileJoyrideProvider();
   const dashboardData = [
     {
@@ -60,8 +61,17 @@ const ProgramPage = () => {
         <div className="container mb-5 container-xl">
           <AdminHeader />
           <div className="row">
-            <div className="col-6">
+            <div className="col-12 d-flex justify-content-between align-items-center">
               <h1 className="dashboar-text mt-5 mb-4">Programs</h1>
+              <button
+                onClick={() => history.push("/")}
+                type="button"
+                className=" btn ms-2 rounded-1px fw-700 fs-20 fs-xs-16 px-4
+                        h-50px  bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center
+                        justify-content-center "
+              >
+                <span className=" skew-text text-white">Back</span>
+              </button>
             </div>
           </div>
           <Table responsive>
@@ -118,7 +128,12 @@ const ProgramPage = () => {
                         {" "}
                         <p className="my-auto dash-body-text ">{val.email}</p>
                         <div className="">
-                          <button className=" px-4 mx-3 btn edit-btn-dash">
+                          <button
+                            className=" px-4 mx-3 btn edit-btn-dash"
+                            onClick={() =>
+                              history.push("/admin/dashboard/editprogram")
+                            }
+                          >
                             Edit
                           </button>
                           <button className="btn  px-4 remove-btn-dash">
@@ -147,4 +162,4 @@ const ProgramPage = () => {
   );
 };
 
-export default ProgramPage;
+export default withRouter(ProgramPage);

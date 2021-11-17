@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import SideBar from "../Sidebar";
 import AdminHeader from "./AdminHeader";
+import FaceImg from "../../assets/img/Faces.png";
 
 const ProfilePage = () => {
+  const [uploadImg, setUploadImg] = useState("");
+  const UploadImg = (e) => {
+    let img = e.target.files[0];
+    let image = URL.createObjectURL(img);
+    setUploadImg(image);
+  };
   return (
     <div className="d-flex bg-dark-grey ">
       <SideBar />
@@ -22,12 +29,32 @@ const ProfilePage = () => {
           <div className="edit-form px-4 pt-4">
             <div className="d-flex top-div my-4 align-items-center flex-column flex-md-row">
               <div className="me-3">
-                <span className="upload-background-img d-block"></span>
+                <span className="upload-background-img d-block">
+                  {uploadImg ? (
+                    <img
+                      className="upload-background-img"
+                      src={uploadImg}
+                      alt=""
+                    />
+                  ) : (
+                    <img
+                      className="upload-background-img"
+                      src={FaceImg}
+                      alt=""
+                    />
+                  )}
+                </span>
               </div>
               <div className="mx-3 mt-3 mt-lg-0 text-center text-md-start">
                 <p className="mb-0 fs-24 fw-600">Upload a New Photo</p>
                 <p className="mb-0 common-text-opacity ">Admin</p>
               </div>
+              <input
+                type="file"
+                id="file-input"
+                onChange={(e) => UploadImg(e)}
+                hidden
+              />
               <div className="mt-3 mt-lg-0">
                 <button
                   type="button"
@@ -49,11 +76,14 @@ const ProfilePage = () => {
                 justify-content-center
               "
                 >
-                  <span className="position-absolute skew-text text-white">
+                  <label
+                    for="file-input"
+                    className="position-absolute skew-text text-white cursor-pointer"
+                  >
                     Upload
-                  </span>
+                  </label>
                 </button>
-              </div>
+              </div>{" "}
             </div>
             <div className="mw-550">
               <div className="row">

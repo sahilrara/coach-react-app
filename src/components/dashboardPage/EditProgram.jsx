@@ -1,9 +1,9 @@
 import React from "react";
 import SideBar from "../Sidebar";
-
+import { withRouter } from "react-router-dom";
 import AdminHeader from "./AdminHeader";
 
-function EditProgram() {
+function EditProgram({ history }) {
   return (
     <div className="d-flex bg-dark-grey ">
       <SideBar />
@@ -13,12 +13,21 @@ function EditProgram() {
           <AdminHeader />
           {/* ENDS HERE... */}
           <div className="row mt-5 mb-3 ">
-            <div className="col-12">
+            <div className="col-12 d-flex justify-content-between align-items-center">
               <h2 className="edit-program-text">Edit Program</h2>
+              <button
+                onClick={() => history.push("/admin/dashboard/program")}
+                type="button"
+                className=" btn ms-2 rounded-1px fw-700 fs-20 fs-xs-16 px-4
+                        h-50px  bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center
+                        justify-content-center "
+              >
+                <span className=" skew-text text-white">Back</span>
+              </button>
             </div>
           </div>
           <div className="edit-form mb-5 px-4 pt-4">
-            <p className="mt-5">Change user information here</p>
+            {/* <p className="mt-5">Change user information here</p> */}
             <div className="row">
               <div className="col-lg-6 col-12 mt-2">
                 <input
@@ -128,4 +137,4 @@ function EditProgram() {
   );
 }
 
-export default EditProgram;
+export default withRouter(EditProgram);

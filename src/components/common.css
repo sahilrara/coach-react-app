@@ -278,3 +278,9 @@ tbody td {
   color: var(--color-gray-76);
   font-size: var(--font-16);
 }
+
+.number-input input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
