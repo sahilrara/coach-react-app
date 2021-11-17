@@ -4,19 +4,18 @@ import Coachlogo from "../../src/assets/img/coachlogo.png";
 import { Profile, Programs, Settings, Users } from "./icons/Icons";
 import { useProfileJoyrideProvider } from "./useContext/SidebarProvider";
 import { withRouter } from "react-router";
-
 function SideBar({ history }) {
   const { setShowSidebar, showSidebar } = useProfileJoyrideProvider();
-  // const [active, setActive] = useState(false);
-  // const [show, setShow] = useState(false);
+  const [active, setActive] = useState(false);
+  const [show, setShow] = useState(false);
   const [activeSidebar, setActiveSidebar] = useState("/userlist");
   const [decWidth, setDecWidth] = useState(false);
-  // const clickHandler = () => {
-  //   setActive(true);
-  // };
-  // const closeOverlay = () => {
-  //   setActive(false);
-  // };
+  const clickHandler = () => {
+    setActive(true);
+  };
+  const closeOverlay = () => {
+    setActive(false);
+  };
 
   const path = window.location.pathname;
   useEffect(() => {
@@ -52,8 +51,8 @@ function SideBar({ history }) {
     }
   };
 
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <>
       <div
@@ -87,11 +86,11 @@ function SideBar({ history }) {
               decWidth ? " d-flex justify-content-center " : ""
             }  "align-items-center  justify-content-between  d-flex mt-sm-5 mt-3 pt-sm-5 "  cursor-pointer`}
             // onClick={() => setShowSidebar(false)}
-            onClick={() => openRoutes("user")}
+            onClick={() => openRoutes("userlist")}
           >
             <p
               className={`${
-                activeSidebar === "user" ? "sidebar-text" : "side-item-text"
+                activeSidebar === "userlist" ? "sidebar-text" : "side-item-text"
               }  px-3 mb-0  `}
             >
               <span>
@@ -106,7 +105,7 @@ function SideBar({ history }) {
                 Users
               </span>
             </p>
-            {activeSidebar === "user" ? (
+            {activeSidebar === "userlist" ? (
               <span className="d-inline-block active-line"></span>
             ) : (
               ""

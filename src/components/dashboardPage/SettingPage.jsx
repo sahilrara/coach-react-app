@@ -58,7 +58,7 @@ const SettingPage = () => {
                 </div>
                 <div className="col-lg-6 col-12 mt-2 position-relative">
                   <input
-                    className="w-100 edit-input px-4"
+                    className="w-100 edit-input link-input"
                     type="text"
                     placeholder="Instagram@.com//abcd"
                   />
@@ -79,7 +79,7 @@ const SettingPage = () => {
                 </div> */}
                 <div className="col-lg-6 col-12 mt-2 position-relative">
                   <input
-                    className="w-100 edit-input px-4"
+                    className="w-100 edit-input link-input"
                     type="text"
                     placeholder="Facebook@.com//abcd"
                   />
@@ -96,13 +96,13 @@ const SettingPage = () => {
                     <p className="mb-0"> Facebook@.com//abcd</p>
                   </div>
                 </div> */}
-                <div className="col-lg-6 col-12 mt-2 position-relative">
+                <div className="col-lg-6 col-12 mt-2 position-relative ">
                   <input
-                    className="w-100 edit-input px-4"
+                    className="w-100 edit-input link-input "
                     type="text"
                     placeholder="Linkdin@.com//abcd"
                   />
-                  <span className="me-2 social-icons">
+                  <span className="me-2 social-icons ">
                     <LinkdinIcon />
                   </span>
                 </div>
@@ -117,7 +117,7 @@ const SettingPage = () => {
                 </div> */}
                 <div className="col-lg-6 col-12 mt-2 position-relative">
                   <input
-                    className="w-100 edit-input px-4"
+                    className="w-100 edit-input link-input"
                     type="text"
                     placeholder="Twitter@.com//abcd"
                   />
@@ -144,7 +144,7 @@ const SettingPage = () => {
                         rounded-1px
                         fw-700
                         fs-20 fs-xs-16
-                        px-4
+                      
                         h-50px
                         
                 bg-dark black-btn-skew

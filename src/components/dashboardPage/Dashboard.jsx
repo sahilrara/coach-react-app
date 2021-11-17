@@ -72,7 +72,7 @@ const Dashboard = () => {
                 <th className="dash-input">
                   {" "}
                   <input
-                    className="form-check-input"
+                    className="form-check-input cursor-pointer"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault"
@@ -96,7 +96,7 @@ const Dashboard = () => {
                     <td>
                       {" "}
                       <input
-                        className="form-check-input"
+                        className="form-check-input cursor-pointer"
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"

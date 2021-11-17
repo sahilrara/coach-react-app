@@ -40,7 +40,6 @@ const AdminHeader = () => {
             onClick={() => setShowSidebar(true)}
             src={SidebarTogle}
             className=" d-lg-none ms-2"
-            alt=""
           />
         </div>
       </div>

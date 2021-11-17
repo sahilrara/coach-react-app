@@ -185,10 +185,14 @@
   font-size: var(--font-16);
   font-weight: 400;
   background: var(--color-light-green);
+  border: 1px solid var(--color-light-green);
   border-radius: 22px;
   color: var(---color-black);
 }
-
+.edit-btn-dash:hover {
+  background-color: white;
+  color: var(--color-light-green);
+}
 .remove-btn-dash {
   background: var(--color-white);
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -197,6 +201,10 @@
   font-weight: normal;
   font-family: "Josefin Sans";
   border-radius: 22px;
+}
+.remove-btn-dash:hover {
+  background: rgba(245, 222, 179, 0.233);
+  color: var(---color-black);
 }
 
 tbody td {

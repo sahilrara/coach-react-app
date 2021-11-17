@@ -205,7 +205,7 @@ body {
 }
 
 input {
-  padding: 17px;
+  /* padding: 17px; */
   border-radius: 0px;
   border: 1px solid #00000033;
   font-size: 16px;
@@ -283,8 +283,8 @@ input:focus {
 }
 .social-icons {
   position: absolute;
-  left: 15px;
-  top: 18px;
+  left: 25px;
+  top: 15px;
 }
 .active-line {
   background-color: white;
@@ -296,4 +296,10 @@ input:focus {
   position: absolute;
   top: 15px;
   right: 20px;
+}
+.link-input {
+  padding: 18px 37px;
+}
+.table-checkbox .form-check-input {
+  padding: 10px !important;
 }

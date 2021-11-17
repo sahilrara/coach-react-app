@@ -1,9 +1,11 @@
 import React from "react";
+import { useProfileJoyrideProvider } from "../useContext/SidebarProvider";
 import AdminHeader from "./AdminHeader";
 import SideBar from "../Sidebar";
 import { Table } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 const ProgramPage = ({ history }) => {
+  const { setShowSidebar, showSidebar } = useProfileJoyrideProvider();
   const dashboardData = [
     {
       name: "KathMurphy",
@@ -73,14 +75,13 @@ const ProgramPage = ({ history }) => {
             </div>
           </div>
           <Table responsive>
-            <thead className="Dashboard-table-head ">
+            <thead className="Dashboard-table-head  cursor-pointer">
               <tr>
-                <th className="dash-input">
+                <th className="dash-input ">
                   {" "}
                   <input
-                    className="form-check-input"
+                    className="form-check-input cursor-pointer"
                     type="checkbox"
-                    value=""
                     id="flexCheckDefault"
                   />{" "}
                 </th>
@@ -105,7 +106,7 @@ const ProgramPage = ({ history }) => {
                     <td>
                       {" "}
                       <input
-                        className="form-check-input"
+                        className="form-check-input cursor-pointer"
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
