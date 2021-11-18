@@ -2,13 +2,32 @@ import React, { useState } from "react";
 import SideBar from "../Sidebar";
 import AdminHeader from "./AdminHeader";
 import FaceImg from "../../assets/img/Faces.png";
+import { EmailRegex } from "../common/Validation";
 
 const ProfilePage = () => {
+  const [error, setError] = useState(false);
+  const [profileData, setProfileData] = useState({
+    firstname: "",
+    lastname: "",
+    username: "",
+    email: "",
+  });
   const [uploadImg, setUploadImg] = useState("");
   const UploadImg = (e) => {
     let img = e.target.files[0];
     let image = URL.createObjectURL(img);
     setUploadImg(image);
+  };
+  const SaveData = () => {
+    setError(true);
+    if (
+      profileData.firstname &&
+      profileData.lastname &&
+      profileData.username &&
+      profileData.email !== ""
+    ) {
+      setProfileData(profileData);
+    }
   };
   return (
     <div className="d-flex bg-dark-grey ">
@@ -94,29 +113,84 @@ const ProfilePage = () => {
                   <input
                     className="w-100 edit-input"
                     type="text"
+                    onChange={(e) =>
+                      setProfileData({
+                        ...profileData,
+                        firstname: e.target.value,
+                      })
+                    }
                     placeholder="First Name"
                   />
+                  <span className="text-danger">
+                    {error && profileData.firstname === "" ? (
+                      <p>FirstName is Required</p>
+                    ) : (
+                      ""
+                    )}
+                  </span>
                 </div>
                 <div className="col-12 mt-2">
                   <input
                     className="w-100 edit-input"
                     type="text"
+                    onChange={(e) =>
+                      setProfileData({
+                        ...profileData,
+                        lastname: e.target.value,
+                      })
+                    }
                     placeholder="Last Name"
                   />
+                  <span className="text-danger">
+                    {error && profileData.lastname === "" ? (
+                      <p>LastName is Required</p>
+                    ) : (
+                      ""
+                    )}
+                  </span>
                 </div>
                 <div className="col-12 mt-2">
                   <input
                     className="w-100 edit-input"
                     type="text"
                     placeholder="Username"
+                    onChange={(e) =>
+                      setProfileData({
+                        ...profileData,
+                        username: e.target.value,
+                      })
+                    }
                   />
+                  <span className="text-danger">
+                    {error && profileData.username === "" ? (
+                      <p>UserName is Required</p>
+                    ) : (
+                      ""
+                    )}
+                  </span>
                 </div>
                 <div className="col-12 mt-2">
                   <input
                     className="w-100 edit-input"
                     type="email"
+                    onChange={(e) =>
+                      setProfileData({
+                        ...profileData,
+                        email: e.target.value,
+                      })
+                    }
                     placeholder="Email Address"
                   />
+                  <span className="text-danger text-start">
+                    {error && profileData.email === "" ? (
+                      <p>Email is Required</p>
+                    ) : error &&
+                      EmailRegex.test(profileData.email) === false ? (
+                      <p>Email is not valid</p>
+                    ) : (
+                      ""
+                    )}
+                  </span>
                 </div>
               </div>
             </div>
@@ -132,6 +206,7 @@ const ProfilePage = () => {
           "
             >
               <button
+                onClick={() => SaveData()}
                 type="button"
                 className="
               btn

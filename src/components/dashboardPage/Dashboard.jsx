@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import SideBar from "../Sidebar";
-import { Table, Modal } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import AdminHeader from "./AdminHeader";
+import EditModal from "../common/EditModal";
 
-const Dashboard = () => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const Dashboard = ({ handleShow, show, handleClose, setShow }) => {
+  console.log(show);
   const dashboardData = [
     {
       name: "KathMurphy",
@@ -142,88 +141,12 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-
-      <Modal
-        className="dash-edit-modal"
-        centered
+      <EditModal
+        setShow={setShow}
         show={show}
-        onHide={handleClose}
-      >
-        <Modal.Header>
-          <Modal.Title className="mx-auto">
-            <h1
-              className="modal-title  mt-2 pt-2 mb-0 modal-heading "
-              id="exampleModalToggleLabel"
-            >
-              Edit User
-            </h1>
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <input
-            className="w-100 edit-input mt-2 ps-3"
-            type="text"
-            placeholder="Name"
-          />
-          <input
-            className="w-100 edit-input mt-2 ps-3"
-            type="text"
-            placeholder="Last Name"
-          />
-          <input
-            className="w-100 edit-input mt-2 ps-3"
-            type="text"
-            placeholder="Username"
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <div className="modal-footer mx-auto   pb-3 d-flex flex-row justify-content-center">
-            <button
-              type="button"
-              className="btn 
-                       
-                        rounded-1px
-                        fw-700
-                        fs-20 fs-xs-16
-                        px-4
-                        h-50px
-                        w-xs-110
-                        
-                bg-dark black-btn-skew
-                        btn-skew
-                        border-unset
-                        d-flex
-                        align-items-center
-                        justify-content-center
-                      "
-            >
-              <span className="position-absolute skew-text text-white">
-                Save
-              </span>
-            </button>
-            <button
-              onClick={handleClose}
-              type="button"
-              className="btn        rounded-1px
-                        fw-700
-
-                        fs-20 fs-xs-16 mt-sm-0
-                        px-4
-                        h-50px
-                      w-xs-110
-                bg-gray gray-btn-skew ms-4
-                        btn-skew
-                        border-unset
-                        d-flex
-                        align-items-center
-                        justify-content-center"
-              data-bs-dismiss="modal"
-            >
-              <span className="position-absolute skew-text ">Cancel</span>
-            </button>
-          </div>
-        </Modal.Footer>
-      </Modal>
+        handleShow={handleShow}
+        handleClose={handleClose}
+      />
     </div>
   );
 };

@@ -42,7 +42,8 @@ const Login = ({ history }) => {
                     <span className="text-danger text-start">
                       {error && inputData.email === "" ? (
                         <p>Email is Required</p>
-                      ) : "" && EmailRegex.text(inputData.email) === false ? (
+                      ) : error &&
+                        EmailRegex.test(inputData.email) === false ? (
                         <p>Email is not Valid</p>
                       ) : (
                         ""
@@ -73,7 +74,7 @@ const Login = ({ history }) => {
                       <span className="text-danger text-start">
                         {error && inputData.password === "" ? (
                           <p>Password is Required</p>
-                        ) : "" &&
+                        ) : error &&
                           PasswordRegex.test(inputData.password) === false ? (
                           <p>Password is not strong</p>
                         ) : (
@@ -81,7 +82,12 @@ const Login = ({ history }) => {
                         )}
                       </span>
                     </div>
-
+                    <p
+                      className="text-end py-2 forgot-password-text cursor-pointer"
+                      onClick={() => history.push("/forgot/password")}
+                    >
+                      Forgot Password?
+                    </p>
                     <div className="mt-4 pt-2 d-flex justify-content-center text-center">
                       <button
                         onClick={() => InputDataHandler()}
