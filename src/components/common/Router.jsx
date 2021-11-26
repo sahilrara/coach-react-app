@@ -1,11 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Dashboard from "../dashboardPage/Dashboard";
+import Dashboard from "../userDashboard/Dashboard";
 import EditProgram from "../dashboardPage/EditProgram";
-import Login from "../dashboardPage/Login";
+import Login from "../auth/Login";
 import ProfilePage from "../dashboardPage/ProfilePage";
 import ProgramPage from "../dashboardPage/ProgramPage";
 import SettingPage from "../dashboardPage/SettingPage";
+
 const Router = () => {
   return (
     <div>

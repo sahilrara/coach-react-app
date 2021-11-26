@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SideBar from "../Sidebar";
-import AdminHeader from "./AdminHeader";
+import AdminHeader from "../common/AdminHeader";
 import FaceImg from "../../assets/img/Faces.png";
 
 const ProfilePage = () => {

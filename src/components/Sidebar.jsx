@@ -4,18 +4,11 @@ import Coachlogo from "../../src/assets/img/coachlogo.png";
 import { Profile, Programs, Settings, Users } from "./icons/Icons";
 import { useProfileJoyrideProvider } from "./useContext/SidebarProvider";
 import { withRouter } from "react-router";
+
 function SideBar({ history }) {
   const { setShowSidebar, showSidebar } = useProfileJoyrideProvider();
-  const [active, setActive] = useState(false);
-  const [show, setShow] = useState(false);
   const [activeSidebar, setActiveSidebar] = useState("/userlist");
   const [decWidth, setDecWidth] = useState(false);
-  const clickHandler = () => {
-    setActive(true);
-  };
-  const closeOverlay = () => {
-    setActive(false);
-  };
 
   const path = window.location.pathname;
   useEffect(() => {
@@ -51,8 +44,6 @@ function SideBar({ history }) {
     }
   };
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   return (
     <>
       <div

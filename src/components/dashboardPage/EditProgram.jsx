@@ -1,7 +1,7 @@
 import React from "react";
 import SideBar from "../Sidebar";
 import { withRouter } from "react-router-dom";
-import AdminHeader from "./AdminHeader";
+import AdminHeader from "../common/AdminHeader";
 
 function EditProgram({ history }) {
   return (

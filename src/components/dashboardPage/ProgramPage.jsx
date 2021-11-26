@@ -1,11 +1,10 @@
 import React from "react";
-import { useProfileJoyrideProvider } from "../useContext/SidebarProvider";
-import AdminHeader from "./AdminHeader";
+import AdminHeader from "../common/AdminHeader";
 import SideBar from "../Sidebar";
 import { Table } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+
 const ProgramPage = ({ history }) => {
-  const { setShowSidebar, showSidebar } = useProfileJoyrideProvider();
   const dashboardData = [
     {
       name: "KathMurphy",

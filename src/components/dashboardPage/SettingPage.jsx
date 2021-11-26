@@ -1,6 +1,6 @@
 import React from "react";
 import SideBar from "../Sidebar";
-import AdminHeader from "./AdminHeader";
+import AdminHeader from "../common/AdminHeader";
 import {
   InstagramIcon,
   FaceBookIcon,
