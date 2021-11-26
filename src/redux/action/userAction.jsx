@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import {
+  DeleteUserApi,
   GetAllUserListApi,
   getUserDetailsApi,
   updateUserDetailsApi,
@@ -9,6 +10,7 @@ export const GET_USER_DETAILS = "GET_USER_DETAILS";
 export const GET_ALL_USER_LIST = "GET_ALL_USER_LIST";
 export const GET_ALL_USER_DETAILS = "GET_ALL_USER_DETAILS";
 export const UPDATE_USER_DETAILS = "UPDATE_USER_DETAILS";
+export const DELETE_USER_DETAILS = "DELETE_USER_DETAILS";
 
 /**
  * Get User Details Action Creator Function
@@ -115,6 +117,35 @@ export const updateUserDetailsAction =
       }
     } catch (error) {
       setUpdateUserLoading(false);
+      Swal.fire("Error!", "Something went wrong. Try again!", "error");
+      setTimeout(Swal.close, 2000);
+    }
+  };
+
+/**
+ * delete all User List Action Creator Function
+ * @returns
+ */
+export const DeleteUser = (data) => ({
+  type: DELETE_USER_DETAILS,
+  data,
+});
+
+export const DeleteUserAction =
+  (setUserDeletedLoader, userId) => async (dispatch) => {
+    setUserDeletedLoader(true);
+    try {
+      const response = await DeleteUserApi(userId);
+      if (response.success) {
+        dispatch(DeleteUser(userId));
+        setUserDeletedLoader(false);
+        Swal.fire("Success!", "User Deleted successfully.", "success");
+        setTimeout(Swal.close, 2000);
+      } else {
+        setUserDeletedLoader(false);
+      }
+    } catch (error) {
+      setUserDeletedLoader(false);
       Swal.fire("Error!", "Something went wrong. Try again!", "error");
       setTimeout(Swal.close, 2000);
     }

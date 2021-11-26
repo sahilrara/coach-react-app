@@ -1,4 +1,39 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
+import { DeleteUserAction } from "../../redux/action/userAction";
+import Loader from "../common/loader/Loader";
+
 const UserDashboardTableContent = ({ index, val, editUserDetails }) => {
+  const dispatch = useDispatch();
+  const [userDeletedLoader, setUserDeletedLoader] = useState(false);
+  const deleteUserDetails = (userId) => {
+    if (!!userId) {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-success",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "Are You Sure ?",
+          text: "You want to delete This User.",
+          icon: "Error",
+          showCancelButton: true,
+          confirmButtonText: `${userDeletedLoader ? <Loader /> : "Yes"}`,
+          cancelButtonText: "No",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            dispatch(DeleteUserAction(setUserDeletedLoader, userId));
+          }
+        });
+    }
+  };
+
   return (
     <tr key={index}>
       <td>
@@ -21,7 +56,12 @@ const UserDashboardTableContent = ({ index, val, editUserDetails }) => {
             >
               Edit
             </button>
-            <button className="btn  px-4 remove-btn-dash">Remove</button>
+            <button
+              className="btn  px-4 remove-btn-dash"
+              onClick={() => deleteUserDetails(val._id)}
+            >
+              Remove
+            </button>
           </div>
         </div>
       </td>
