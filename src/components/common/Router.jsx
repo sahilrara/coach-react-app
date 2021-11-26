@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Dashboard from "../userDashboard/Dashboard";
-import EditProgram from "../dashboardPage/EditProgram";
+import EditProgram from "../Programs/EditProgram";
 import Login from "../auth/Login";
 import ProfilePage from "../dashboardPage/ProfilePage";
-import ProgramPage from "../dashboardPage/ProgramPage";
+import ProgramPage from "../Programs/ProgramPage";
 import SettingPage from "../dashboardPage/SettingPage";
 import ForgotPassword from "./ForgotPassword";
 import ResetPassword from "./ResetPassword";

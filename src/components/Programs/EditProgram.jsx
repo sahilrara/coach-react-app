@@ -55,7 +55,6 @@ function EditProgram({ history }) {
             </div>
           </div>
           <div className="edit-form mb-5 px-4 pt-4">
-            {/* <p className="mt-5">Change user information here</p> */}
             <div className="row">
               <div className="col-lg-6 col-12 mt-2">
                 <input

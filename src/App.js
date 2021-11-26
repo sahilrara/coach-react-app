@@ -7,7 +7,7 @@ import Router from "./components/common/Router";
 import BubblesLoader from "./components/common/loader/BubblesLoader";
 import { getLocalStorageToken } from "./redux/action/AuthAction";
 import { getUserDetailsAction } from "./redux/action/userAction";
-import ChampLogo from "./assets/img/coachlogo.png";
+import LoaderImg from "./assets/img/loaderimg.png";
 
 function App() {
   const token = localStorage.getItem("coach-champion-admin");
@@ -27,9 +27,9 @@ function App() {
       {!!token ? (
         <>
           {userLoading ? (
-            <div className="h-100vh d-flex justify-content-center align-items-center flex-column w-50">
+            <div className="h-100vh d-flex justify-content-center align-items-center flex-column ">
               <div className="mb-5">
-                <img src={ChampLogo} alt="" />
+                <img className="loader-img" src={LoaderImg} alt="LoaderImg" />
               </div>
               <BubblesLoader />
             </div>
