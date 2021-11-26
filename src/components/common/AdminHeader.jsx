@@ -3,9 +3,21 @@ import AvtarIcon from "../../assets/img/Avatar.png";
 import { SearchIcon } from "../icons/Icons";
 import { useProfileJoyrideProvider } from "../useContext/SidebarProvider";
 import SidebarTogle from "../../assets/img/sidbartogleicon.svg";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { withRouter } from "react-router";
 
-const AdminHeader = () => {
+const AdminHeader = ({ history }) => {
   const { setShowSidebar } = useProfileJoyrideProvider();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+    history.push("/");
+  };
   return (
     <div>
       <div className="row mt-3 align-items-center justify-content-between">
@@ -34,7 +46,30 @@ const AdminHeader = () => {
           {/* <span className="mx-3 cursor-pointer">
             <BlackBellIcon />
           </span> */}
-          <img className="cursor-pointer" src={AvtarIcon} alt="" />
+          <img
+            id="basic-button"
+            aria-controls="basic-menu"
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
+            src={AvtarIcon}
+            className="cursor-pointer"
+            alt="AvtarIcon"
+          />
+
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem onClick={handleClose} className="fw-bold">
+              Logout
+            </MenuItem>
+          </Menu>
 
           <img
             onClick={() => setShowSidebar(true)}
@@ -48,4 +83,4 @@ const AdminHeader = () => {
   );
 };
 
-export default AdminHeader;
+export default withRouter(AdminHeader);

@@ -303,6 +303,11 @@ input:focus {
   top: 15px;
   right: 20px;
 }
+.reset-eye-icon {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+}
 .link-input {
   padding: 18px 37px;
 }
