@@ -3,9 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import Dashboard from "../userDashboard/Dashboard";
 import EditProgram from "../Programs/EditProgram";
 import Login from "../auth/Login";
-import ProfilePage from "../dashboardPage/ProfilePage";
+import ProfilePage from "../profile/ProfilePage";
 import ProgramPage from "../Programs/ProgramPage";
-import SettingPage from "../dashboardPage/SettingPage";
+import SettingPage from "../setting/SettingPage";
 import ForgotPassword from "./ForgotPassword";
 import ResetPassword from "./ResetPassword";
 
@@ -29,7 +29,12 @@ const Router = () => {
         <Route exact path="/admin/dashboard/profile" component={ProfilePage} />
         <Route
           exact
-          path="/admin/dashboard/editprogram"
+          path="/admin/dashboard/edit/program/:programId"
+          component={EditProgram}
+        />
+        <Route
+          exact
+          path="/admin/dashboard/create/program"
           component={EditProgram}
         />
         <Route exact path="/admin/dashboard/program">

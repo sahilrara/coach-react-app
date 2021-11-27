@@ -24,7 +24,7 @@ export const getUserDetailsApi = async (value) => {
  * @returns
  */
 export const updateUserDetailsApi = async (userId, data) => {
-  return await axiosRequest("POST", `/update/user/${userId}`, data);
+  return await axiosRequest("PUT", `/update/user/${userId}`, data);
 };
 
 /**

@@ -1,34 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../Sidebar";
 import AdminHeader from "../common/AdminHeader";
 import FaceImg from "../../assets/img/Faces.png";
 import { EmailRegex } from "../common/Validation";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUserDetailsAction } from "../../redux/action/userAction";
+import Loader from "../common/loader/Loader";
 
+const insialState = {
+  firstname: "",
+  lastname: "",
+  username: "",
+  email: "",
+};
 const ProfilePage = () => {
+  const dispacth = useDispatch();
+  const userData = useSelector((state) => state.Auth.userData);
   const [error, setError] = useState(false);
-  const [profileData, setProfileData] = useState({
-    firstname: "",
-    lastname: "",
-    username: "",
-    email: "",
-  });
+  const [updateUserLoading, setUpdateUserLoading] = useState(false);
+  const [profileData, setProfileData] = useState(insialState);
   const [uploadImg, setUploadImg] = useState("");
+
+  useEffect(() => {
+    if (userData) {
+      setProfileData(userData);
+    }
+  }, [userData]);
+
   const UploadImg = (e) => {
     let img = e.target.files[0];
     let image = URL.createObjectURL(img);
     setUploadImg(image);
   };
-  const SaveData = () => {
+
+  const updateUserDetails = () => {
     setError(true);
-    if (
-      profileData.firstname &&
-      profileData.lastname &&
-      profileData.username &&
-      profileData.email !== ""
-    ) {
-      setProfileData(profileData);
-    }
+    const userId = "me";
+    dispacth(
+      updateUserDetailsAction(setUpdateUserLoading, userId, profileData)
+    );
   };
+
   return (
     <div className="d-flex bg-dark-grey ">
       <SideBar />
@@ -77,23 +89,7 @@ const ProfilePage = () => {
               <div className="mt-3 mt-lg-0">
                 <button
                   type="button"
-                  className="
-                btn
-                ms-lg-4
-                rounded-1px
-                fw-700
-                fs-20 fs-xs-16
-                px-4
-                h-50px
-                w-200 w-101
-                bg-dark
-                black-btn-skew
-                btn-skew
-                border-unset
-                d-flex
-                align-items-center
-                justify-content-center
-              "
+                  className="btn ms-lg-4 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px w-200 w-101 bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
                 >
                   <label
                     for="file-input"
@@ -113,16 +109,17 @@ const ProfilePage = () => {
                   <input
                     className="w-100 edit-input"
                     type="text"
+                    value={profileData.firstName}
                     onChange={(e) =>
                       setProfileData({
                         ...profileData,
-                        firstname: e.target.value,
+                        firstName: e.target.value,
                       })
                     }
                     placeholder="First Name"
                   />
                   <span className="text-danger">
-                    {error && profileData.firstname === "" ? (
+                    {error && profileData.firstName === "" ? (
                       <p>FirstName is Required</p>
                     ) : (
                       ""
@@ -133,16 +130,17 @@ const ProfilePage = () => {
                   <input
                     className="w-100 edit-input"
                     type="text"
+                    value={profileData.lastName}
                     onChange={(e) =>
                       setProfileData({
                         ...profileData,
-                        lastname: e.target.value,
+                        lastName: e.target.value,
                       })
                     }
                     placeholder="Last Name"
                   />
                   <span className="text-danger">
-                    {error && profileData.lastname === "" ? (
+                    {error && profileData.lastName === "" ? (
                       <p>LastName is Required</p>
                     ) : (
                       ""
@@ -154,6 +152,8 @@ const ProfilePage = () => {
                     className="w-100 edit-input"
                     type="text"
                     placeholder="Username"
+                    disabled
+                    value={profileData.username}
                     onChange={(e) =>
                       setProfileData({
                         ...profileData,
@@ -173,6 +173,8 @@ const ProfilePage = () => {
                   <input
                     className="w-100 edit-input"
                     type="email"
+                    value={profileData.email}
+                    disabled
                     onChange={(e) =>
                       setProfileData({
                         ...profileData,
@@ -194,64 +196,20 @@ const ProfilePage = () => {
                 </div>
               </div>
             </div>
-
-            <div
-              className="
-            mt-4
-            pt-2
-            d-flex
-             flex-row
-            pb-5
-            align-items-center align-items-sm-start
-          "
-            >
+            <div className="mt-4 pt-2 d-flex flex-row pb-5 align-items-center align-items-sm-start">
               <button
-                onClick={() => SaveData()}
+                onClick={() => updateUserDetails()}
+                disabled={updateUserLoading}
                 type="button"
-                className="
-              btn
-              ms-2
-              rounded-1px
-              fw-700
-              fs-20 fs-xs-16
-              px-4
-              h-50px
-            
-              bg-dark
-              black-btn-skew
-              btn-skew
-              border-unset
-              d-flex
-              align-items-center
-              justify-content-center
-            "
+                className="btn ms-2 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
               >
                 <span className="position-absolute skew-text text-white">
-                  Save
+                  {updateUserLoading ? <Loader /> : "Save"}
                 </span>
               </button>
-
               <button
                 type="button"
-                className="
-              
-                btn
-                ms-4
-                rounded-1px
-                fw-700
-                fs-20 fs-xs-16
-                
-                px-4
-                h-50px
-               
-                bg-gray
-                gray-btn-skew
-                btn-skew
-                border-unset
-                d-flex
-                align-items-center
-                justify-content-center
-              "
+                className="btn ms-4 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px bg-gray gray-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
               >
                 <span className="position-absolute skew-text">Cancel</span>
               </button>
@@ -263,5 +221,4 @@ const ProfilePage = () => {
     </div>
   );
 };
-
 export default ProfilePage;
