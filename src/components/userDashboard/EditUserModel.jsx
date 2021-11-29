@@ -42,7 +42,10 @@ const EditUserModel = ({ handleClose, show, userDetailsLoading, userId }) => {
       onHide={handleClose}
     >
       {userDetailsLoading ? (
-        <BubblesLoader />
+        <div className="d-flex align-items-center justify-content-center py-4">
+          {" "}
+          <BubblesLoader />
+        </div>
       ) : (
         <>
           <Modal.Header>
