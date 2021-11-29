@@ -6,7 +6,10 @@ const UserDashboardTable = ({ userList, editUserDetails, userLoading }) => {
   return (
     <>
       {userLoading ? (
-        <BubblesLoader />
+        <div className="d-flex justify-content-center align-items-center h-100 flex-grow-1">
+          {" "}
+          <BubblesLoader />
+        </div>
       ) : (
         <>
           {userList && userList.length > 0 ? (

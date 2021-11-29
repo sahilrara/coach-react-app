@@ -47,7 +47,10 @@ const ProgramPage = ({ history }) => {
             </div>
           </div>
           {programListLoading ? (
-            <BubblesLoader />
+            <div className="d-flex justify-content-center align-items-center">
+              {" "}
+              <BubblesLoader />
+            </div>
           ) : (
             <>
               {allProgramList && allProgramList.length > 0 ? (
@@ -57,17 +60,18 @@ const ProgramPage = ({ history }) => {
               )}
             </>
           )}
+
           {totalProgram > 10 ? (
             <ReactPaginate
-              previousLabel={"Prev"}
-              nextLabel={"Next"}
+              previousLabel={<Prev />}
+              nextLabel={<Next />}
               breakLabel={"..."}
               breakClassName={"break-me"}
               pageCount={Math.ceil(totalProgram / 10)}
               marginPagesDisplayed={3}
               pageRangeDisplayed={2}
               onPageChange={handlePageClick}
-              containerClassName={"pagination"}
+              containerClassName={"pagination paginationContainerStyle"}
               subContainerClassName={"pages pagination"}
               activeClassName={"activePage"}
               initialPage={page}
@@ -81,3 +85,48 @@ const ProgramPage = ({ history }) => {
   );
 };
 export default withRouter(ProgramPage);
+const Next = () => (
+  <span className="pagination-number">
+    {" "}
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 12H20"
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M13 5L20 12L13 19"
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </span>
+);
+
+const Prev = () => (
+  <span className="pagination-number ">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M11.4 7L6 12.4L11.4 17.8M18 12.4H6H18Z"
+        stroke="black"
+        stroke-width="2"
+      />
+    </svg>
+  </span>
+);
