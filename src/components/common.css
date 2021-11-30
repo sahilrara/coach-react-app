@@ -139,9 +139,9 @@
 
 .user-img {
   background-color: var(--color-white-ff);
-  background-image: url("../assets/img/Faces.png");
-  background-repeat: no-repeat;
-  background-position: center;
+  /* background-image: url("../assets/img/Faces.png"); */
+  /* background-repeat: no-repeat;
+  background-position: center; */
   width: 60px;
   height: 60px;
   border-radius: 50%;

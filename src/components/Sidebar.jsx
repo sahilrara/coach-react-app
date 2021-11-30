@@ -4,8 +4,10 @@ import Coachlogo from "../../src/assets/img/coachlogo.png";
 import { Profile, Programs, Settings, Users } from "./icons/Icons";
 import { useProfileJoyrideProvider } from "./useContext/SidebarProvider";
 import { withRouter } from "react-router";
+import { useSelector } from "react-redux";
 
 function SideBar({ history }) {
+  const userData = useSelector((state) => state.Auth.userData);
   const { setShowSidebar, showSidebar } = useProfileJoyrideProvider();
   const [activeSidebar, setActiveSidebar] = useState("/userlist");
   const [decWidth, setDecWidth] = useState(false);
@@ -227,10 +229,19 @@ function SideBar({ history }) {
         >
           <div className="d-flex align-items-center">
             <div>
-              <span className="user-img d-inline-block"></span>
+              <span className=" d-inline-block">
+                <img
+                  className="user-img"
+                  src={userData ? userData.imagePath : null}
+                />
+              </span>
             </div>
             <div className={`${decWidth ? "d-none" : ""} ps-2`}>
-              <p className="text-white mb-0 ">Nafisa Sh.</p>
+              <p className="text-white mb-0 ">
+                {userData
+                  ? `${userData.firstName} ${userData.lastName}`
+                  : "username"}
+              </p>
               <p className="mb-0 text-white">Support manager</p>
             </div>
           </div>

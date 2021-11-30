@@ -15,5 +15,5 @@ export const LoginApi = async (data) => {
  * @returns
  */
 export const ChangePasswordApi = async (data) => {
-  return await axiosRequest("POST", `/change-password`, data);
+  return await axiosRequest("POST", `/change/password`, data);
 };

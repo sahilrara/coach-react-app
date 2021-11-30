@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   InstagramIcon,
   FaceBookIcon,
@@ -6,32 +6,51 @@ import {
   TiwitterIcon,
 } from "../icons/Icons";
 import { EmailRegex, PhoneRegex } from "../common/Validation";
+import { updateUserDetailsAction } from "../../redux/action/userAction";
+import Loader from "../common/loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+
+const insialState = {
+  phoneno: "",
+  email: "",
+  instagramLink: "",
+  facebookLink: "",
+  linkdinLink: "",
+  twitterLink: "",
+};
 
 const SettingForm = () => {
+  const dispacth = useDispatch();
   const [error, seterror] = useState(false);
-  const [settingData, setSettingData] = useState({
-    phoneno: "",
-    email: "",
-    insta: "",
-    facebook: "",
-    linkedin: "",
-    twitter: "",
-  });
+  const userData = useSelector((state) => state.Auth.userData);
+  const [updateUserLoading, setUpdateUserLoading] = useState(false);
+  const [settingData, setSettingData] = useState(insialState);
+
+  useEffect(() => {
+    if (userData) {
+      setSettingData(userData);
+    }
+  }, [userData]);
+
   const SettingDataHandler = () => {
+    console.log("settingData", settingData);
     seterror(true);
     if (
       settingData.phoneno &&
-      settingData.password &&
-      settingData.newpassword &&
       settingData.email &&
-      settingData.insta &&
-      settingData.facebook &&
-      settingData.linkedin &&
-      settingData.twitter !== ""
+      settingData.instagramLink &&
+      settingData.facebookLink &&
+      settingData.linkdinLink &&
+      settingData.twitterLink !== ""
     ) {
-      setSettingData(settingData);
+      seterror(false);
+      const userId = "me";
+      dispacth(
+        updateUserDetailsAction(setUpdateUserLoading, userId, settingData)
+      );
     }
   };
+
   return (
     <div className="edit-form px-4 pt-4">
       <div className="row">
@@ -40,6 +59,7 @@ const SettingForm = () => {
             className="w-100 edit-input"
             type="number"
             placeholder="Phone Number:"
+            value={settingData.phoneno}
             onChange={(e) =>
               setSettingData({
                 ...settingData,
@@ -63,6 +83,8 @@ const SettingForm = () => {
             className="w-100 edit-input"
             type="email"
             placeholder="Email"
+            value={settingData.email}
+            disabled
             onChange={(e) =>
               setSettingData({
                 ...settingData,
@@ -85,16 +107,17 @@ const SettingForm = () => {
           <input
             className="w-100 edit-input link-input"
             type="text"
+            value={settingData.instagramLink}
             placeholder="Instagram@.com//abcd"
             onChange={(e) =>
               setSettingData({
                 ...settingData,
-                insta: e.target.value,
+                instagramLink: e.target.value,
               })
             }
           />
           <span className="text-danger">
-            {error && settingData.insta === "" ? (
+            {error && settingData.instagramLink === "" ? (
               <p>Instagram Link is Required</p>
             ) : (
               ""
@@ -110,15 +133,16 @@ const SettingForm = () => {
             className="w-100 edit-input link-input"
             type="text"
             placeholder="Facebook@.com//abcd"
+            value={settingData.facebookLink}
             onChange={(e) =>
               setSettingData({
                 ...settingData,
-                facebook: e.target.value,
+                facebookLink: e.target.value,
               })
             }
           />
           <span className="text-danger">
-            {error && settingData.facebook === "" ? (
+            {error && settingData.facebookLink === "" ? (
               <p> Facebook Link is Required</p>
             ) : (
               ""
@@ -133,15 +157,16 @@ const SettingForm = () => {
             className="w-100 edit-input link-input "
             type="text"
             placeholder="Linkdin@.com//abcd"
+            value={settingData.linkdinLink}
             onChange={(e) =>
               setSettingData({
                 ...settingData,
-                linkedin: e.target.value,
+                linkdinLink: e.target.value,
               })
             }
           />
           <span className="text-danger">
-            {error && settingData.linkedin === "" ? (
+            {error && settingData.linkdinLink === "" ? (
               <p> Linkedin Link is Required</p>
             ) : (
               ""
@@ -156,16 +181,17 @@ const SettingForm = () => {
             className="w-100 edit-input link-input"
             type="text"
             placeholder="Twitter@.com//abcd"
+            value={settingData.twitterLink}
             onChange={(e) =>
               setSettingData({
                 ...settingData,
-                twitter: e.target.value,
+                twitterLink: e.target.value,
               })
             }
           />
           <span className="text-danger">
-            {error && settingData.twitter === "" ? (
-              <p> Twitter Link is Required</p>
+            {error && settingData.twitterLink === "" ? (
+              <p> twitter Link is Required</p>
             ) : (
               ""
             )}
@@ -181,7 +207,9 @@ const SettingForm = () => {
           type="button"
           className="btn ms-2 rounded-1px fw-700 fs-20 fs-xs-16 h-50px bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
         >
-          <span className="position-absolute skew-text text-white">Save</span>
+          <span className="position-absolute skew-text text-white">
+            {updateUserLoading ? <Loader /> : "Save"}
+          </span>
         </button>
 
         <button

@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { LoginApi } from "../apis/AuthApis";
+import { LoginApi, ChangePasswordApi } from "../apis/AuthApis";
 
 export const LOGIN_SUCCESSFULLY = "LOGIN_SUCCESSFULLY";
 export const REMOVE_LOCAL_STORAGE_TOKEN = "REMOVE_LOCAL_STORAGE_TOKEN";
@@ -84,3 +84,33 @@ export const loginAction = (data, setLoading, history) => async (dispatch) => {
     setTimeout(Swal.close, 2000);
   }
 };
+
+/**
+ * password change
+ * @returns
+ */
+
+export const ChangePasswordAction =
+  (data, setLoadingChange, history) => async () => {
+    setLoadingChange(true);
+    try {
+      const response = await ChangePasswordApi(data);
+      if (response.success) {
+        setLoadingChange(false);
+        Swal.fire("Success", "Password Change Successfully", "success");
+        setTimeout(Swal.close, 2000);
+      } else {
+        setLoadingChange(false);
+        Swal.fire(
+          "Ooops!",
+          "You have entered wrong password,Try again!",
+          "error"
+        );
+        setTimeout(Swal.close, 2000);
+      }
+    } catch (error) {
+      setLoadingChange(false);
+      Swal.fire("Error!", "Something went wrong", "error");
+      setTimeout(Swal.close, 2000);
+    }
+  };

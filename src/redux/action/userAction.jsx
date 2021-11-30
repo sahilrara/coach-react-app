@@ -106,7 +106,7 @@ export const updateUserDetailsAction =
     setUpdateUserLoading(true);
     try {
       const response = await updateUserDetailsApi(userId, data);
-      if (response.success) {
+      if (!!response.success) {
         dispatch(updateUserDetails(response.user));
         setUpdateUserLoading(false);
         handleClose();

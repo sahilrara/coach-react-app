@@ -6,8 +6,10 @@ import SidebarTogle from "../../assets/img/sidbartogleicon.svg";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { withRouter } from "react-router";
+import { useSelector } from "react-redux";
 
 const AdminHeader = ({ history }) => {
+  const userData = useSelector((state) => state.Auth.userData);
   const { setShowSidebar } = useProfileJoyrideProvider();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -52,7 +54,7 @@ const AdminHeader = ({ history }) => {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
-            src={AvtarIcon}
+            src={userData ? userData.imagePath : AvtarIcon}
             className="cursor-pointer"
             alt="AvtarIcon"
           />

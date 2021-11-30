@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { ShowEye, HideEye } from "../icons/Icons";
 import { PasswordRegex } from "../common/Validation";
+import { ChangePasswordAction } from "../../redux/action/AuthAction";
+import Loader from "../common/loader/Loader";
+import { withRouter } from "react-router";
+import { useDispatch } from "react-redux";
 
-const ChangePasswordForm = () => {
+const ChangePasswordForm = ({ history }) => {
   const [error, setError] = useState(false);
+  const dispatch = useDispatch();
+  const [loadingChange, setLoadingChange] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [newPassword, setNewPassword] = useState(false);
   const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
@@ -22,6 +28,9 @@ const ChangePasswordForm = () => {
       changePasswordDetails.newPassword === confirmPassword
     ) {
       setError(false);
+      dispatch(
+        ChangePasswordAction(changePasswordDetails, setLoadingChange, history)
+      );
     }
   };
 
@@ -65,7 +74,7 @@ const ChangePasswordForm = () => {
             onChange={(e) =>
               setChangePasswordDetails({
                 ...changePasswordDetails,
-                newpassword: e.target.value,
+                newPassword: e.target.value,
               })
             }
           />
@@ -117,7 +126,9 @@ const ChangePasswordForm = () => {
           type="button"
           className="btn ms-2 rounded-1px fw-700 fs-20 fs-xs-16 h-50px bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
         >
-          <span className="position-absolute skew-text text-white">Save</span>
+          <span className="position-absolute skew-text text-white">
+            {loadingChange ? <Loader /> : "Save"}
+          </span>
         </button>
 
         <button
@@ -131,4 +142,4 @@ const ChangePasswordForm = () => {
     </div>
   );
 };
-export default ChangePasswordForm;
+export default withRouter(ChangePasswordForm);
