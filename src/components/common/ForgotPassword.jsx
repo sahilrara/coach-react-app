@@ -9,7 +9,7 @@ const ForgotPassword = ({ history }) => {
     setError(true);
     if (email !== "") {
       setEmail(email);
-      history.push(`/reset/password/${email}`);
+      history.push("/reset/password");
     }
   };
   return (

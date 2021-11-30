@@ -61,7 +61,7 @@ function SideBar({ history }) {
             decWidth ? "flex-column" : "flex-row"
           } d-flex align-items-center logo_border justify-content-between`}
         >
-          <img src={Coachlogo} alt="" />
+          <img className="coach-logo" src={Coachlogo} alt="" />
           <div
             onClick={() => setDecWidth(!decWidth)}
             className={`${decWidth ? "cursor-pointer mt-4" : "cursor-pointer"}`}
