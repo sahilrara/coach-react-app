@@ -58,7 +58,7 @@ const AdminHeader = ({ history }) => {
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
             src={userData ? userData.imagePath : AvtarIcon}
-            className="cursor-pointer"
+            className="cursor-pointer userimg"
             alt="AvtarIcon"
           />
 
