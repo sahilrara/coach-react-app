@@ -8,6 +8,7 @@ import ProgramPage from "../Programs/ProgramPage";
 import SettingPage from "../setting/SettingPage";
 import ForgotPassword from "./ForgotPassword";
 import ResetPassword from "./ResetPassword";
+import Mail from "./Mail";
 
 const Router = () => {
   const [show, setShow] = useState(false);
@@ -18,6 +19,7 @@ const Router = () => {
       <Switch>
         {/* Main Pages */}
         <Route exact path="/" component={Login} />
+        <Route exact path="/send/mail" component={Mail} />
         <Route exact path="/admin/dashboard/userlist">
           <Dashboard
             setShow={setShow}

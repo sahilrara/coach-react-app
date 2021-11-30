@@ -359,7 +359,11 @@ input:focus {
 .pagination {
   justify-content: flex-end;
 }
-
+.userimg {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
 .swal2-cancel {
   background-color: var(--color-light-green);
   border: 1px solid var(--color-light-green) !important;

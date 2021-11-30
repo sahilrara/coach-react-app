@@ -77,7 +77,7 @@ const AdminHeader = ({ history }) => {
             onClick={() => setShowSidebar(true)}
             src={SidebarTogle}
             alt=""
-            className=" d-lg-none ms-2"
+            className="userimg d-lg-none ms-2"
           />
         </div>
       </div>
