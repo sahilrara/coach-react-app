@@ -4,7 +4,7 @@ import { withRouter } from "react-router";
 const Mail = ({ history, match }) => {
   const { email } = match.params;
   return (
-    <div className="bg-dark">
+    <div className="bg-dark h-100vh">
       <div class="d-flex align-items-center flex-grow-1 justify-content-center flex-column">
         <div class="container my-5">
           <div class="form text-center mx-auto">
