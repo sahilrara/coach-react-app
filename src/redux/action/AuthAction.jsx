@@ -1,5 +1,10 @@
 import Swal from "sweetalert2";
-import { LoginApi, ChangePasswordApi } from "../apis/AuthApis";
+import {
+  LoginApi,
+  ChangePasswordApi,
+  ForgotPasswordApi,
+  ResetPasswordApi,
+} from "../apis/AuthApis";
 
 export const LOGIN_SUCCESSFULLY = "LOGIN_SUCCESSFULLY";
 export const REMOVE_LOCAL_STORAGE_TOKEN = "REMOVE_LOCAL_STORAGE_TOKEN";
@@ -23,19 +28,14 @@ const removeLocalStorageToken = (token) => ({
   token,
 });
 
-export const removeLocalStorageTokenAction =
-  (setLoadingLogOut, history) => async (dispatch) => {
-    setLoadingLogOut(true);
-    try {
-      dispatch(removeLocalStorageToken());
-      localStorage.setItem("coach-champion-admin", null);
-      setLoadingLogOut(false);
-      history.push("/");
-      // window.location.reload();
-    } catch (error) {
-      setLoadingLogOut(false);
-    }
-  };
+export const removeLocalStorageTokenAction = (history) => async (dispatch) => {
+  try {
+    dispatch(removeLocalStorageToken());
+    localStorage.setItem("coach-champion-admin", null);
+    history.push("/");
+    // window.location.reload();
+  } catch (error) {}
+};
 
 /**
  * Login action
@@ -110,6 +110,58 @@ export const ChangePasswordAction =
       }
     } catch (error) {
       setLoadingChange(false);
+      Swal.fire("Error!", "Something went wrong", "error");
+      setTimeout(Swal.close, 2000);
+    }
+  };
+
+/**
+ * Verify User Name action
+ * @param {Object} data
+ * @returns
+ */
+export const ForgotPasswordAction =
+  (data, setLoadingVerify, history) => async () => {
+    setLoadingVerify(true);
+    try {
+      const response = await ForgotPasswordApi(data);
+      if (response.success) {
+        setLoadingVerify(false);
+        history.push(`/send/message/${data.email}`);
+      } else {
+        setLoadingVerify(false);
+        Swal.fire("Error!", "No user exits", "error");
+        setTimeout(Swal.close, 2000);
+      }
+    } catch (error) {
+      setLoadingVerify(false);
+      Swal.fire("Error!", "Something went wrong", "error");
+      setTimeout(Swal.close, 2000);
+    }
+  };
+
+/**
+ * Reset password action
+ * @param {Object} data
+ * @returns
+ */
+export const ResetPasswordAction =
+  (data, setLoadingVerify, history) => async () => {
+    setLoadingVerify(true);
+    try {
+      const response = await ResetPasswordApi(data);
+      if (response.success) {
+        setLoadingVerify(false);
+        history.push("/");
+        Swal.fire("Success", "Password Reset Successfully", "error");
+        setTimeout(Swal.close, 2000);
+      } else {
+        setLoadingVerify(false);
+        Swal.fire("Error!", "Something went wrong", "error");
+        setTimeout(Swal.close, 2000);
+      }
+    } catch (error) {
+      setLoadingVerify(false);
       Swal.fire("Error!", "Something went wrong", "error");
       setTimeout(Swal.close, 2000);
     }

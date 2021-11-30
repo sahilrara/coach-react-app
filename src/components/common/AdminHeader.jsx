@@ -6,10 +6,12 @@ import SidebarTogle from "../../assets/img/sidbartogleicon.svg";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { withRouter } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeLocalStorageTokenAction } from "../../redux/action/AuthAction";
 
 const AdminHeader = ({ history }) => {
   const userData = useSelector((state) => state.Auth.userData);
+  const dispatch = useDispatch();
   const { setShowSidebar } = useProfileJoyrideProvider();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -18,8 +20,9 @@ const AdminHeader = ({ history }) => {
   };
   const handleClose = () => {
     setAnchorEl(null);
-    history.push("/");
+    dispatch(removeLocalStorageTokenAction(history));
   };
+
   return (
     <div>
       <div className="row mt-3 align-items-center justify-content-between">

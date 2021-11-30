@@ -1,17 +1,25 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { withRouter } from "react-router";
+import { ForgotPasswordAction } from "../../redux/action/AuthAction";
 import { EmailRegex } from "./Validation";
 
 const ForgotPassword = ({ history }) => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
-  const sendEmail = () => {
+  const [loadingVerify, setLoadingVerify] = useState(false);
+
+  const submitForgetPassword = () => {
     setError(true);
-    if (email !== "") {
-      setEmail(email);
-      history.push("/reset/password");
+    if (email !== "" && EmailRegex.test(email) === true) {
+      setError(false);
+      dispatch(
+        ForgotPasswordAction({ email: email }, setLoadingVerify, history)
+      );
     }
   };
+
   return (
     <div className="d-flex bg-dark">
       <div className="h-100vh-overflow-auto w-100 ">
@@ -44,7 +52,7 @@ const ForgotPassword = ({ history }) => {
                     </span>
                     <div className="mt-4 pt-2 d-flex justify-content-center text-center">
                       <button
-                        onClick={() => sendEmail()}
+                        onClick={() => submitForgetPassword()}
                         type="button"
                         className="
                        btn
