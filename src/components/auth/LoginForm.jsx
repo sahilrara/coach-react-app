@@ -87,7 +87,7 @@ const LoginForm = ({ history }) => {
         </div>
         <p
           className="text-end py-2 forgot-password-text cursor-pointer"
-          onClick={() => history.push("/forgot-password")}
+          onClick={() => history.push("/forgot/password")}
         >
           Forgot Password?
         </p>
