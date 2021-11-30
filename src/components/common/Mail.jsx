@@ -1,7 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router";
 
-const Mail = ({ history }) => {
+const Mail = ({ history, match }) => {
+  const { email } = match.params;
   return (
     <div className="bg-dark">
       <div class="d-flex align-items-center flex-grow-1 justify-content-center flex-column">
@@ -11,9 +12,9 @@ const Mail = ({ history }) => {
             <p class="fs-16 fw-normal mb-4 mt-3">Get Started</p>
             <p class="fs-16 fw-normal mb-4 mt-3">E-mail Sent Successfully</p>
             <p class="fs-16 fw-normal mb-4 mt-3">
-              A reset email has been sent to <span></span> Please look for the
-              reset password email email in your inbox and click the link in
-              that email{" "}
+              A reset email has been sent to <span>{email}</span> Please look
+              for the reset password email email in your inbox and click the
+              link in that email{" "}
             </p>
             <p class="fs-16 fw-normal mb-4 mt-3">
               Please check your email for further process.

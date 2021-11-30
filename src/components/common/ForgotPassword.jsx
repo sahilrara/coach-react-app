@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router";
 import { ForgotPasswordAction } from "../../redux/action/AuthAction";
+import Loader from "./loader/Loader";
 import { EmailRegex } from "./Validation";
 
 const ForgotPassword = ({ history }) => {
@@ -54,25 +55,10 @@ const ForgotPassword = ({ history }) => {
                       <button
                         onClick={() => submitForgetPassword()}
                         type="button"
-                        className="
-                       btn
-                       ms-2
-                       rounded-1px
-                       fw-700
-                       fs-20 fs-xs-16
-                       px-4
-                       h-50px
-                       w-200 w-xs-130
-               bg-dark
-                       btn-skew
-                       border-unset
-                       d-flex
-                       align-items-center
-                       justify-content-center
-                     "
+                        className=" btn ms-2 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px w-200 w-xs-130 bg-dark btn-skew border-unset d-flex align-items-center justify-content-center"
                       >
                         <span className="position-absolute skew-text text-white">
-                          Send email
+                          {loadingVerify ? <Loader /> : "Send email"}
                         </span>
                       </button>
                     </div>

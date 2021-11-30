@@ -19,7 +19,7 @@ const Router = () => {
       <Switch>
         {/* Main Pages */}
         <Route exact path="/" component={Login} />
-        <Route exact path="/send/mail" component={Mail} />
+        <Route exact path="/send/message/:email" component={Mail} />
         <Route exact path="/admin/dashboard/userlist">
           <Dashboard
             setShow={setShow}
