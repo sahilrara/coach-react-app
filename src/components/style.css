@@ -322,25 +322,29 @@ input:focus {
   padding: 10px !important;
 }
 .paginationContainerStyle li {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #f6f6f6;
-  color: var(--color-light-green);
+  color: black;
   margin: 0 4px;
   cursor: pointer;
 }
+.paginationContainerStyle li:hover {
+  background-color: var(--color-light-green);
+  color: black;
+}
 .paginationContainerStyle li.active-page {
-  background: black !important;
-  color: #fff;
+  background: var(--color-light-green) !important;
+  color: black;
 }
 .paginationContainerStyle li.next,
 .paginationContainerStyle li.previous {
-  background: black;
-  color: #fff;
+  background: var(--color-light-green);
+  color: var(--color-bg-dark-grey);
 }
 .paginationContainerStyle li.next svg,
 .paginationContainerStyle li.previous svg {
@@ -349,8 +353,11 @@ input:focus {
 
 .paginationContainerStyle li.next.disabled,
 .paginationContainerStyle li.previous.disabled {
-  background: black;
-  color: var(--color-light-green);
+  background: var(--color-light-green);
+  color: var(--color-bg-dark-grey);
+}
+.pagination {
+  justify-content: flex-end;
 }
 
 .swal2-cancel {
@@ -360,7 +367,6 @@ input:focus {
 }
 .swal2-cancel:hover {
   background-color: white;
-
   color: var(--color-light-green);
 }
 .swal2-confirm {
@@ -372,4 +378,7 @@ input:focus {
 .swal2-confirm:hover {
   background-color: var(--color-light-green) !important;
   color: black !important;
+}
+.coach-logo {
+  height: 70px;
 }
