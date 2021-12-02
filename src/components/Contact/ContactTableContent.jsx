@@ -19,7 +19,7 @@ const ContactTableContent = ({ ViewContactDetails, contactList }) => {
             <td>
               <div className="d-flex w-100 white-space-norwap justify-content-between ">
                 <p className="my-auto dash-body-text ">{contact.email}</p>
-                <div className="">
+                <div>
                   <button
                     className=" px-4 mx-3 btn edit-btn-dash"
                     onClick={() => ViewContactDetails(contact._id)}

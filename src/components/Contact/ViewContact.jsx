@@ -58,6 +58,13 @@ const ViewContact = ({ show, setShow, detailsLoader }) => {
                   </p>
                 </div>
               </div>
+              <div className="row">
+                <div className="col d-flex flex-column ">
+                  <p className="image-border p-2 w-100">
+                    {contactDetails.message ? contactDetails.message : "N/A"}
+                  </p>
+                </div>
+              </div>
             </div>
           </Modal.Body>
         )}

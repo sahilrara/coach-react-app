@@ -23,7 +23,7 @@ const ContactTable = ({ ViewContactDetails, contactList }) => {
           </tbody>
         </Table>
       ) : (
-        "You have no contacts list yet."
+        <p className="text-center">You have no contacts list yet.</p>
       )}
     </>
   );
