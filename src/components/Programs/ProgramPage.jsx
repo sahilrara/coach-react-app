@@ -97,14 +97,14 @@ const Next = () => (
     >
       <path
         d="M4 12H20"
-        stroke="black"
+        stroke="white"
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M13 5L20 12L13 19"
-        stroke="black"
+        stroke="white"
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"

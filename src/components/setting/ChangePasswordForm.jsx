@@ -41,7 +41,7 @@ const ChangePasswordForm = ({ history }) => {
           <input
             className="w-100 edit-input"
             type={showPassword ? "text" : "password"}
-            placeholder="Password:"
+            placeholder="Old Password:"
             onChange={(e) =>
               setChangePasswordDetails({
                 ...changePasswordDetails,

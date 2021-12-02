@@ -96,14 +96,14 @@ const Next = () => (
     >
       <path
         d="M4 12H20"
-        stroke="black"
+        stroke="white"
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M13 5L20 12L13 19"
-        stroke="black"
+        stroke="white"
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
@@ -123,7 +123,7 @@ const Prev = () => (
     >
       <path
         d="M11.4 7L6 12.4L11.4 17.8M18 12.4H6H18Z"
-        stroke="black"
+        stroke="white"
         stroke-width="2"
       />
     </svg>
