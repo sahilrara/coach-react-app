@@ -20,7 +20,7 @@ const ProfilePage = () => {
   const [updateUserLoading, setUpdateUserLoading] = useState(false);
   const [profileData, setProfileData] = useState(insialState);
   const [uploadImg, setUploadImg] = useState("");
-  console.log("userData", userData.imagePath);
+
   useEffect(() => {
     if (userData) {
       setProfileData(userData);

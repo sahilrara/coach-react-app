@@ -392,3 +392,18 @@ input:focus {
 .image-border-height {
   height: 262px;
 }
+.table-responsive::-webkit-scrollbar {
+  width: 1em;
+  height: 0.5em;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: #212529;
+  border-radius: 10px;
+}
+
+@media (min-width: 567px) {
+  .edit-program-image {
+    height: 300px;
+  }
+}
