@@ -43,7 +43,7 @@ const LoginForm = ({ history }) => {
               email: e.target.value,
             })
           }
-          placeholder="Username@gmail.com"
+          placeholder="Email"
         />
         <span className="text-danger text-start">
           {error && loginDetails.email === "" ? (
