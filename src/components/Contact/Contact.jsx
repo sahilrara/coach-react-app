@@ -1,13 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../Sidebar";
 import AdminHeader from "../common/AdminHeader";
 import ContactTable from "./ContactTable";
-import { Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import ViewContact from "./ViewContact";
+import {
+  getAllContactListAction,
+  getContactDetailsAction,
+} from "../../redux/action/Contact";
+import BubblesLoader from "../common/loader/BubblesLoader";
+import ReactPaginate from "react-paginate";
 
 const Contact = () => {
-  const handleClose = () => setShow(false);
+  const contactList = useSelector((state) => state.List.contactList);
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
+  const [contactLoading, setContactLoading] = useState(false);
+  const [detailsLoader, setDetailsLoader] = useState(false);
+  const [page, setPage] = useState(0);
+  const [totalContact, setTotalContact] = useState(0);
+
+  const ViewContactDetails = (contactId) => {
+    setShow(true);
+    if (contactId) {
+      dispatch(getContactDetailsAction(setDetailsLoader, contactId));
+    }
+  };
+
+  useEffect(() => {
+    dispatch(getAllContactListAction(setContactLoading, page, setTotalContact));
+  }, [dispatch, page, setTotalContact]);
+
+  const handlePageClick = (e) => {
+    const selectedPage = e.selected;
+    setPage(selectedPage);
+  };
+
   return (
     <>
       <div className="d-flex bg-dark-grey">
@@ -20,79 +48,48 @@ const Contact = () => {
                 <h1 className="dashboar-text mt-5 mb-4">Contact</h1>
               </div>
             </div>
-            <ContactTable handleShow={handleShow} />
+            {contactLoading ? (
+              <div className="d-flex justify-content-center align-items-center">
+                <BubblesLoader />
+              </div>
+            ) : (
+              <ContactTable
+                ViewContactDetails={ViewContactDetails}
+                contactList={contactList}
+              />
+            )}
           </div>
         </div>
       </div>
-      <Modal
-        className="dash-edit-modal"
-        centered
+      <ViewContact
         show={show}
-        onHide={handleClose}
-      >
-        <>
-          <Modal.Header>
-            <Modal.Title className="mx-auto">
-              <h5
-                className="modal-title  mt-2 pt-2 mb-0 modal-heading "
-                id="exampleModalToggleLabel"
-              >
-                View Contact
-              </h5>
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="container">
-              <div className="row">
-                <div className="col d-flex justify-content-between">
-                  <h5>Name :</h5>
-                  <p>Muskan</p>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col d-flex justify-content-between">
-                  <h5>Phone :</h5>
-                  <p>1234567890</p>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col d-flex justify-content-between">
-                  <h5>E-mail :</h5>
-                  <p>muskansaini758@gmail.com</p>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col d-flex flex-column align-items-center">
-                  <h3 className="mt-3">Message </h3>
-                  <p className="image-border p-2">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Possimus facilis facere nulla quidem quo iure? Pariatur enim
-                    sunt, mollitia error ut accusamus delectus fuga esse
-                    adipisci placeat molestias! Esse, eveniet!
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <div className="modal-footer mx-auto   pb-3 d-flex flex-row justify-content-center">
-              <button
-                onClick={() => handleClose()}
-                type="button"
-                className="btn rounded-1px fw-700 fs-20 fs-xs-16 mt-sm-0 px-4 h-50px w-xs-110 bg-gray gray-btn-skew ms-4 btn-skew border-unset d-flex align-items-center justify-content-center"
-                data-bs-dismiss="modal"
-              >
-                <span className="position-absolute skew-text ">Cancel</span>
-              </button>
-            </div>
-          </Modal.Footer>
-        </>
-      </Modal>
+        setShow={setShow}
+        detailsLoader={detailsLoader}
+      />
+      {totalContact > 10 ? (
+        <ReactPaginate
+          previousLabel={<Prev />}
+          nextLabel={<Next />}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={Math.ceil(totalContact / 10)}
+          marginPagesDisplayed={3}
+          pageRangeDisplayed={2}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination paginationContainerStyle"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"activePage"}
+          initialPage={page}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 };
 
 export default Contact;
+
 const Next = () => (
   <span className="pagination-number">
     {" "}

@@ -1,3 +1,4 @@
+import { GET_CONTACT_DETAILS, GET_CONTACT_LIST } from "../action/Contact";
 import {
   GET_ALL_PROGRAME_LIST,
   GET_PROGRAM_DETAILS,
@@ -13,6 +14,8 @@ const initialState = {
   allUserDetails: {},
   allProgramList: [],
   programDetails: {},
+  contactList: [],
+  contactDetails: {},
 };
 
 export default function ListReducer(state = initialState, action) {
@@ -61,6 +64,24 @@ export default function ListReducer(state = initialState, action) {
       return {
         ...state,
         programDetails: action.data,
+      };
+    }
+
+    /**------------------------------CONTACT LIST---------------------- */
+
+    // GET ALL Program LIST REDUCER
+    case GET_CONTACT_LIST: {
+      return {
+        ...state,
+        contactList: action.data,
+      };
+    }
+
+    // GET contact DETAILS REDUCER
+    case GET_CONTACT_DETAILS: {
+      return {
+        ...state,
+        contactDetails: action.data,
       };
     }
 
