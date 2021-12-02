@@ -293,7 +293,7 @@ function SideBar({ history }) {
         <div
           className={`${
             decWidth ? "d-flex justify-content-center" : "sidebar-footer px-3"
-          } mb-5 py-3 `}
+          } mb-sm-5 py-3 `}
         >
           <div className="d-flex align-items-center">
             <div>

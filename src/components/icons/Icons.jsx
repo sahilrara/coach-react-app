@@ -411,16 +411,19 @@ export const GalleryIcon = () => {
         d="M30.14 3a1 1 0 0 0-1-1h-22a1 1 0 0 0-1 1v1h24z"
         class="clr-i-solid clr-i-solid-path-1"
         fill="white"
+        fill-opacity="0.5"
       />
       <path
         d="M32.12 7a1 1 0 0 0-1-1h-26a1 1 0 0 0-1 1v1h28z"
         class="clr-i-solid clr-i-solid-path-2"
         fill="white"
+        fill-opacity="0.5"
       />
       <path
         d="M32.12 10H3.88A1.88 1.88 0 0 0 2 11.88v18.24A1.88 1.88 0 0 0 3.88 32h28.24A1.88 1.88 0 0 0 34 30.12V11.88A1.88 1.88 0 0 0 32.12 10zM8.56 13.45a3 3 0 1 1-3 3a3 3 0 0 1 3-3zM30 28H6l7.46-7.47a.71.71 0 0 1 1 0l3.68 3.68L23.21 19a.71.71 0 0 1 1 0L30 24.79z"
         class="clr-i-solid clr-i-solid-path-3"
         fill="white"
+        fill-opacity="0.5"
       />
     </svg>
   );
@@ -439,6 +442,7 @@ export const ContactIcon = () => {
       <path
         d="M21 2H6a2 2 0 0 0-2 2v3H2v2h2v2H2v2h2v2H2v2h2v3a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zm-8 2.999c1.648 0 3 1.351 3 3A3.012 3.012 0 0 1 13 11c-1.647 0-3-1.353-3-3.001c0-1.649 1.353-3 3-3zM19 18H7v-.75c0-2.219 2.705-4.5 6-4.5s6 2.281 6 4.5V18z"
         fill="white"
+        fill-opacity="0.5"
       />
     </svg>
   );
