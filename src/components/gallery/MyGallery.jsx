@@ -7,29 +7,29 @@ const MyGallery = () => {
       <div className="row">
         <div className="col-lg-3 col-md-6  my-3">
           <div className="image-border p-2">
-            <img className="w-100" src={GalleryImg} alt=" GalleryImg" />
+            <img className="w-100 h-100" src={GalleryImg} alt=" GalleryImg" />
           </div>
         </div>
         <div className="col-lg-3  col-md-6 my-3">
           <div className="image-border p-2">
-            <img className="w-100" src={GalleryImg} alt=" GalleryImg" />
+            <img className="w-100 h-100" src={GalleryImg} alt=" GalleryImg" />
           </div>
         </div>
         <div className="col-lg-3  col-md-6 my-3">
           <div className="image-border p-2">
-            <img className="w-100" src={GalleryImg} alt=" GalleryImg" />
+            <img className="w-100 h-100" src={GalleryImg} alt=" GalleryImg" />
           </div>
         </div>
         <div className="col-lg-3  col-md-6 my-3">
           <div className="image-border p-2">
-            <img className="w-100" src={GalleryImg} alt=" GalleryImg" />
+            <img className="w-100 h-100" src={GalleryImg} alt=" GalleryImg" />
           </div>
         </div>
       </div>
       <div className="row my-3">
         <div className="col-lg-3  col-md-6 my-3">
           <div className="image-border p-2">
-            <img className="w-100" src={GalleryImg} alt=" GalleryImg" />
+            <img className="w-100 h-100" src={GalleryImg} alt=" GalleryImg" />
           </div>
         </div>
         <div className="col-lg-3  col-md-6 my-3">
@@ -39,12 +39,12 @@ const MyGallery = () => {
         </div>
         <div className="col-lg-3  col-md-6 my-3">
           <div className="image-border p-2">
-            <img className="w-100" src={GalleryImg} alt=" GalleryImg" />
+            <img className="w-100 h-100" src={GalleryImg} alt=" GalleryImg" />
           </div>
         </div>
         <div className="col-lg-3  col-md-6 my-3">
           <div className="image-border p-2">
-            <img className="w-100" src={GalleryImg} alt=" GalleryImg" />
+            <img className="w-100 h-100" src={GalleryImg} alt=" GalleryImg" />
           </div>
         </div>
       </div>

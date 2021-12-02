@@ -73,7 +73,7 @@ const Gallery = () => {
                       />
                       {upload ? (
                         <img
-                          className="w-100 p-3"
+                          className="w-100 h-100 p-3"
                           src={upload}
                           alt="GalleryImg"
                         />
