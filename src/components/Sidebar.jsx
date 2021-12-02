@@ -230,7 +230,7 @@ function SideBar({ history }) {
           <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
-            }  "align-items-center justify-content-between  mb-4 d-flex  " cursor-pointer`}
+            }  "align-items-center justify-content-between  mb-4 d-flex cursor-pointer mt-4`}
             // onClick={() => setShowSidebar(false)}
             onClick={() => openRoutes("profile")}
           >

@@ -117,7 +117,9 @@ export const updateUserDetailsAction =
       const response = await updateUserDetailsApi(userId, data);
       if (response.success) {
         dispatch(updateUserDetails(data, userId));
-        dispatch(updateUserMeDetails(response.user));
+        if (userId === "me") {
+          dispatch(updateUserMeDetails(response.user));
+        }
         setUpdateUserLoading(false);
         handleClose();
         Swal.fire("Success!", "User updated successfully.", "success");
