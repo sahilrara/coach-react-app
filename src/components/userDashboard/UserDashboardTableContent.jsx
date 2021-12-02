@@ -36,7 +36,6 @@ const UserDashboardTableContent = ({ index, val, editUserDetails }) => {
 
   return (
     <tr key={index}>
-      
       <td className="dash-body-text white-space-norwap ">{val.firstName}</td>
       <td className="dash-body-text white-space-norwap ">{val.username}</td>
       <td>

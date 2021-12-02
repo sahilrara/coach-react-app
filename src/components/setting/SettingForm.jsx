@@ -6,12 +6,12 @@ import {
   TiwitterIcon,
 } from "../icons/Icons";
 import { EmailRegex, PhoneRegex } from "../common/Validation";
-import { updateUserDetailsAction } from "../../redux/action/userAction";
 import Loader from "../common/loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
+import { UpdateCoachDetailsAction } from "../../redux/action/Contact";
 
 const insialState = {
-  phoneno: "",
+  phone: "",
   email: "",
   instagramLink: "",
   facebookLink: "",
@@ -23,7 +23,7 @@ const SettingForm = () => {
   const dispacth = useDispatch();
   const [error, seterror] = useState(false);
   const coachDetails = useSelector((state) => state.List.coachDetails);
-  const [updateUserLoading, setUpdateUserLoading] = useState(false);
+  const [updateLoading, setUpdateLoading] = useState(false);
   const [settingData, setSettingData] = useState(insialState);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const SettingForm = () => {
     console.log("settingData", settingData);
     seterror(true);
     if (
-      settingData.phoneno &&
+      settingData.phone &&
       settingData.email &&
       settingData.instagramLink &&
       settingData.facebookLink &&
@@ -45,10 +45,7 @@ const SettingForm = () => {
       settingData.twitterLink !== ""
     ) {
       seterror(false);
-      const userId = "me";
-      dispacth(
-        updateUserDetailsAction(setUpdateUserLoading, userId, settingData)
-      );
+      dispacth(UpdateCoachDetailsAction(setUpdateLoading, settingData));
     }
   };
 
@@ -60,18 +57,18 @@ const SettingForm = () => {
             className="w-100 edit-input"
             type="number"
             placeholder="Phone Number:"
-            value={settingData.phoneno}
+            value={settingData.phone}
             onChange={(e) =>
               setSettingData({
                 ...settingData,
-                phoneno: e.target.value,
+                phone: e.target.value,
               })
             }
           />
           <span className="text-danger">
-            {error && settingData.phoneno === "" ? (
+            {error && settingData.phone === "" ? (
               <p>Phone No is Required</p>
-            ) : error && PhoneRegex.test(settingData.phoneno) === false ? (
+            ) : error && PhoneRegex.test(settingData.phone) === false ? (
               <p>Phone no is not valid</p>
             ) : (
               ""
@@ -85,7 +82,6 @@ const SettingForm = () => {
             type="email"
             placeholder="Email"
             value={settingData.email}
-            disabled
             onChange={(e) =>
               setSettingData({
                 ...settingData,
@@ -209,7 +205,7 @@ const SettingForm = () => {
           className="btn ms-2 rounded-1px fw-700 fs-20 fs-xs-16 h-50px bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
         >
           <span className="position-absolute skew-text text-white">
-            {updateUserLoading ? <Loader /> : "Save"}
+            {updateLoading ? <Loader /> : "Save"}
           </span>
         </button>
 

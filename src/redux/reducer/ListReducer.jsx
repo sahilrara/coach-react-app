@@ -1,4 +1,5 @@
 import {
+  DELETE_CONTACT_DETAILS_BY_ID,
   GET_COACH_DETAILS_LIST,
   GET_CONTACT_DETAILS,
   GET_CONTACT_LIST,
@@ -57,7 +58,6 @@ export default function ListReducer(state = initialState, action) {
 
     //Update user details by id reducer
     case UPDATE_USER_DETAILS: {
-      console.log("action.data", action.payload);
       const updateAllUserList = [...state.allUserList];
       const updateUserIndex = updateAllUserList.findIndex(
         (user) => user.id === action.payload.userId
@@ -102,6 +102,18 @@ export default function ListReducer(state = initialState, action) {
       return {
         ...state,
         contactDetails: action.data,
+      };
+    }
+    //Delete contact details by id reducer
+    case DELETE_CONTACT_DETAILS_BY_ID: {
+      const deleteContactDetails = [...state.contactDetails];
+      const deleteUserIndex = deleteContactDetails.findIndex(
+        (user) => user.id === action.data
+      );
+      deleteContactDetails.splice(deleteUserIndex, 1);
+      return {
+        ...state,
+        contactDetails: deleteContactDetails,
       };
     }
 
