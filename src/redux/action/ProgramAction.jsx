@@ -102,7 +102,7 @@ export const getProgramDetailsAction =
     try {
       const response = await getProgramDetailsApi(programId);
       if (response.success) {
-        dispatch(getProgramDetails(response.user));
+        dispatch(getProgramDetails(response.program));
         setDetailsLoader(false);
       } else {
         setDetailsLoader(false);

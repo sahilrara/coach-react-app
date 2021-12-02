@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SideBar from "../Sidebar";
 import AdminHeader from "../common/AdminHeader";
-import FaceImg from "../../assets/img/Faces.png";
 import { EmailRegex } from "../common/Validation";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserDetailsAction } from "../../redux/action/userAction";
@@ -20,7 +19,7 @@ const ProfilePage = () => {
   const [updateUserLoading, setUpdateUserLoading] = useState(false);
   const [profileData, setProfileData] = useState(insialState);
   const [uploadImg, setUploadImg] = useState("");
-  console.log("userData", userData.imagePath);
+
   useEffect(() => {
     if (userData) {
       setProfileData(userData);

@@ -10,6 +10,15 @@ export const GetAllConactListApi = async (page) => {
 };
 
 /**
+ * get Coach Details Api
+ * @param {Number} page
+ * @returns
+ */
+export const GetCoachDetailsApi = async () => {
+  return await axiosRequest("GET", `/about`);
+};
+
+/**
  * get Contact details api
  * @param {Object} data
  * @returns

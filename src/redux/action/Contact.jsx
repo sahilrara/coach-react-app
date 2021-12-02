@@ -1,8 +1,13 @@
 import Swal from "sweetalert2";
-import { GetAllConactListApi, getContactDetailsApi } from "../apis/Contact";
+import {
+  GetAllConactListApi,
+  GetCoachDetailsApi,
+  getContactDetailsApi,
+} from "../apis/Contact";
 
 export const GET_CONTACT_LIST = "GET_CONTACT_LIST";
 export const GET_CONTACT_DETAILS = "GET_CONTACT_DETAILS";
+export const GET_COACH_DETAILS_LIST = "GET_COACH_DETAILS_LIST";
 
 /**
  * Get User Details Action Creator Function
@@ -19,7 +24,7 @@ export const getAllContactListAction =
     try {
       const response = await GetAllConactListApi(page);
       if (response.success) {
-        dispatch(getAllContactList(response.contactList));
+        dispatch(getAllContactList(response.contacts));
         setTotalContact(response.totalContacts);
         setContactLoading(false);
       } else {
@@ -29,6 +34,30 @@ export const getAllContactListAction =
       setContactLoading(false);
     }
   };
+
+/**
+ * Get coach Details Action Creator Function
+ * @returns
+ */
+export const GetCoachDetails = (data) => ({
+  type: GET_COACH_DETAILS_LIST,
+  data,
+});
+
+export const GetCoachDetailsAction = (setLoadingCoach) => async (dispatch) => {
+  setLoadingCoach(true);
+  try {
+    const response = await GetCoachDetailsApi();
+    if (response.success) {
+      dispatch(GetCoachDetails(response.about));
+      setLoadingCoach(false);
+    } else {
+      setLoadingCoach(false);
+    }
+  } catch (error) {
+    setLoadingCoach(false);
+  }
+};
 
 /**
  * GET CONTACT DETAILS ACTION CREATOR FUNCTION

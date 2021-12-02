@@ -58,6 +58,24 @@ const Contact = () => {
                 contactList={contactList}
               />
             )}
+            {totalContact > 10 ? (
+              <ReactPaginate
+                previousLabel={<Prev />}
+                nextLabel={<Next />}
+                breakLabel={"..."}
+                breakClassName={"break-me"}
+                pageCount={Math.ceil(totalContact / 10)}
+                marginPagesDisplayed={3}
+                pageRangeDisplayed={2}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination paginationContainerStyle"}
+                subContainerClassName={"pages pagination"}
+                activeClassName={"activePage"}
+                initialPage={page}
+              />
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
@@ -66,24 +84,6 @@ const Contact = () => {
         setShow={setShow}
         detailsLoader={detailsLoader}
       />
-      {totalContact > 10 ? (
-        <ReactPaginate
-          previousLabel={<Prev />}
-          nextLabel={<Next />}
-          breakLabel={"..."}
-          breakClassName={"break-me"}
-          pageCount={Math.ceil(totalContact / 10)}
-          marginPagesDisplayed={3}
-          pageRangeDisplayed={2}
-          onPageChange={handlePageClick}
-          containerClassName={"pagination paginationContainerStyle"}
-          subContainerClassName={"pages pagination"}
-          activeClassName={"activePage"}
-          initialPage={page}
-        />
-      ) : (
-        ""
-      )}
     </>
   );
 };

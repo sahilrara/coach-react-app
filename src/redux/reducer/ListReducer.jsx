@@ -1,4 +1,8 @@
-import { GET_CONTACT_DETAILS, GET_CONTACT_LIST } from "../action/Contact";
+import {
+  GET_COACH_DETAILS_LIST,
+  GET_CONTACT_DETAILS,
+  GET_CONTACT_LIST,
+} from "../action/Contact";
 import {
   GET_ALL_PROGRAME_LIST,
   GET_PROGRAM_DETAILS,
@@ -16,6 +20,7 @@ const initialState = {
   programDetails: {},
   contactList: [],
   contactDetails: {},
+  coachDetails: {},
 };
 
 export default function ListReducer(state = initialState, action) {
@@ -82,6 +87,15 @@ export default function ListReducer(state = initialState, action) {
       return {
         ...state,
         contactDetails: action.data,
+      };
+    }
+
+    /**---------------------------GET COACH DETAILS-------------------- */
+    // GET ALL coach details LIST REDUCER
+    case GET_COACH_DETAILS_LIST: {
+      return {
+        ...state,
+        coachDetails: action.data,
       };
     }
 

@@ -2,8 +2,18 @@ import SideBar from "../Sidebar";
 import AdminHeader from "../common/AdminHeader";
 import SettingForm from "./SettingForm";
 import ChangePassword from "./ChangePassword";
+import { useEffect, useState } from "react";
+import { GetCoachDetailsAction } from "../../redux/action/Contact";
+import { useDispatch } from "react-redux";
 
 const SettingPage = () => {
+  const dispatch = useDispatch();
+  const [loadingCoach, setLoadingCoach] = useState(false);
+
+  useEffect(() => {
+    dispatch(GetCoachDetailsAction(setLoadingCoach));
+  }, [setLoadingCoach, dispatch]);
+
   return (
     <div>
       <div className="d-flex bg-dark-grey ">

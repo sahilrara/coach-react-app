@@ -22,15 +22,15 @@ const insialState = {
 const SettingForm = () => {
   const dispacth = useDispatch();
   const [error, seterror] = useState(false);
-  const userData = useSelector((state) => state.Auth.userData);
+  const coachDetails = useSelector((state) => state.List.coachDetails);
   const [updateUserLoading, setUpdateUserLoading] = useState(false);
   const [settingData, setSettingData] = useState(insialState);
 
   useEffect(() => {
-    if (userData) {
-      setSettingData(userData);
+    if (coachDetails) {
+      setSettingData(coachDetails);
     }
-  }, [userData]);
+  }, [coachDetails]);
 
   const SettingDataHandler = () => {
     console.log("settingData", settingData);
