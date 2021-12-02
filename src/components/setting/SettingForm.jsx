@@ -32,6 +32,7 @@ const SettingForm = () => {
     }
   }, [coachDetails]);
 
+  console.log(settingData, "gggggggggggggg");
   const SettingDataHandler = () => {
     console.log("settingData", settingData);
     seterror(true);

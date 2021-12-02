@@ -10,7 +10,7 @@ export const GET_USER_DETAILS = "GET_USER_DETAILS";
 export const GET_ALL_USER_LIST = "GET_ALL_USER_LIST";
 export const GET_ALL_USER_DETAILS = "GET_ALL_USER_DETAILS";
 export const UPDATE_USER_DETAILS = "UPDATE_USER_DETAILS";
-export const DELETE_USER_DETAILS = "DELETE_USER_DETAILS";
+export const DELETE_USER_DETAILS_BY_ID = "DELETE_USER_DETAILS_BY_ID";
 
 /**
  * Get User Details Action Creator Function
@@ -96,9 +96,12 @@ export const getAllUserDetailsAction =
  * update all User List Action Creator Function
  * @returns
  */
-export const updateUserDetails = (data) => ({
+export const updateUserDetails = (data, userId) => ({
   type: UPDATE_USER_DETAILS,
-  data,
+  payload: {
+    userId: userId,
+    data: data,
+  },
 });
 
 export const updateUserDetailsAction =
@@ -107,7 +110,7 @@ export const updateUserDetailsAction =
     try {
       const response = await updateUserDetailsApi(userId, data);
       if (!!response.success) {
-        dispatch(updateUserDetails(response.user));
+        dispatch(updateUserDetails(response.user, userId));
         setUpdateUserLoading(false);
         handleClose();
         Swal.fire("Success!", "User updated successfully.", "success");
@@ -127,7 +130,7 @@ export const updateUserDetailsAction =
  * @returns
  */
 export const DeleteUser = (data) => ({
-  type: DELETE_USER_DETAILS,
+  type: DELETE_USER_DETAILS_BY_ID,
   data,
 });
 
@@ -137,6 +140,7 @@ export const DeleteUserAction =
     try {
       const response = await DeleteUserApi(userId);
       if (response.success) {
+        console.log(userId, "userId--");
         dispatch(DeleteUser(userId));
         setUserDeletedLoader(false);
         Swal.fire("Success!", "User Deleted successfully.", "success");

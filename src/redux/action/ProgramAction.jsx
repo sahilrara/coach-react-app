@@ -62,31 +62,6 @@ export const CreateNewProgramAction =
     }
   };
 
-// /**
-//  * Get User Details Action Creator Function
-//  * @returns
-//  */
-// export const getUserDetails = (data) => ({
-//   type: GET_USER_DETAILS,
-//   data,
-// });
-
-// export const getUserDetailsAction =
-//   (setUserLoading, value) => async (dispatch) => {
-//     setUserLoading(true);
-//     try {
-//       const response = await getUserDetailsApi(value);
-//       if (response.success) {
-//         dispatch(getUserDetails(response.user));
-//         setUserLoading(false);
-//       } else {
-//         setUserLoading(false);
-//       }
-//     } catch (error) {
-//       setUserLoading(false);
-//     }
-//   };
-
 /**
  * Get all User List Action Creator Function
  * @returns
@@ -138,32 +113,3 @@ export const updateProgramAction =
       setTimeout(Swal.close, 2000);
     }
   };
-
-// /**
-//  * delete all User List Action Creator Function
-//  * @returns
-//  */
-// export const DeleteUser = (data) => ({
-//   type: DELETE_USER_DETAILS,
-//   data,
-// });
-
-// export const DeleteUserAction =
-//   (setUserDeletedLoader, userId) => async (dispatch) => {
-//     setUserDeletedLoader(true);
-//     try {
-//       const response = await DeleteUserApi(userId);
-//       if (response.success) {
-//         dispatch(DeleteUser(userId));
-//         setUserDeletedLoader(false);
-//         Swal.fire("Success!", "User Deleted successfully.", "success");
-//         setTimeout(Swal.close, 2000);
-//       } else {
-//         setUserDeletedLoader(false);
-//       }
-//     } catch (error) {
-//       setUserDeletedLoader(false);
-//       Swal.fire("Error!", "Something went wrong. Try again!", "error");
-//       setTimeout(Swal.close, 2000);
-//     }
-//   };

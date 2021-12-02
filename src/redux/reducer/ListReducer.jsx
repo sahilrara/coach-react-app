@@ -8,9 +8,10 @@ import {
   GET_PROGRAM_DETAILS,
 } from "../action/ProgramAction";
 import {
-  DELETE_USER_DETAILS,
+  DELETE_USER_DETAILS_BY_ID,
   GET_ALL_USER_DETAILS,
   GET_ALL_USER_LIST,
+  UPDATE_USER_DETAILS,
 } from "../action/userAction";
 
 const initialState = {
@@ -33,16 +34,16 @@ export default function ListReducer(state = initialState, action) {
       };
     }
 
-    // GET ALL USER LIST REDUCER
-    case DELETE_USER_DETAILS: {
-      const DeleteAllUserList = [...state.allUserList];
-      const DeleteUserIndex = DeleteAllUserList.findIndex(
+    // DELETE USER LIST REDUCER
+    case DELETE_USER_DETAILS_BY_ID: {
+      const deleteAllUserList = [...state.allUserList];
+      const deleteUserIndex = deleteAllUserList.findIndex(
         (user) => user.id === action.data
       );
-      DeleteAllUserList.splice(DeleteUserIndex, 1);
+      deleteAllUserList.splice(deleteUserIndex, 1);
       return {
         ...state,
-        allUserList: DeleteAllUserList,
+        allUserList: deleteAllUserList,
       };
     }
 
@@ -51,6 +52,20 @@ export default function ListReducer(state = initialState, action) {
       return {
         ...state,
         allUserDetails: action.data,
+      };
+    }
+
+    //Update user details by id reducer
+    case UPDATE_USER_DETAILS: {
+      console.log("action.data", action.payload);
+      const updateAllUserList = [...state.allUserList];
+      const updateUserIndex = updateAllUserList.findIndex(
+        (user) => user.id === action.payload.userId
+      );
+      updateAllUserList[updateUserIndex] = action.payload.data;
+      return {
+        ...state,
+        allUserList: updateAllUserList,
       };
     }
 
