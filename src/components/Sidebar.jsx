@@ -24,12 +24,10 @@ function SideBar({ history }) {
       setActiveSidebar("setting");
     } else if (path.includes("program")) {
       setActiveSidebar("program");
-    }
-    else if(path.includes('contact')){
-        setActiveSidebar("contact");
-    }
-    else if(path.includes('gallery')){
-      setActiveSidebar('gallery')
+    } else if (path.includes("contact")) {
+      setActiveSidebar("contact");
+    } else if (path.includes("gallery")) {
+      setActiveSidebar("gallery");
     }
   }, [path]);
 
@@ -38,23 +36,16 @@ function SideBar({ history }) {
     setActiveSidebar(value);
     if (value === "userlist") {
       history.push("/admin/dashboard/userlist");
-    }
-
-    // else if (value === "planlist") {
-    //   history.push("/admin/dashboard/planlist");
-    // }
-    else if (value === "profile") {
+    } else if (value === "profile") {
       history.push("/admin/dashboard/profile");
     } else if (value === "setting") {
       history.push("/admin/dashboard/setting");
     } else if (value === "program") {
       history.push("/admin/dashboard/program");
-    }
-    else if(value==="contact"){
-      history.push('/admin/dashboard/contact')
-    }
-    else if(value==="gallery"){
-      history.push('/admin/dashboard/gallery')
+    } else if (value === "contact") {
+      history.push("/admin/dashboard/contact");
+    } else if (value === "gallery") {
+      history.push("/admin/dashboard/gallery");
     }
   };
 
@@ -75,7 +66,7 @@ function SideBar({ history }) {
             decWidth ? "flex-column" : "flex-row"
           } d-flex align-items-center logo_border justify-content-between`}
         >
-          <img className="coach-logo" src={Coachlogo} alt="" />
+          <img className="coach-logo my-2" src={Coachlogo} alt="" />
           <div
             onClick={() => setDecWidth(!decWidth)}
             className={`${decWidth ? "cursor-pointer mt-4" : "cursor-pointer"}`}
@@ -146,11 +137,10 @@ function SideBar({ history }) {
               ""
             )}
           </div>
-              <div
+          <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
             }  "align-items-center justify-content-between  d-flex mt-4 "  cursor-pointer `}
-          
             onClick={() => openRoutes("contact")}
           >
             <p
@@ -167,7 +157,7 @@ function SideBar({ history }) {
                   activeSidebar ? "" : "side-item-text"
                 }  mx-2`}
               >
-              Contact
+                Contact
               </span>
             </p>
             {activeSidebar === "contact" ? (
@@ -176,11 +166,10 @@ function SideBar({ history }) {
               ""
             )}
           </div>
-             <div
+          <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
             }  "align-items-center justify-content-between  d-flex my-4 "  cursor-pointer `}
-          
             onClick={() => openRoutes("gallery")}
           >
             <p
@@ -197,7 +186,7 @@ function SideBar({ history }) {
                   activeSidebar ? "" : "side-item-text"
                 }  mx-2`}
               >
-             Gallery
+                Gallery
               </span>
             </p>
             {activeSidebar === "gallery" ? (
@@ -314,7 +303,7 @@ function SideBar({ history }) {
                   ? `${userData.firstName} ${userData.lastName}`
                   : "username"}
               </p>
-              <p className="mb-0 text-white">Support manager</p>
+              <p className="mb-0 text-white">Admin</p>
             </div>
           </div>
         </div>
