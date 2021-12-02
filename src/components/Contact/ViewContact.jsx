@@ -53,9 +53,6 @@ const ViewContact = ({ show, setShow, detailsLoader }) => {
               <div className="row">
                 <div className="col d-flex flex-column align-items-center">
                   <h3 className="mt-3">Message </h3>
-                  <p className="image-border p-2">
-                    {contactDetails.message ? contactDetails.message : "N/A"}
-                  </p>
                 </div>
               </div>
               <div className="row">

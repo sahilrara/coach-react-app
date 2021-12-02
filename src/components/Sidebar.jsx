@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Toggleimg from "../assets/img/Toggleimg.png";
 import Coachlogo from "../../src/assets/img/coachlogo.png";
-import { Profile, Programs, Settings, Users } from "./icons/Icons";
+import {
+  ContactIcon,
+  GalleryIcon,
+  Profile,
+  Programs,
+  Settings,
+  Users,
+} from "./icons/Icons";
 import { useProfileJoyrideProvider } from "./useContext/SidebarProvider";
 import { withRouter } from "react-router";
 import { useSelector } from "react-redux";
@@ -150,7 +157,7 @@ function SideBar({ history }) {
             >
               {" "}
               <span>
-                <Programs />
+                <ContactIcon />
               </span>
               <span
                 className={`${decWidth ? "d-none" : ""}${
@@ -179,7 +186,7 @@ function SideBar({ history }) {
             >
               {" "}
               <span>
-                <Programs />
+                <GalleryIcon />
               </span>
               <span
                 className={`${decWidth ? "d-none" : ""}${
