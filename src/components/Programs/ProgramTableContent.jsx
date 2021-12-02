@@ -4,14 +4,6 @@ import { withRouter } from "react-router";
 const ProgramTableContent = ({ val, history }) => {
   return (
     <tr>
-      <td>
-        <input
-          className="form-check-input cursor-pointer"
-          type="checkbox"
-          value=""
-          id="flexCheckDefault"
-        />
-      </td>
       <td className="dash-body-text white-space-norwap ">{val.name}</td>
       <td className="dash-body-text white-space-norwap ">
         {moment(val.createdAt).format("DD/MM/YY")}

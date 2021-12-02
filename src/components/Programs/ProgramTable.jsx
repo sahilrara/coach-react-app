@@ -7,13 +7,7 @@ const ProgramTable = ({ allProgramList }) => {
     <Table responsive>
       <thead className="Dashboard-table-head  cursor-pointer">
         <tr>
-          <th className="dash-input ">
-            <input
-              className="form-check-input cursor-pointer"
-              type="checkbox"
-              id="flexCheckDefault"
-            />
-          </th>
+          
           <th className="Dashboard-table-head white-space-norwap">Name</th>
           <th className="Dashboard-table-head white-space-norwap">Date</th>
           <th className="Dashboard-table-head white-space-norwap">Location</th>

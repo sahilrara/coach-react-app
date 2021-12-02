@@ -16,14 +16,7 @@ const UserDashboardTable = ({ userList, editUserDetails, userLoading }) => {
             <Table responsive>
               <thead className="Dashboard-table-head ">
                 <tr>
-                  <th className="dash-input">
-                    <input
-                      className="form-check-input cursor-pointer"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                  </th>
+                 
                   <th className="Dashboard-table-head white-space-norwap">
                     Name
                   </th>

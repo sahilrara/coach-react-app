@@ -25,6 +25,12 @@ function SideBar({ history }) {
     } else if (path.includes("program")) {
       setActiveSidebar("program");
     }
+    else if(path.includes('contact')){
+        setActiveSidebar("contact");
+    }
+    else if(path.includes('gallery')){
+      setActiveSidebar('gallery')
+    }
   }, [path]);
 
   const openRoutes = (value) => {
@@ -43,6 +49,12 @@ function SideBar({ history }) {
       history.push("/admin/dashboard/setting");
     } else if (value === "program") {
       history.push("/admin/dashboard/program");
+    }
+    else if(value==="contact"){
+      history.push('/admin/dashboard/contact')
+    }
+    else if(value==="gallery"){
+      history.push('/admin/dashboard/gallery')
     }
   };
 
@@ -107,7 +119,7 @@ function SideBar({ history }) {
           <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
-            }  "align-items-center justify-content-between  d-flex my-4 "  cursor-pointer `}
+            }  "align-items-center justify-content-between  d-flex mt-4 "  cursor-pointer `}
             // onClick={() => setShowSidebar(false)}
             onClick={() => openRoutes("program")}
           >
@@ -129,6 +141,66 @@ function SideBar({ history }) {
               </span>
             </p>
             {activeSidebar === "program" ? (
+              <span className="d-inline-block active-line"></span>
+            ) : (
+              ""
+            )}
+          </div>
+              <div
+            className={`${
+              decWidth ? " d-flex justify-content-center " : ""
+            }  "align-items-center justify-content-between  d-flex mt-4 "  cursor-pointer `}
+          
+            onClick={() => openRoutes("contact")}
+          >
+            <p
+              className={`${
+                activeSidebar === "contact" ? "sidebar-text" : "side-item-text"
+              }  px-3 mb-0`}
+            >
+              {" "}
+              <span>
+                <Programs />
+              </span>
+              <span
+                className={`${decWidth ? "d-none" : ""}${
+                  activeSidebar ? "" : "side-item-text"
+                }  mx-2`}
+              >
+              Contact
+              </span>
+            </p>
+            {activeSidebar === "contact" ? (
+              <span className="d-inline-block active-line"></span>
+            ) : (
+              ""
+            )}
+          </div>
+             <div
+            className={`${
+              decWidth ? " d-flex justify-content-center " : ""
+            }  "align-items-center justify-content-between  d-flex my-4 "  cursor-pointer `}
+          
+            onClick={() => openRoutes("gallery")}
+          >
+            <p
+              className={`${
+                activeSidebar === "gallery" ? "sidebar-text" : "side-item-text"
+              }  px-3 mb-0`}
+            >
+              {" "}
+              <span>
+                <Programs />
+              </span>
+              <span
+                className={`${decWidth ? "d-none" : ""}${
+                  activeSidebar ? "" : "side-item-text"
+                }  mx-2`}
+              >
+             Gallery
+              </span>
+            </p>
+            {activeSidebar === "gallery" ? (
               <span className="d-inline-block active-line"></span>
             ) : (
               ""
