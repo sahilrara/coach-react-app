@@ -5,6 +5,7 @@ import {
   GET_CONTACT_LIST,
 } from "../action/Contact";
 import {
+  DELETE_PROGRAM_DETAILS_BY_ID,
   GET_ALL_PROGRAME_LIST,
   GET_PROGRAM_DETAILS,
 } from "../action/ProgramAction";
@@ -60,7 +61,7 @@ export default function ListReducer(state = initialState, action) {
     case UPDATE_USER_DETAILS: {
       const updateAllUserList = [...state.allUserList];
       const updateUserIndex = updateAllUserList.findIndex(
-        (user) => user.id === action.payload.userId
+        (user) => user._id === action.payload.userId
       );
       updateAllUserList[updateUserIndex] = action.payload.data;
       return {
@@ -87,6 +88,18 @@ export default function ListReducer(state = initialState, action) {
       };
     }
 
+    case DELETE_PROGRAM_DETAILS_BY_ID: {
+      const deleteProgramList = [...state.allProgramList];
+      const deleteProgramIndex = deleteProgramList.findIndex(
+        (user) => user._id === action.data
+      );
+      deleteProgramList.splice(deleteProgramIndex, 1);
+      return {
+        ...state,
+        allProgramList: deleteProgramList,
+      };
+    }
+
     /**------------------------------CONTACT LIST---------------------- */
 
     // GET ALL Program LIST REDUCER
@@ -104,16 +117,17 @@ export default function ListReducer(state = initialState, action) {
         contactDetails: action.data,
       };
     }
+
     //Delete contact details by id reducer
     case DELETE_CONTACT_DETAILS_BY_ID: {
-      const deleteContactDetails = [...state.contactDetails];
+      const deleteContactDetails = [...state.contactList];
       const deleteUserIndex = deleteContactDetails.findIndex(
-        (user) => user.id === action.data
+        (user) => user._id === action.data
       );
       deleteContactDetails.splice(deleteUserIndex, 1);
       return {
         ...state,
-        contactDetails: deleteContactDetails,
+        contactList: deleteContactDetails,
       };
     }
 

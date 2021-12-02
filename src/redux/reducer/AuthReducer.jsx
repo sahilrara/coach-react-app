@@ -3,7 +3,7 @@ import {
   REMOVE_LOCAL_STORAGE_TOKEN,
   LOGIN_SUCCESSFULLY,
 } from "../action/AuthAction";
-import { GET_USER_DETAILS } from "../action/userAction";
+import { GET_USER_DETAILS, UPDATE_USER_ME_DETAILS } from "../action/userAction";
 
 const initialState = {
   token: "",
@@ -15,6 +15,14 @@ export default function AuthReducer(state = initialState, action) {
   switch (action.type) {
     // USER DETAILS REDUCER TO SAVE USER DATA
     case GET_USER_DETAILS: {
+      return {
+        ...state,
+        userData: action.data,
+      };
+    }
+
+    // USER DETAILS REDUCER TO SAVE USER DATA
+    case UPDATE_USER_ME_DETAILS: {
       return {
         ...state,
         userData: action.data,

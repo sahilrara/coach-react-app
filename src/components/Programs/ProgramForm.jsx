@@ -71,7 +71,7 @@ const ProgramForm = ({ history, mode, programId }) => {
   };
   return (
     <div className="edit-form mb-5 px-sm-4 px-2 pt-4">
-      <div className="row">
+      {/**<div className="row">
         <div className=" col-12 mt-2">
           <div className="d-flex  my-4 align-items-center flex-column ">
             <div className="me-3">
@@ -115,7 +115,7 @@ const ProgramForm = ({ history, mode, programId }) => {
             </div>{" "}
           </div>
         </div>
-      </div>
+                </div>*/}
       <div className="row">
         <div className="col-lg-6 col-12 mt-2">
           <input

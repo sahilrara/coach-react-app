@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import {
   CreateNewProgramApi,
+  DeleteProgramDetailsApi,
   getProgramDetailsApi,
   getProgramListApi,
   updateProgramApi,
@@ -8,6 +9,7 @@ import {
 
 export const GET_ALL_PROGRAME_LIST = "GET_ALL_PROGRAME_LIST";
 export const GET_PROGRAM_DETAILS = "GET_PROGRAM_DETAILS";
+export const DELETE_PROGRAM_DETAILS_BY_ID = "DELETE_PROGRAM_DETAILS_BY_ID";
 
 /**
  * Get all program List Action Creator Function
@@ -113,3 +115,26 @@ export const updateProgramAction =
       setTimeout(Swal.close, 2000);
     }
   };
+
+/**
+ * delete all program List Action Creator Function
+ * @returns
+ */
+export const DeleteProgramDetails = (data) => ({
+  type: DELETE_PROGRAM_DETAILS_BY_ID,
+  data,
+});
+
+export const DeleteProgramDetailsAction = (programId) => async (dispatch) => {
+  try {
+    const response = await DeleteProgramDetailsApi(programId);
+    if (response.success) {
+      dispatch(DeleteProgramDetails(programId));
+      Swal.fire("Success!", "Program Deleted successfully.", "success");
+      setTimeout(Swal.close, 2000);
+    }
+  } catch (error) {
+    Swal.fire("Error!", "Something went wrong. Try again!", "error");
+    setTimeout(Swal.close, 2000);
+  }
+};

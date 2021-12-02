@@ -44,3 +44,12 @@ export const updateProgramApi = async (programId, data) => {
 export const DeleteUserApi = async (userId) => {
   return await axiosRequest("DELETE", `/admin/user/delete/${userId}`);
 };
+
+/**
+ * Delete contact details api
+ * @param {Number} programId
+ * @returns
+ */
+export const DeleteProgramDetailsApi = async (programId) => {
+  return await axiosRequest("DELETE", `/admin/delete/program/${programId}`);
+};
