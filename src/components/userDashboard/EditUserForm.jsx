@@ -1,6 +1,13 @@
-import React, { useState } from "react";
-const EditUserForm = () => {
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { withRouter } from "react-router";
+import { getAllUserDetailsAction } from "../../redux/action/userAction";
+
+const EditUserForm = ({ match }) => {
+  const dispatch = useDispatch();
   const [error, setError] = useState(false);
+  const { userId } = match.params;
+  const [UserDetailsLoading, setUserDetailsLoading] = useState(false);
   const [editUserData, setEditUser] = useState({
     firstname: "",
     lastname: "",
@@ -16,6 +23,9 @@ const EditUserForm = () => {
       setEditUser(editUserData);
     }
   };
+  useEffect(() => {
+    dispatch(getAllUserDetailsAction(setUserDetailsLoading, userId));
+  }, []);
   return (
     <div className="edit-form rounded-0  px-sm-4 px-2 pt-4">
       <p className="mb-3 mt-5">Event Details</p>
@@ -96,4 +106,4 @@ const EditUserForm = () => {
   );
 };
 
-export default EditUserForm;
+export default withRouter(EditUserForm);

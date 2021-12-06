@@ -52,7 +52,7 @@ const UserDashboardTableContent = ({
               type="button"
               className=" px-4 mx-3 btn edit-btn-dash"
               onClick={() =>
-                history.push("/admin/dashboard/edit-user/userlist")
+                history.push(`/admin/dashboard/edit-user/userlist/${val._id}`)
               }
             >
               Edit

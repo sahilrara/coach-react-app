@@ -33,7 +33,7 @@ const Router = () => {
         </Route>
         <Route
           exact
-          path="/admin/dashboard/edit-user/userlist"
+          path="/admin/dashboard/edit-user/userlist/:userId"
           component={EditUser}
         />
         <Route exact path="/admin/dashboard/contact" component={Contact} />

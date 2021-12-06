@@ -79,6 +79,7 @@ export const getAllUserDetailsAction =
     setUserDetailsLoading(true);
     try {
       const response = await getUserDetailsApi(value);
+      console.log("response", response);
       if (response.success) {
         dispatch(getAllUserDetails(response.user));
         setUserDetailsLoading(false);
