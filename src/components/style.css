@@ -407,3 +407,9 @@ input:focus {
     height: 300px;
   }
 }
+.pdf-upload {
+  background-color: #dbdbdb;
+  color: #575757;
+  border-radius: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}

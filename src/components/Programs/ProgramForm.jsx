@@ -5,7 +5,7 @@ import {
   updateProgramAction,
 } from "../../redux/action/ProgramAction";
 import Loader from "../common/loader/Loader";
-import Bani from "../../assets/img/bani.png";
+
 const insialState = {
   name: "",
   date: "",
@@ -72,7 +72,7 @@ const ProgramForm = ({ history, mode, programId }) => {
   return (
     <div className="edit-form mb-5 px-sm-4 px-2 pt-4">
       <div className="row">
-        <div className=" col-12 mt-2">
+        {/* <div className=" col-12 mt-2">
           <div className="d-flex  my-4 align-items-center flex-column ">
             <div className="me-3">
               <span className=" d-block">
@@ -114,9 +114,10 @@ const ProgramForm = ({ history, mode, programId }) => {
               </button>
             </div>{" "}
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="row">
+        <p className="mb-3 mt-5">Change user information here</p>
         <div className="col-lg-6 col-12 mt-2">
           <input
             className="w-100 edit-input"
@@ -277,8 +278,19 @@ const ProgramForm = ({ history, mode, programId }) => {
           </span>
         </div>
       </div>
+      <div className="d-flex flex-sm-row flex-column align-items-center">
+        <p className=" mt-4">Upload Pdf File Here:</p>
+        <input type="file" id="file-input" hidden />
+        <div className="mt-sm-3 mt-lg-0">
+          <button type="pdf" className="btn py-1 px-4 pdf-upload mx-3">
+            <label for="file-input" className="cursor-pointer">
+              Choose File
+            </label>
+          </button>
+        </div>
+      </div>
       <div>
-        <p className="mt-5 pb-2">Description :</p>
+        <p className="mt-3 pb-2">Description :</p>
         <textarea
           value={editProgram.description}
           onChange={(e) =>
@@ -327,7 +339,7 @@ const ProgramForm = ({ history, mode, programId }) => {
 
         <button
           type="button"
-          className=" btn ms-4 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px bg-gray gray-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
+          className=" btn mx-3 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px bg-gray gray-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
         >
           <span className="position-absolute skew-text ">Cancel</span>
         </button>

@@ -16,7 +16,6 @@ const UserDashboardTable = ({ userList, editUserDetails, userLoading }) => {
             <Table responsive>
               <thead className="Dashboard-table-head ">
                 <tr>
-                 
                   <th className="Dashboard-table-head white-space-norwap">
                     Name
                   </th>

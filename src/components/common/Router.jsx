@@ -11,6 +11,7 @@ import ResetPassword from "./ResetPassword";
 import Mail from "./Mail";
 import Contact from "../Contact/Contact";
 import Gallery from "../gallery/Gallery";
+import EditUser from "../userDashboard/EditUser";
 
 const Router = () => {
   const [show, setShow] = useState(false);
@@ -30,17 +31,27 @@ const Router = () => {
             handleClose={handleClose}
           />
         </Route>
-        <Route exact path="/admin/dashboard/contact" component={Contact}/>
+        <Route
+          exact
+          path="/admin/dashboard/edit-user/userlist"
+          component={EditUser}
+        />
+        <Route exact path="/admin/dashboard/contact" component={Contact} />
         <Route exact path="/admin/dashboard/profile" component={ProfilePage} />
         <Route
           exact
           path="/admin/dashboard/edit/program/:programId"
           component={EditProgram}
         />
-        <Route exact path="/admin/dashboard/gallery" component={Gallery}/>
+        <Route exact path="/admin/dashboard/gallery" component={Gallery} />
         <Route
           exact
           path="/admin/dashboard/create/program"
+          component={EditProgram}
+        />
+        <Route
+          exact
+          path="/admin/dashboard/userlist/create/programs"
           component={EditProgram}
         />
         <Route exact path="/admin/dashboard/program">
