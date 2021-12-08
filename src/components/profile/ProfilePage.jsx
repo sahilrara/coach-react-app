@@ -40,7 +40,9 @@ const ProfilePage = () => {
       lastName: profileData.lastName,
       userName: profileData.username,
     };
-    dispacth(updateUserDetailsAction(setUpdateUserLoading, userId, data));
+    dispacth(
+      updateUserDetailsAction(setUpdateUserLoading, userId, profileData)
+    );
   };
 
   return (
