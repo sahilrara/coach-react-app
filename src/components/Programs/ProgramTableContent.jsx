@@ -1,7 +1,38 @@
 import moment from "moment";
+import { useDispatch } from "react-redux";
 import { withRouter } from "react-router";
+import Swal from "sweetalert2";
+import { DeleteProgramDetailsAction } from "../../redux/action/ProgramAction";
 
 const ProgramTableContent = ({ val, history }) => {
+  const dispatch = useDispatch();
+
+  const deleteProgram = (contactId) => {
+    if (!!contactId) {
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: "btn btn-success",
+          cancelButton: "btn btn-success",
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: "Are You Sure ?",
+          text: "You want to delete This Program.",
+          icon: "Error",
+          showCancelButton: true,
+          confirmButtonText: "Yes",
+          cancelButtonText: "No",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            dispatch(DeleteProgramDetailsAction(contactId));
+          }
+        });
+    }
+  };
   return (
     <tr>
       <td className="dash-body-text white-space-norwap ">{val.name}</td>
@@ -21,7 +52,12 @@ const ProgramTableContent = ({ val, history }) => {
             >
               Edit
             </button>
-            <button className="btn  px-4 remove-btn-dash">Remove</button>
+            <button
+              className="btn  px-4 remove-btn-dash"
+              onClick={() => deleteProgram(val._id)}
+            >
+              Remove
+            </button>
           </div>
         </div>
       </td>

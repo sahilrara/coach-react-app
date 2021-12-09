@@ -35,9 +35,12 @@ const ProfilePage = () => {
   const updateUserDetails = () => {
     setError(true);
     const userId = "me";
-    dispacth(
-      updateUserDetailsAction(setUpdateUserLoading, userId, profileData)
-    );
+    const data = {
+      firstName: profileData.firstName,
+      lastName: profileData.lastName,
+      userName: profileData.username,
+    };
+    dispacth(updateUserDetailsAction(setUpdateUserLoading, userId, data));
   };
 
   return (

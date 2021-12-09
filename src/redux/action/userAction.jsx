@@ -11,6 +11,7 @@ export const GET_ALL_USER_LIST = "GET_ALL_USER_LIST";
 export const GET_ALL_USER_DETAILS = "GET_ALL_USER_DETAILS";
 export const UPDATE_USER_DETAILS = "UPDATE_USER_DETAILS";
 export const DELETE_USER_DETAILS_BY_ID = "DELETE_USER_DETAILS_BY_ID";
+export const UPDATE_USER_ME_DETAILS = "UPDATE_USER_ME_DETAILS";
 
 /**
  * Get User Details Action Creator Function
@@ -105,13 +106,21 @@ export const updateUserDetails = (data, userId) => ({
   },
 });
 
+export const updateUserMeDetails = (data) => ({
+  type: UPDATE_USER_ME_DETAILS,
+  data,
+});
+
 export const updateUserDetailsAction =
   (setUpdateUserLoading, userId, data, handleClose) => async (dispatch) => {
     setUpdateUserLoading(true);
     try {
       const response = await updateUserDetailsApi(userId, data);
-      if (!!response.success) {
-        dispatch(updateUserDetails(response.user, userId));
+      if (response.success) {
+        dispatch(updateUserDetails(data, userId));
+        if (userId === "me") {
+          dispatch(updateUserMeDetails(response.user));
+        }
         setUpdateUserLoading(false);
         handleClose();
         Swal.fire("Success!", "User updated successfully.", "success");

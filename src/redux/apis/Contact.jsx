@@ -11,11 +11,18 @@ export const GetAllConactListApi = async (page) => {
 
 /**
  * get Coach Details Api
- * @param {Number} page
  * @returns
  */
 export const GetCoachDetailsApi = async () => {
   return await axiosRequest("GET", `/about`);
+};
+
+/**
+ * update Coach Details Api
+ * @returns
+ */
+export const UpdateCoachDetailsApi = async (data) => {
+  return await axiosRequest("PUT", `/admin/edit/about`, data);
 };
 
 /**
@@ -27,20 +34,11 @@ export const getContactDetailsApi = async (contactId) => {
   return await axiosRequest("GET", `/admin/detail/contact/${contactId}`);
 };
 
-// /**
-//  * Update user details api
-//  * @param {Object} data
-//  * @returns
-//  */
-// export const updateUserDetailsApi = async (userId, data) => {
-//   return await axiosRequest("PUT", `/update/user/${userId}`, data);
-// };
-
-// /**
-//  * Delete user details api
-//  * @param {Object} data
-//  * @returns
-//  */
-// export const DeleteUserApi = async (userId) => {
-//   return await axiosRequest("DELETE", `/admin/user/delete/${userId}`);
-// };
+/**
+ * Delete contact details api
+ * @param {Object} data
+ * @returns
+ */
+export const DeleteContactListApi = async (contactId) => {
+  return await axiosRequest("DELETE", `/admin/delete/contact/${contactId}`);
+};

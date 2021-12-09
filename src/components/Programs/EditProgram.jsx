@@ -5,6 +5,7 @@ import ProgramForm from "./ProgramForm";
 import { useEffect, useState } from "react";
 import { getProgramDetailsAction } from "../../redux/action/ProgramAction";
 import { useDispatch } from "react-redux";
+import BubblesLoader from "../common/loader/BubblesLoader";
 
 function EditProgram({ history, match }) {
   const { programId } = match.params;
@@ -47,12 +48,18 @@ function EditProgram({ history, match }) {
               </button>
             </div>
           </div>
-          <ProgramForm
-            history={history}
-            mode={mode}
-            programId={programId}
-            detailsLoader={detailsLoader}
-          />
+          {detailsLoader ? (
+            <div className="d-flex justify-content-center align-items-center">
+              <BubblesLoader />
+            </div>
+          ) : (
+            <ProgramForm
+              history={history}
+              mode={mode}
+              programId={programId}
+              detailsLoader={detailsLoader}
+            />
+          )}
         </div>
       </div>
     </div>
