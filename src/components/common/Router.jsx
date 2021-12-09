@@ -64,7 +64,11 @@ const Router = () => {
         </Route>
         <Route exact path="/admin/dashboard/Setting" component={SettingPage} />
         <Route exact path="/forgot/password" component={ForgotPassword} />
-        <Route exact path="/reset/password" component={ResetPassword} />
+        <Route
+          exact
+          path="/reset/password/:token/:userId"
+          component={ResetPassword}
+        />
       </Switch>
     </div>
   );

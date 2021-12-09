@@ -6,10 +6,10 @@ import { axiosRequest } from "../helper";
  * @returns
  */
 
-export const GetUserProgramListApi = async (page) => {
+export const GetUserProgramListApi = async (userId, page) => {
   return await axiosRequest(
     "GET",
-    `/admin/user/list/program?page=${page}&limit=10`
+    `/admin/user/all-programs/${userId}?page=${page}&limit=10`
   );
 };
 

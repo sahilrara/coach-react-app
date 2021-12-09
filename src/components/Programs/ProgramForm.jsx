@@ -31,6 +31,7 @@ const ProgramForm = ({ history, mode, programId, userId, match }) => {
   const [createProgramLoading, setCreateProgramLoading] = useState(false);
   const [upadteProgramLoading, setUpadteProgramLoading] = useState(false);
   const [editProgram, setEditProgram] = useState(insialState);
+  const fileUrl = useSelector((state) => state.List.fileUrl);
 
   useEffect(() => {
     if (mode && !!programDetails) {
@@ -61,7 +62,7 @@ const ProgramForm = ({ history, mode, programId, userId, match }) => {
         detail_3: editProgram.detail_3,
         detail_4: editProgram.detail_4,
         description: editProgram.description,
-        pdfUrl: "",
+        pdfUrl: fileUrl ? fileUrl : "",
         userId: userId,
         isPublic: userId ? false : true,
       };
@@ -260,6 +261,7 @@ const ProgramForm = ({ history, mode, programId, userId, match }) => {
         <input
           type="file"
           id="file-input"
+          accept=".pdf"
           hidden
           onChange={(e) => UploadImg(e)}
         />

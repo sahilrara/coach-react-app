@@ -12,10 +12,12 @@ const insialState = {
   lastname: "",
   username: "",
   email: "",
+  imagePath: "",
 };
 const ProfilePage = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.Auth.userData);
+  const fileUrl = useSelector((state) => state.List.fileUrl);
   const [error, setError] = useState(false);
   const [loading, setLoader] = useState(false);
   const [updateUserLoading, setUpdateUserLoading] = useState(false);
@@ -43,10 +45,9 @@ const ProfilePage = () => {
       firstName: profileData.firstName,
       lastName: profileData.lastName,
       userName: profileData.username,
+      imagePath: fileUrl ? fileUrl : "",
     };
-    dispatch(
-      updateUserDetailsAction(setUpdateUserLoading, userId, profileData)
-    );
+    dispatch(updateUserDetailsAction(setUpdateUserLoading, userId, data));
   };
 
   return (

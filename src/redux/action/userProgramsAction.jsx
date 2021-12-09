@@ -3,7 +3,6 @@ import {
   CreateNewProgramApi,
   DeleteProgramDetailsApi,
   getProgramDetailsApi,
-  getProgramListApi,
   updateProgramApi,
 } from "../apis/programApi";
 import { GetUserProgramListApi } from "../apis/userProgramsApi";
@@ -22,10 +21,11 @@ export const GetUserProgramList = (data) => ({
 });
 
 export const GetUserProgramListAction =
-  (setUserProgramLoading, page, setTotalUserProgram) => async (dispatch) => {
+  (setUserProgramLoading, page, setTotalUserProgram, userId) =>
+  async (dispatch) => {
     setUserProgramLoading(true);
     try {
-      const response = await GetUserProgramListApi(page);
+      const response = await GetUserProgramListApi(userId, page);
       if (response.success) {
         dispatch(GetUserProgramList(response.programList));
         setTotalUserProgram(response.totalPrograms);

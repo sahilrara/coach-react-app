@@ -158,6 +158,18 @@ export default function ListReducer(state = initialState, action) {
         userProgramList: action.data,
       };
     }
+
+    case DELETE_PROGRAM_DETAILS_BY_ID: {
+      const deleteProgramList = [...state.userProgramList];
+      const deleteProgramIndex = deleteProgramList.findIndex(
+        (user) => user._id === action.data
+      );
+      deleteProgramList.splice(deleteProgramIndex, 1);
+      return {
+        ...state,
+        userProgramList: deleteProgramList,
+      };
+    }
     default:
       return state;
   }
