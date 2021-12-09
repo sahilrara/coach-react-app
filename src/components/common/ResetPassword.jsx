@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { withRouter } from "react-router";
+import { VerifyEmailAction } from "../../redux/action/AuthAction";
 import { HideEye, ShowEye } from "../icons/Icons";
+import BubblesLoader from "./loader/BubblesLoader";
 import { PasswordRegex } from "./Validation";
 
-const ResetPassword = ({ history }) => {
+const ResetPassword = ({ history, match }) => {
+  const dispatch = useDispatch();
+  const { userId, token } = match.params;
   const [error, setError] = useState(false);
+  const [loadingVerify, setLoadingVerify] = useState(false);
   const [showpassword, setshowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setConfirmPassword] = useState(false);
@@ -25,6 +31,12 @@ const ResetPassword = ({ history }) => {
       history.push("/");
     }
   };
+
+  useEffect(() => {
+    const data = { userId: userId, token: token };
+    dispatch(VerifyEmailAction(data, setLoadingVerify));
+  }, [dispatch]);
+
   return (
     <div className="d-flex bg-dark">
       <div className="h-100vh-overflow-auto w-100 ">
@@ -34,118 +46,122 @@ const ResetPassword = ({ history }) => {
               <div className={" bg-151515"}>
                 <div className="form text-center mx-auto">
                   <h1 className="form-heading mb-0">Reset Password</h1>{" "}
-                  {/* <p className="fs-16 fw-normal mb-4 mt-3">
-                    Enter your email address and we’ll send you a link to reset
-                    your password{" "}
-                  </p> */}
-                  <div className="my-4">
-                    {" "}
-                    <div className="position-relative">
-                      <input
-                        id="password-field"
-                        type={showpassword ? "text" : "password"}
-                        className="w-100 mt-2 login-input"
-                        name="password"
-                        placeholder="Password"
-                        onChange={(e) =>
-                          setResetPasswordData({
-                            ...resetPasswordData,
-                            password: e.target.value,
-                          })
-                        }
-                      />
-                      <span
-                        className="reset-eye-icon cursor-pointer"
-                        onClick={() => setshowPassword(!showpassword)}
-                      >
-                        {showpassword ? <ShowEye /> : <HideEye />}
-                      </span>
-                      <span className="text-danger text-start">
-                        {error && resetPasswordData.password === "" ? (
-                          <p>Password is Required</p>
-                        ) : error &&
-                          PasswordRegex.test(resetPasswordData.password) ===
-                            false ? (
-                          <p>Password is not valid</p>
-                        ) : (
-                          ""
-                        )}
-                      </span>
+                  {loadingVerify ? (
+                    <div className="d-flex justify-content-center align-items-center">
+                      <BubblesLoader />
                     </div>
-                    <div className="position-relative">
-                      <input
-                        id="password-field"
-                        type={showNewPassword ? "text" : "password"}
-                        className="w-100 mt-2 login-input"
-                        name="password"
-                        placeholder=" New Password"
-                        onChange={(e) =>
-                          setResetPasswordData({
-                            ...resetPasswordData,
-                            newpassword: e.target.value,
-                          })
-                        }
-                      />
-                      <span className="text-danger text-start">
-                        {error && resetPasswordData.newpassword === "" ? (
-                          <p>New Password is Required</p>
-                        ) : error &&
-                          PasswordRegex.test(resetPasswordData.newpassword) ===
-                            false ? (
-                          <p>New Password is not valid</p>
-                        ) : (
-                          ""
-                        )}
-                      </span>
-                      <span
-                        className="reset-eye-icon cursor-pointer"
-                        onClick={() => setShowNewPassword(!showNewPassword)}
-                      >
-                        {showNewPassword ? <ShowEye /> : <HideEye />}
-                      </span>
-                    </div>
-                    <div className="position-relative">
-                      <input
-                        id="password-field-2"
-                        type={showConfirmPassword ? "text" : "password"}
-                        className="w-100 mt-2 login-input"
-                        name="password"
-                        placeholder="Confirm Password"
-                        onChange={(e) =>
-                          setResetPasswordData({
-                            ...resetPasswordData,
-                            confirmpassword: e.target.value,
-                          })
-                        }
-                      />
-                      <span className="text-danger text-start">
-                        {error && resetPasswordData.confirmpassword === "" ? (
-                          <p>Confirm Password is Required</p>
-                        ) : error &&
-                          PasswordRegex.test(
-                            resetPasswordData.confirmpassword
-                          ) === false ? (
-                          <p>Confirm Password is not valid</p>
-                        ) : error &&
-                          resetPasswordData.confirmpassword !==
-                            resetPasswordData.newpassword ? (
-                          <p>Password not match</p>
-                        ) : (
-                          ""
-                        )}
-                      </span>
-                      <span
-                        className="reset-eye-icon cursor-pointer"
-                        onClick={() => setConfirmPassword(!showConfirmPassword)}
-                      >
-                        {showConfirmPassword ? <ShowEye /> : <HideEye />}
-                      </span>
-                    </div>
-                    <div className="mt-4 pt-2 d-flex justify-content-center text-center">
-                      <button
-                        onClick={() => ResetPassword()}
-                        type="button"
-                        className="
+                  ) : (
+                    <div className="my-4">
+                      {" "}
+                      <div className="position-relative">
+                        <input
+                          id="password-field"
+                          type={showpassword ? "text" : "password"}
+                          className="w-100 mt-2 login-input"
+                          name="password"
+                          placeholder="Password"
+                          onChange={(e) =>
+                            setResetPasswordData({
+                              ...resetPasswordData,
+                              password: e.target.value,
+                            })
+                          }
+                        />
+                        <span
+                          className="reset-eye-icon cursor-pointer"
+                          onClick={() => setshowPassword(!showpassword)}
+                        >
+                          {showpassword ? <ShowEye /> : <HideEye />}
+                        </span>
+                        <span className="text-danger text-start">
+                          {error && resetPasswordData.password === "" ? (
+                            <p>Password is Required</p>
+                          ) : error &&
+                            PasswordRegex.test(resetPasswordData.password) ===
+                              false ? (
+                            <p>Password is not valid</p>
+                          ) : (
+                            ""
+                          )}
+                        </span>
+                      </div>
+                      <div className="position-relative">
+                        <input
+                          id="password-field"
+                          type={showNewPassword ? "text" : "password"}
+                          className="w-100 mt-2 login-input"
+                          name="password"
+                          placeholder=" New Password"
+                          onChange={(e) =>
+                            setResetPasswordData({
+                              ...resetPasswordData,
+                              newpassword: e.target.value,
+                            })
+                          }
+                        />
+                        <span className="text-danger text-start">
+                          {error && resetPasswordData.newpassword === "" ? (
+                            <p>New Password is Required</p>
+                          ) : error &&
+                            PasswordRegex.test(
+                              resetPasswordData.newpassword
+                            ) === false ? (
+                            <p>New Password is not valid</p>
+                          ) : (
+                            ""
+                          )}
+                        </span>
+                        <span
+                          className="reset-eye-icon cursor-pointer"
+                          onClick={() => setShowNewPassword(!showNewPassword)}
+                        >
+                          {showNewPassword ? <ShowEye /> : <HideEye />}
+                        </span>
+                      </div>
+                      <div className="position-relative">
+                        <input
+                          id="password-field-2"
+                          type={showConfirmPassword ? "text" : "password"}
+                          className="w-100 mt-2 login-input"
+                          name="password"
+                          placeholder="Confirm Password"
+                          onChange={(e) =>
+                            setResetPasswordData({
+                              ...resetPasswordData,
+                              confirmpassword: e.target.value,
+                            })
+                          }
+                        />
+                        <span className="text-danger text-start">
+                          {error && resetPasswordData.confirmpassword === "" ? (
+                            <p>Confirm Password is Required</p>
+                          ) : error &&
+                            PasswordRegex.test(
+                              resetPasswordData.confirmpassword
+                            ) === false ? (
+                            <p>Confirm Password is not valid</p>
+                          ) : error &&
+                            resetPasswordData.confirmpassword !==
+                              resetPasswordData.newpassword ? (
+                            <p>Password not match</p>
+                          ) : (
+                            ""
+                          )}
+                        </span>
+                        <span
+                          className="reset-eye-icon cursor-pointer"
+                          onClick={() =>
+                            setConfirmPassword(!showConfirmPassword)
+                          }
+                        >
+                          {showConfirmPassword ? <ShowEye /> : <HideEye />}
+                        </span>
+                      </div>
+                      <div className="mt-4 pt-2 d-flex justify-content-center text-center">
+                        <button
+                          onClick={() => ResetPassword()}
+                          type="button"
+                          className="
                         btn
                         ms-2
                         rounded-1px
@@ -161,13 +177,14 @@ const ResetPassword = ({ history }) => {
                         align-items-center
                         justify-content-center
                       "
-                      >
-                        <span className="position-absolute skew-text text-white">
-                          Reset Password
-                        </span>
-                      </button>
+                        >
+                          <span className="position-absolute skew-text text-white">
+                            Reset Password
+                          </span>
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>

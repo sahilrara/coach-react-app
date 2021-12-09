@@ -4,6 +4,7 @@ import {
   ChangePasswordApi,
   ForgotPasswordApi,
   ResetPasswordApi,
+  VerifyEmailApi,
 } from "../apis/AuthApis";
 
 export const LOGIN_SUCCESSFULLY = "LOGIN_SUCCESSFULLY";
@@ -166,3 +167,26 @@ export const ResetPasswordAction =
       setTimeout(Swal.close, 2000);
     }
   };
+
+/**
+ * Reset password action
+ * @param {Object} data
+ * @returns
+ */
+export const VerifyEmailAction = (data, setLoadingVerify) => async () => {
+  setLoadingVerify(true);
+  try {
+    const response = await VerifyEmailApi(data);
+    if (response.success) {
+      setLoadingVerify(false);
+    } else {
+      setLoadingVerify(false);
+      Swal.fire("Error!", "Something went wrong", "error");
+      setTimeout(Swal.close, 2000);
+    }
+  } catch (error) {
+    setLoadingVerify(false);
+    Swal.fire("Error!", "Something went wrong", "error");
+    setTimeout(Swal.close, 2000);
+  }
+};

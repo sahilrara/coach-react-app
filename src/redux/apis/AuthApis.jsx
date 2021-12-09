@@ -35,3 +35,12 @@ export const ForgotPasswordApi = async (data) => {
 export const ResetPasswordApi = async (data) => {
   return await axiosRequest("POST", `/reset/password`, data);
 };
+
+/**
+ *  VerifyEmail password api
+ * @param {Object} data
+ * @returns
+ */
+export const VerifyEmailApi = async (data) => {
+  return await axiosRequest("POST", `/verify/email`, data);
+};
