@@ -28,7 +28,7 @@ const ResetPassword = ({ history, match }) => {
       !!resetPasswordData.password &&
       resetPasswordData.password === resetPasswordData.confirmpassword
     ) {
-      const data = { password: resetPasswordData.password };
+      const data = { password: resetPasswordData.password, userId: userId };
       dispatch(ResetPasswordAction(data, setLoadingVerifyLoading, history));
     }
   };
