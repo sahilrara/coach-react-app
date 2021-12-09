@@ -45,7 +45,7 @@ export const getProgramListAction =
  */
 
 export const CreateNewProgramAction =
-  (setCreateProgramLoading, data, history) => async (dispatch) => {
+  (setCreateProgramLoading, data, history, match) => async (dispatch) => {
     setCreateProgramLoading(true);
     try {
       const response = await CreateNewProgramApi(data);
@@ -53,7 +53,14 @@ export const CreateNewProgramAction =
         setCreateProgramLoading(false);
         Swal.fire("Success!", "Program Created successfully.", "success");
         setTimeout(Swal.close, 2000);
-        history.push("/admin/dashboard/program");
+        if (
+          match.path ===
+          "/admin/dashboard/userlist/edit-user/programs/:userId/:programId"
+        ) {
+          history.push(`/admin/dashboard/edit-user/userlist/${data.userId}`);
+        } else {
+          history.push("/admin/dashboard/program");
+        }
       } else {
         setCreateProgramLoading(false);
       }

@@ -29,7 +29,7 @@ const ProfilePage = () => {
   }, [userData]);
 
   const UploadImg = (e) => {
-    const type = "user";
+    const type = "users";
     dispatch(uploadImage(e, setLoader, type));
     let img = e.target.files[0];
     let image = URL.createObjectURL(img);

@@ -58,6 +58,7 @@ function EditProgram({ history, match }) {
               mode={mode}
               programId={programId}
               userId={userId}
+              match={match}
               detailsLoader={detailsLoader}
             />
           )}

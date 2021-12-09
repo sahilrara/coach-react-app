@@ -21,7 +21,7 @@ const insialState = {
   isPublic: false,
 };
 
-const ProgramForm = ({ history, mode, programId, userId }) => {
+const ProgramForm = ({ history, mode, programId, userId, match }) => {
   const [uploadImg, setUploadImg] = useState("");
 
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const ProgramForm = ({ history, mode, programId, userId }) => {
       setEditProgram(programDetails);
     }
   }, [programDetails, mode]);
-
+  console.log(match);
   const SubmitNewProgramDetails = () => {
     setError(true);
     if (
@@ -64,7 +64,9 @@ const ProgramForm = ({ history, mode, programId, userId }) => {
         userId: userId,
         isPublic: userId ? false : true,
       };
-      dispatch(CreateNewProgramAction(setCreateProgramLoading, data, history));
+      dispatch(
+        CreateNewProgramAction(setCreateProgramLoading, data, history, match)
+      );
     }
   };
 
@@ -86,51 +88,6 @@ const ProgramForm = ({ history, mode, programId, userId }) => {
   };
   return (
     <div className="edit-form mb-5 px-sm-4 px-2 pt-4">
-      {/**<div className="row">
-        <div className=" col-12 mt-2">
-          <div className="d-flex  my-4 align-items-center flex-column ">
-            <div className="me-3">
-              <span className=" d-block">
-                {uploadImg ? (
-                  <img
-                    className="edit-program-image w-100"
-                    src={uploadImg}
-                    alt=""
-                  />
-                ) : (
-                  <img
-                    className="edit-program-image w-100"
-                    src={Bani}
-                    alt="image"
-                  />
-                )}
-              </span>
-            </div>
-            <div className="mx-3 mt-3 mt-lg-0 text-center text-md-start">
-              <p className="mb-0 fs-24 fw-600 py-3">Upload Program Image</p>
-            </div>
-            <input
-              type="file"
-              id="file-input"
-              onChange={(e) => UploadImg(e)}
-              hidden
-            />
-            <div className="mt-3 mt-lg-0">
-              <button
-                type="button"
-                className="btn ms-lg-4 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px w-200 w-101 bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
-              >
-                <label
-                  for="file-input"
-                  className="position-absolute skew-text text-white cursor-pointer"
-                >
-                  Upload
-                </label>
-              </button>
-            </div>{" "}
-          </div>
-        </div>
-                </div>*/}
       <div className="row">
         <p className="mb-3 mt-5">Change user information here</p>
         <div className="col-lg-6 col-12 mt-2">

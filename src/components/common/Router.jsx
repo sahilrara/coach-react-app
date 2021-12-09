@@ -56,7 +56,7 @@ const Router = () => {
         />
         <Route
           exact
-          path="/admin/dashboard/userlist/edit-user/programs/:userId"
+          path="/admin/dashboard/userlist/edit-user/programs/:userId/:programId"
           component={EditProgram}
         />
         <Route exact path="/admin/dashboard/program">

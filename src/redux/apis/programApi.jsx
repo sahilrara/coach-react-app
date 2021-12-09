@@ -33,7 +33,7 @@ export const getProgramDetailsApi = async (programId) => {
  * @returns
  */
 export const updateProgramApi = async (programId, data) => {
-  return await axiosRequest("POST", `/admin/update/program/${programId}`, data);
+  return await axiosRequest("PUT", `/admin/update/program/${programId}`, data);
 };
 
 /**
