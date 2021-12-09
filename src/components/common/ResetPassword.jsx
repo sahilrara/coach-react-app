@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router";
-import { VerifyEmailAction } from "../../redux/action/AuthAction";
+import {
+  ResetPasswordAction,
+  VerifyEmailAction,
+} from "../../redux/action/AuthAction";
 import { HideEye, ShowEye } from "../icons/Icons";
 import BubblesLoader from "./loader/BubblesLoader";
+import Loader from "./loader/Loader";
 import { PasswordRegex } from "./Validation";
 
 const ResetPassword = ({ history, match }) => {
@@ -11,24 +15,21 @@ const ResetPassword = ({ history, match }) => {
   const { userId, token } = match.params;
   const [error, setError] = useState(false);
   const [loadingVerify, setLoadingVerify] = useState(false);
-  const [showpassword, setshowPassword] = useState(false);
+  const [loadingVerifyLoading, setLoadingVerifyLoading] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setConfirmPassword] = useState(false);
   const [resetPasswordData, setResetPasswordData] = useState({
     password: "",
-    newpassword: "",
     confirmpassword: "",
   });
   const ResetPassword = () => {
     setError(true);
     if (
-      resetPasswordData.password &&
-      resetPasswordData.newpassword &&
-      resetPasswordData.newpassword !== resetPasswordData.confirmpassword &&
-      resetPasswordData.confirmpassword !== ""
+      !!resetPasswordData.password &&
+      resetPasswordData.password === resetPasswordData.confirmpassword
     ) {
-      setResetPasswordData(resetPasswordData);
-      history.push("/");
+      const data = { password: resetPasswordData.password };
+      dispatch(ResetPasswordAction(data, setLoadingVerifyLoading, history));
     }
   };
 
@@ -52,39 +53,6 @@ const ResetPassword = ({ history, match }) => {
                     </div>
                   ) : (
                     <div className="my-4">
-                      {" "}
-                      <div className="position-relative">
-                        <input
-                          id="password-field"
-                          type={showpassword ? "text" : "password"}
-                          className="w-100 mt-2 login-input"
-                          name="password"
-                          placeholder="Password"
-                          onChange={(e) =>
-                            setResetPasswordData({
-                              ...resetPasswordData,
-                              password: e.target.value,
-                            })
-                          }
-                        />
-                        <span
-                          className="reset-eye-icon cursor-pointer"
-                          onClick={() => setshowPassword(!showpassword)}
-                        >
-                          {showpassword ? <ShowEye /> : <HideEye />}
-                        </span>
-                        <span className="text-danger text-start">
-                          {error && resetPasswordData.password === "" ? (
-                            <p>Password is Required</p>
-                          ) : error &&
-                            PasswordRegex.test(resetPasswordData.password) ===
-                              false ? (
-                            <p>Password is not valid</p>
-                          ) : (
-                            ""
-                          )}
-                        </span>
-                      </div>
                       <div className="position-relative">
                         <input
                           id="password-field"
@@ -95,17 +63,16 @@ const ResetPassword = ({ history, match }) => {
                           onChange={(e) =>
                             setResetPasswordData({
                               ...resetPasswordData,
-                              newpassword: e.target.value,
+                              password: e.target.value,
                             })
                           }
                         />
                         <span className="text-danger text-start">
-                          {error && resetPasswordData.newpassword === "" ? (
+                          {error && resetPasswordData.password === "" ? (
                             <p>New Password is Required</p>
                           ) : error &&
-                            PasswordRegex.test(
-                              resetPasswordData.newpassword
-                            ) === false ? (
+                            PasswordRegex.test(resetPasswordData.password) ===
+                              false ? (
                             <p>New Password is not valid</p>
                           ) : (
                             ""
@@ -142,7 +109,7 @@ const ResetPassword = ({ history, match }) => {
                             <p>Confirm Password is not valid</p>
                           ) : error &&
                             resetPasswordData.confirmpassword !==
-                              resetPasswordData.newpassword ? (
+                              resetPasswordData.password ? (
                             <p>Password not match</p>
                           ) : (
                             ""
@@ -161,25 +128,14 @@ const ResetPassword = ({ history, match }) => {
                         <button
                           onClick={() => ResetPassword()}
                           type="button"
-                          className="
-                        btn
-                        ms-2
-                        rounded-1px
-                        fw-700
-                        fs-20 fs-xs-16
-                        px-4
-                        h-50px
-                        w-200 w-xs-150
-                        bg-dark
-                        btn-skew
-                        border-unset
-                        d-flex
-                        align-items-center
-                        justify-content-center
-                      "
+                          className="btn ms-2 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px w-200 w-xs-150 bg-dark btn-skew border-unset d-flex align-items-center justify-content-center"
                         >
                           <span className="position-absolute skew-text text-white">
-                            Reset Password
+                            {loadingVerifyLoading ? (
+                              <Loader />
+                            ) : (
+                              "Reset Password"
+                            )}
                           </span>
                         </button>
                       </div>

@@ -147,22 +147,22 @@ export const ForgotPasswordAction =
  * @returns
  */
 export const ResetPasswordAction =
-  (data, setLoadingVerify, history) => async () => {
-    setLoadingVerify(true);
+  (data, setLoadingVerifyLoading, history) => async () => {
+    setLoadingVerifyLoading(true);
     try {
       const response = await ResetPasswordApi(data);
       if (response.success) {
-        setLoadingVerify(false);
+        setLoadingVerifyLoading(false);
         history.push("/");
         Swal.fire("Success", "Password Reset Successfully", "error");
         setTimeout(Swal.close, 2000);
       } else {
-        setLoadingVerify(false);
+        setLoadingVerifyLoading(false);
         Swal.fire("Error!", "Something went wrong", "error");
         setTimeout(Swal.close, 2000);
       }
     } catch (error) {
-      setLoadingVerify(false);
+      setLoadingVerifyLoading(false);
       Swal.fire("Error!", "Something went wrong", "error");
       setTimeout(Swal.close, 2000);
     }
