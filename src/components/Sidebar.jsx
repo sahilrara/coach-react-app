@@ -295,7 +295,6 @@ function SideBar({ history }) {
             decWidth ? "d-flex justify-content-center" : "sidebar-footer px-3"
           } mb-sm-5 py-3 `}
         >
-          {console.log("imagePath", userData.imagePath)}
           <div className="d-flex align-items-center">
             <div>
               <span className=" d-inline-block">

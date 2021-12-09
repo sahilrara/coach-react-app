@@ -104,7 +104,7 @@ export const getProgramDetailsAction =
  */
 
 export const updateProgramAction =
-  (setUpadteProgramLoading, programId, data, history) => async () => {
+  (setUpadteProgramLoading, programId, data, history, match) => async () => {
     setUpadteProgramLoading(true);
     try {
       const response = await updateProgramApi(programId, data);
@@ -112,7 +112,14 @@ export const updateProgramAction =
         setUpadteProgramLoading(false);
         Swal.fire("Success!", "Program updated successfully.", "success");
         setTimeout(Swal.close, 2000);
-        history.push("/admin/dashboard/program");
+        if (
+          match.path ===
+          "/admin/dashboard/userlist/edit-user/programs/:userId/:programId"
+        ) {
+          history.push(`/admin/dashboard/edit-user/userlist/${data.userId}`);
+        } else {
+          history.push("/admin/dashboard/program");
+        }
       } else {
         setUpadteProgramLoading(false);
       }

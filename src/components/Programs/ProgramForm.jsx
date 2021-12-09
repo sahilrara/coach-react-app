@@ -38,7 +38,7 @@ const ProgramForm = ({ history, mode, programId, userId, match }) => {
       setEditProgram(programDetails);
     }
   }, [programDetails, mode]);
-  console.log(match);
+
   const SubmitNewProgramDetails = () => {
     setError(true);
     if (
@@ -79,7 +79,8 @@ const ProgramForm = ({ history, mode, programId, userId, match }) => {
         setUpadteProgramLoading,
         programId,
         editProgram,
-        history
+        history,
+        match
       )
     );
   };
