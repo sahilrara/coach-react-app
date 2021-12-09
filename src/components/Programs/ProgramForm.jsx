@@ -74,11 +74,25 @@ const ProgramForm = ({ history, mode, programId, userId, match }) => {
 
   const UpdateProgramDetails = () => {
     setError(true);
+    const data = {
+      name: editProgram.name,
+      date: editProgram.date,
+      location: editProgram.location,
+      event: editProgram.event,
+      detail_1: editProgram.detail_1,
+      detail_2: editProgram.detail_2,
+      detail_3: editProgram.detail_3,
+      detail_4: editProgram.detail_4,
+      description: editProgram.description,
+      pdfUrl: fileUrl ? fileUrl : "",
+      userId: userId,
+      isPublic: userId ? false : true,
+    };
     dispatch(
       updateProgramAction(
         setUpadteProgramLoading,
         programId,
-        editProgram,
+        data,
         history,
         match
       )
