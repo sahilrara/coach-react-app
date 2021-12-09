@@ -2,7 +2,7 @@ import { Table } from "react-bootstrap";
 import UserDashboardTableContent from "./UserDashboardTableContent";
 import BubblesLoader from "../common/loader/BubblesLoader";
 
-const UserDashboardTable = ({ userList, editUserDetails, userLoading }) => {
+const UserDashboardTable = ({ userList, userLoading }) => {
   return (
     <>
       {userLoading ? (
@@ -16,7 +16,6 @@ const UserDashboardTable = ({ userList, editUserDetails, userLoading }) => {
             <Table responsive>
               <thead className="Dashboard-table-head ">
                 <tr>
-                 
                   <th className="Dashboard-table-head white-space-norwap">
                     Name
                   </th>
@@ -32,11 +31,7 @@ const UserDashboardTable = ({ userList, editUserDetails, userLoading }) => {
                 {userList && !!userList.length
                   ? userList.map((val, index) => {
                       return (
-                        <UserDashboardTableContent
-                          index={index}
-                          val={val}
-                          editUserDetails={editUserDetails}
-                        />
+                        <UserDashboardTableContent index={index} val={val} />
                       );
                     })
                   : ""}

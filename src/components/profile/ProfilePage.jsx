@@ -5,6 +5,7 @@ import { EmailRegex } from "../common/Validation";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserDetailsAction } from "../../redux/action/userAction";
 import Loader from "../common/loader/Loader";
+import { uploadImage } from "../../redux/UploadFile";
 
 const insialState = {
   firstname: "",
@@ -13,9 +14,10 @@ const insialState = {
   email: "",
 };
 const ProfilePage = () => {
-  const dispacth = useDispatch();
+  const dispatch = useDispatch();
   const userData = useSelector((state) => state.Auth.userData);
   const [error, setError] = useState(false);
+  const [loading, setLoader] = useState(false);
   const [updateUserLoading, setUpdateUserLoading] = useState(false);
   const [profileData, setProfileData] = useState(insialState);
   const [uploadImg, setUploadImg] = useState("");
@@ -27,6 +29,8 @@ const ProfilePage = () => {
   }, [userData]);
 
   const UploadImg = (e) => {
+    const type = "user";
+    dispatch(uploadImage(e, setLoader, type));
     let img = e.target.files[0];
     let image = URL.createObjectURL(img);
     setUploadImg(image);
@@ -40,7 +44,7 @@ const ProfilePage = () => {
       lastName: profileData.lastName,
       userName: profileData.username,
     };
-    dispacth(
+    dispatch(
       updateUserDetailsAction(setUpdateUserLoading, userId, profileData)
     );
   };
@@ -99,7 +103,7 @@ const ProfilePage = () => {
                     for="file-input"
                     className="position-absolute skew-text text-white cursor-pointer"
                   >
-                    Upload
+                    {loading ? <Loader /> : " Upload"}
                   </label>
                 </button>
               </div>{" "}

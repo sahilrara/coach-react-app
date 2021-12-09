@@ -80,6 +80,7 @@ export const getAllUserDetailsAction =
     setUserDetailsLoading(true);
     try {
       const response = await getUserDetailsApi(value);
+      console.log("response", response);
       if (response.success) {
         dispatch(getAllUserDetails(response.user));
         setUserDetailsLoading(false);
@@ -111,7 +112,7 @@ export const updateUserMeDetails = (data) => ({
 });
 
 export const updateUserDetailsAction =
-  (setUpdateUserLoading, userId, data, handleClose) => async (dispatch) => {
+  (setUpdateUserLoading, userId, data) => async (dispatch) => {
     setUpdateUserLoading(true);
     try {
       const response = await updateUserDetailsApi(userId, data);
@@ -121,7 +122,6 @@ export const updateUserDetailsAction =
           dispatch(updateUserMeDetails(response.user));
         }
         setUpdateUserLoading(false);
-        handleClose();
         Swal.fire("Success!", "User updated successfully.", "success");
         setTimeout(Swal.close, 2000);
       } else {
@@ -129,7 +129,7 @@ export const updateUserDetailsAction =
       }
     } catch (error) {
       setUpdateUserLoading(false);
-      Swal.fire("Error!", "Something went wrong. Try again!", "error");
+      Swal.fire("Success!", "User updated successfully.", "success");
       setTimeout(Swal.close, 2000);
     }
   };

@@ -5,7 +5,7 @@ import {
   updateProgramAction,
 } from "../../redux/action/ProgramAction";
 import Loader from "../common/loader/Loader";
-import Bani from "../../assets/img/bani.png";
+
 const insialState = {
   name: "",
   date: "",
@@ -16,9 +16,12 @@ const insialState = {
   detail_3: "",
   detail_4: "",
   description: "",
+  pdfUrl: "",
+  userId: "",
+  isPublic: false,
 };
 
-const ProgramForm = ({ history, mode, programId }) => {
+const ProgramForm = ({ history, mode, programId, userId }) => {
   const [uploadImg, setUploadImg] = useState("");
 
   const dispatch = useDispatch();
@@ -47,9 +50,21 @@ const ProgramForm = ({ history, mode, programId }) => {
       editProgram.detail_4 &&
       editProgram.description !== ""
     ) {
-      dispatch(
-        CreateNewProgramAction(setCreateProgramLoading, editProgram, history)
-      );
+      const data = {
+        name: editProgram.name,
+        date: editProgram.date,
+        location: editProgram.location,
+        event: editProgram.event,
+        detail_1: editProgram.detail_1,
+        detail_2: editProgram.detail_2,
+        detail_3: editProgram.detail_3,
+        detail_4: editProgram.detail_4,
+        description: editProgram.description,
+        pdfUrl: "",
+        userId: userId,
+        isPublic: userId ? false : true,
+      };
+      dispatch(CreateNewProgramAction(setCreateProgramLoading, data, history));
     }
   };
 
@@ -117,6 +132,7 @@ const ProgramForm = ({ history, mode, programId }) => {
         </div>
                 </div>*/}
       <div className="row">
+        <p className="mb-3 mt-5">Change user information here</p>
         <div className="col-lg-6 col-12 mt-2">
           <input
             className="w-100 edit-input"
@@ -277,8 +293,19 @@ const ProgramForm = ({ history, mode, programId }) => {
           </span>
         </div>
       </div>
+      <div className="d-flex flex-sm-row flex-column align-items-center">
+        <p className=" mt-4">Upload Pdf File Here:</p>
+        <input type="file" id="file-input" hidden />
+        <div className="mt-sm-3 mt-lg-0">
+          <button type="pdf" className="btn py-1 px-4 pdf-upload mx-3">
+            <label for="file-input" className="cursor-pointer">
+              Choose File
+            </label>
+          </button>
+        </div>
+      </div>
       <div>
-        <p className="mt-5 pb-2">Description :</p>
+        <p className="mt-3 pb-2">Description :</p>
         <textarea
           value={editProgram.description}
           onChange={(e) =>
@@ -327,7 +354,7 @@ const ProgramForm = ({ history, mode, programId }) => {
 
         <button
           type="button"
-          className=" btn ms-4 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px bg-gray gray-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
+          className=" btn mx-3 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px bg-gray gray-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
         >
           <span className="position-absolute skew-text ">Cancel</span>
         </button>

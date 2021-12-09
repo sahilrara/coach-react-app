@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { withRouter } from "react-router";
 import Swal from "sweetalert2";
 import { DeleteUserAction } from "../../redux/action/userAction";
 import Loader from "../common/loader/Loader";
 
-const UserDashboardTableContent = ({ index, val, editUserDetails }) => {
+const UserDashboardTableContent = ({ index, val, history }) => {
   const dispatch = useDispatch();
   const [userDeletedLoader, setUserDeletedLoader] = useState(false);
   const deleteUserDetails = (userId) => {
@@ -43,8 +44,11 @@ const UserDashboardTableContent = ({ index, val, editUserDetails }) => {
           <p className="my-auto dash-body-text ">{val.email}</p>
           <div className="">
             <button
-              onClick={() => editUserDetails(val._id)}
+              type="button"
               className=" px-4 mx-3 btn edit-btn-dash"
+              onClick={() =>
+                history.push(`/admin/dashboard/edit-user/userlist/${val._id}`)
+              }
             >
               Edit
             </button>
@@ -60,4 +64,4 @@ const UserDashboardTableContent = ({ index, val, editUserDetails }) => {
     </tr>
   );
 };
-export default UserDashboardTableContent;
+export default withRouter(UserDashboardTableContent);

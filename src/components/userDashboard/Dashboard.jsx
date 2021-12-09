@@ -4,33 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import SideBar from "../Sidebar";
 import AdminHeader from "../common/AdminHeader";
 import UserDashboardTable from "./UserDashboardTable";
-import EditUserModel from "./EditUserModel";
-import {
-  getAllUserDetailsAction,
-  GetAllUserListAction,
-} from "../../redux/action/userAction";
+import { GetAllUserListAction } from "../../redux/action/userAction";
 
 const Dashboard = () => {
   const userList = useSelector((state) => state.List.allUserList);
-  const [show, setShow] = useState(false);
   const [userLoading, setUserLoading] = useState(false);
-  const [userId, setUserId] = useState("");
   const [page, setPage] = useState(0);
-  const [userDetailsLoading, setUserDetailsLoading] = useState(false);
   const [totalUsers, setTotalUsers] = useState(0);
   const dispatch = useDispatch();
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   useEffect(() => {
     dispatch(GetAllUserListAction(setUserLoading, page, setTotalUsers));
   }, [dispatch, page, setUserLoading]);
-
-  const editUserDetails = (value) => {
-    handleShow();
-    setUserId(value);
-    dispatch(getAllUserDetailsAction(setUserDetailsLoading, value));
-  };
 
   const handlePageClick = (e) => {
     const selectedPage = e.selected;
@@ -48,11 +33,7 @@ const Dashboard = () => {
               <h1 className="dashboar-text mt-5 mb-4">Dashboard</h1>
             </div>
           </div>
-          <UserDashboardTable
-            editUserDetails={editUserDetails}
-            userList={userList}
-            userLoading={userLoading}
-          />
+          <UserDashboardTable userList={userList} userLoading={userLoading} />
           {totalUsers > 10 ? (
             <ReactPaginate
               previousLabel={<Prev />}
@@ -73,12 +54,6 @@ const Dashboard = () => {
           )}
         </div>
       </div>
-      <EditUserModel
-        show={show}
-        userId={userId}
-        handleClose={handleClose}
-        userDetailsLoading={userDetailsLoading}
-      />
     </div>
   );
 };

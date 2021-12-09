@@ -8,17 +8,24 @@ import { useDispatch } from "react-redux";
 import BubblesLoader from "../common/loader/BubblesLoader";
 
 function EditProgram({ history, match }) {
-  const { programId } = match.params;
+  const { programId, userId } = match.params;
   const dispatch = useDispatch();
   const [detailsLoader, setDetailsLoader] = useState(false);
   const mode = window.location.pathname.includes("edit") ? true : false;
-
+  const path = window.location.pathname;
   useEffect(() => {
     if (mode) {
       dispatch(getProgramDetailsAction(setDetailsLoader, programId));
     }
   }, [dispatch, programId, mode]);
 
+  const backHandler = () => {
+    if (path.includes("/admin/dashboard/userlist/create/programs")) {
+      history.push("/admin/dashboard/userlist");
+    } else {
+      history.push("/admin/dashboard/program");
+    }
+  };
   return (
     <div className="d-flex bg-dark-grey ">
       <SideBar />
@@ -33,7 +40,7 @@ function EditProgram({ history, match }) {
                 {mode ? "Edit Program" : "Create New Program"}
               </h2>
               <button
-                onClick={() => history.push("/admin/dashboard/program")}
+                onClick={() => backHandler()}
                 type="button"
                 className="btn ms-2 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px  bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center "
               >
@@ -50,6 +57,7 @@ function EditProgram({ history, match }) {
               history={history}
               mode={mode}
               programId={programId}
+              userId={userId}
               detailsLoader={detailsLoader}
             />
           )}

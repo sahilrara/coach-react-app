@@ -15,6 +15,8 @@ import {
   GET_ALL_USER_LIST,
   UPDATE_USER_DETAILS,
 } from "../action/userAction";
+import { GET_USER_PROGRAM_LIST } from "../action/userProgramsAction";
+import { UPLOAD_IAMGE } from "../UploadFile";
 
 const initialState = {
   allUserList: [],
@@ -24,6 +26,8 @@ const initialState = {
   contactList: [],
   contactDetails: {},
   coachDetails: {},
+  fileUrl: "",
+  userProgramList: [],
 };
 
 export default function ListReducer(state = initialState, action) {
@@ -139,7 +143,21 @@ export default function ListReducer(state = initialState, action) {
         coachDetails: action.data,
       };
     }
+    // GET Upload Image
+    case UPLOAD_IAMGE: {
+      return {
+        ...state,
+        fileUrl: action.file,
+      };
+    }
+    /**USER PROGRAM LIST */
 
+    case GET_USER_PROGRAM_LIST: {
+      return {
+        ...state,
+        userProgramList: action.data,
+      };
+    }
     default:
       return state;
   }
