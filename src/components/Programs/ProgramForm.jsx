@@ -4,6 +4,7 @@ import {
   CreateNewProgramAction,
   updateProgramAction,
 } from "../../redux/action/ProgramAction";
+import { uploadImage } from "../../redux/UploadFile";
 import Loader from "../common/loader/Loader";
 
 const insialState = {
@@ -23,7 +24,7 @@ const insialState = {
 
 const ProgramForm = ({ history, mode, programId, userId, match }) => {
   const [uploadImg, setUploadImg] = useState("");
-
+  const [loading, setLoader] = useState(false);
   const dispatch = useDispatch();
   const programDetails = useSelector((state) => state.List.programDetails);
   const [error, setError] = useState(false);
@@ -81,11 +82,15 @@ const ProgramForm = ({ history, mode, programId, userId, match }) => {
       )
     );
   };
+
   const UploadImg = (e) => {
+    const type = "programs";
+    dispatch(uploadImage(e, setLoader, type));
     let img = e.target.files[0];
     let image = URL.createObjectURL(img);
     setUploadImg(image);
   };
+
   return (
     <div className="edit-form mb-5 px-sm-4 px-2 pt-4">
       <div className="row">
@@ -252,11 +257,16 @@ const ProgramForm = ({ history, mode, programId, userId, match }) => {
       </div>
       <div className="d-flex flex-sm-row flex-column align-items-center">
         <p className=" mt-4">Upload Pdf File Here:</p>
-        <input type="file" id="file-input" hidden />
+        <input
+          type="file"
+          id="file-input"
+          hidden
+          onChange={(e) => UploadImg(e)}
+        />
         <div className="mt-sm-3 mt-lg-0">
           <button type="pdf" className="btn py-1 px-4 pdf-upload mx-3">
             <label for="file-input" className="cursor-pointer">
-              Choose File
+              {loading ? <Loader /> : "Choose File"}
             </label>
           </button>
         </div>
