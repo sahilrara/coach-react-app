@@ -55,7 +55,7 @@ export const CreateNewProgramAction =
         setTimeout(Swal.close, 2000);
         if (
           match.path ===
-          "/admin/dashboard/userlist/edit-user/programs/:userId/:programId"
+          "/admin/dashboard/userlist/create-user/programs/:userId"
         ) {
           history.push(`/admin/dashboard/edit-user/userlist/${data.userId}`);
         } else {

@@ -70,7 +70,7 @@ const EditUser = ({ history, match }) => {
                   userProgramList={userProgramList}
                 />
               ) : (
-                <p className="text-center fw-bold">
+                <p className="text-center fw-bold pt-5">
                   You don't have any program list.
                 </p>
               )}
