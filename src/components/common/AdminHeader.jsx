@@ -18,7 +18,8 @@ const AdminHeader = ({ history }) => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = () => {};
+  const Logout = () => {
     setAnchorEl(null);
     dispatch(removeLocalStorageTokenAction(history));
   };
@@ -72,7 +73,7 @@ const AdminHeader = ({ history }) => {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={handleClose} className="fw-bold">
+            <MenuItem onClick={Logout} className="fw-bold">
               Logout
             </MenuItem>
           </Menu>
