@@ -44,17 +44,6 @@ const EditUser = ({ history, match }) => {
           <div className="row">
             <div className="col-12 d-flex justify-content-between align-items-center">
               <h1 className="dashboar-text mt-5 mb-4">Edit User</h1>
-              <button
-                onClick={() =>
-                  history.push(
-                    `/admin/dashboard/userlist/create-user/programs/${userId}`
-                  )
-                }
-                type="button"
-                className=" btn ms-2 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px  bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
-              >
-                <span className=" skew-text text-white">New Program</span>
-              </button>
             </div>
           </div>
           <EditUserForm />

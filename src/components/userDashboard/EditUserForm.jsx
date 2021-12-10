@@ -13,7 +13,7 @@ const insialState = {
   username: "",
 };
 
-const EditUserForm = ({ match }) => {
+const EditUserForm = ({ match, history }) => {
   const { userId } = match.params;
   const dispatch = useDispatch();
   const allUserDetails = useSelector((state) => state.List.allUserDetails);
@@ -109,15 +109,26 @@ const EditUserForm = ({ match }) => {
           )}
         </div>
         <div className="col-lg-6 col-12 mt-2">
-          <div className=" pt-2 d-flex flexs-row pb-5 align-items-center align-items-sm-start">
+          <div className=" pt-2 d-flex flex-sm-row flex-column pb-5 align-items-center align-items-sm-start">
             <button
               onClick={() => updateUserDetails()}
               type="button"
-              className="btn ms-2 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px  bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center "
+              className="btn ms-sm-2 rounded-1px my-sm-0 my-3 fw-700 fs-20 fs-xs-16 px-4 h-50px  bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center "
             >
               <span className=" skew-text text-white">
                 {updateDetailsLoading ? <Loader /> : "Save"}
               </span>
+            </button>
+            <button
+              onClick={() =>
+                history.push(
+                  `/admin/dashboard/userlist/create-user/programs/${userId}`
+                )
+              }
+              type="button"
+              className=" btn ms-sm-2 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px  bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
+            >
+              <span className=" skew-text text-white">New Program</span>
             </button>
           </div>
         </div>

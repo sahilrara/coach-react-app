@@ -50,7 +50,7 @@ const UserDashboardTableContent = ({ index, val, history }) => {
                 history.push(`/admin/dashboard/edit-user/userlist/${val._id}`)
               }
             >
-              Edit
+              View
             </button>
             <button
               className="btn  px-4 remove-btn-dash"
