@@ -173,60 +173,7 @@ function SideBar({ history }) {
               ""
             )}
           </div>
-          {/**<div
-            className={`${
-              decWidth ? " d-flex justify-content-center " : ""
-            }  "align-items-center justify-content-between  d-flex my-4 "  cursor-pointer `}
-            onClick={() => openRoutes("gallery")}
-          >
-            <p
-              className={`${
-                activeSidebar === "gallery" ? "sidebar-text" : "side-item-text"
-              }  px-3 mb-0`}
-            >
-              {" "}
-              <span>
-                <GalleryIcon />
-              </span>
-              <span
-                className={`${decWidth ? "d-none" : ""}${
-                  activeSidebar ? "" : "side-item-text"
-                }  mx-2`}
-              >
-                Gallery
-              </span>
-            </p>
-            {activeSidebar === "gallery" ? (
-              <span className="d-inline-block active-line"></span>
-            ) : (
-              ""
-            )}
-            </div>*/}
-          {/* <div
-            className={`${
-              decWidth ? " d-flex justify-content-center " : ""
-            }  "align-items-center  d-flex my-4 "  cursor-pointer`}
-            // onClick={() => setShowSidebar(false)}
-            onClick={() => openRoutes("planlist")}
-          >
-            <p
-              className={`${
-                activeSidebar === "planlist" ? "sidebar-text" : "side-item-text"
-              }  px-3 mb-0  `}
-            >
-              <span>
-                <PlanList />
-              </span>
-              <span
-                className={`${decWidth ? "d-none" : ""}${
-                  activeSidebar ? "" : "side-item-text"
-                }  mx-2`}
-              >
-                {" "}
-                Plan List
-              </span>
-            </p>
-          </div> */}
+
           <div
             className={`${
               decWidth ? " d-flex justify-content-center " : ""
