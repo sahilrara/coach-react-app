@@ -81,7 +81,6 @@ const ProgramForm = ({ history, mode, programId, userId, match }) => {
       event: editProgram.event,
       detail_1: editProgram.detail_1,
       detail_2: editProgram.detail_2,
-
       detail_3: editProgram.detail_3,
       detail_4: editProgram.detail_4,
       description: editProgram.description,
