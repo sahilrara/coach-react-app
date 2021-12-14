@@ -173,6 +173,35 @@ function SideBar({ history }) {
               ""
             )}
           </div>
+          <div
+            className={`${
+              decWidth ? " d-flex justify-content-center " : ""
+            }  "align-items-center justify-content-between  d-flex mt-4 "  cursor-pointer `}
+            onClick={() => openRoutes("gallery")}
+          >
+            <p
+              className={`${
+                activeSidebar === "gallery" ? "sidebar-text" : "side-item-text"
+              }  px-3 mb-0`}
+            >
+              {" "}
+              <span>
+                <GalleryIcon />
+              </span>
+              <span
+                className={`${decWidth ? "d-none" : ""}${
+                  activeSidebar ? "" : "side-item-text"
+                }  mx-2`}
+              >
+                Gallery
+              </span>
+            </p>
+            {activeSidebar === "gallery" ? (
+              <span className="d-inline-block active-line"></span>
+            ) : (
+              ""
+            )}
+          </div>
 
           <div
             className={`${
