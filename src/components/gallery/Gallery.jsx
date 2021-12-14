@@ -55,7 +55,7 @@ const Gallery = () => {
                 className="modal-title  mt-2 pt-2 mb-0 modal-heading "
                 id="exampleModalToggleLabel"
               >
-                Upload Gallery
+                Upload Image
               </h1>
             </Modal.Title>
           </Modal.Header>
