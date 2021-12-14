@@ -337,7 +337,7 @@ input:focus {
   background-color: var(--color-light-green);
   color: black;
 }
-.paginationContainerStyle li.active-page {
+.paginationContainerStyle li.activePage {
   background: var(--color-light-green) !important;
   color: black;
 }
