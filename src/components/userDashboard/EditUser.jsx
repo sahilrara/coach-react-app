@@ -9,7 +9,7 @@ import { GetUserProgramListAction } from "../../redux/action/userProgramsAction"
 import { useDispatch, useSelector } from "react-redux";
 import BubblesLoader from "../common/loader/BubblesLoader";
 
-const EditUser = ({ history, match }) => {
+const EditUser = ({ match }) => {
   const { userId } = match.params;
   const dispatch = useDispatch();
   const userProgramList = useSelector((state) => state.List.userProgramList);
@@ -28,7 +28,7 @@ const EditUser = ({ history, match }) => {
         )
       );
     }
-  }, [userId]);
+  }, [userId, dispatch, page]);
 
   const handlePageClick = (e) => {
     const selectedPage = e.selected;

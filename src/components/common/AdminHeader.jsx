@@ -1,6 +1,5 @@
 import React from "react";
 import AvtarIcon from "../../assets/img/Avatar.png";
-import { SearchIcon } from "../icons/Icons";
 import { useProfileJoyrideProvider } from "../useContext/SidebarProvider";
 import SidebarTogle from "../../assets/img/sidbartogleicon.svg";
 import Menu from "@mui/material/Menu";
@@ -58,8 +57,6 @@ const AdminHeader = ({ history }) => {
           <img
             id="basic-button"
             aria-controls="basic-menu"
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
             src={userData ? userData.imagePath : AvtarIcon}
             className="cursor-pointer userimg"

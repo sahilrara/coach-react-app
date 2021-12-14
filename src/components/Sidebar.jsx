@@ -276,6 +276,7 @@ function SideBar({ history }) {
               <span className=" d-inline-block">
                 <img
                   className="user-img"
+                  alt="user-img"
                   src={userData ? userData.imagePath : null}
                 />
               </span>

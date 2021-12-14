@@ -31,7 +31,7 @@ const SettingPage = () => {
               </div>
             </div>
             {/* ENDS HERE... */}
-            <SettingForm />
+            <SettingForm loadingCoach={loadingCoach} />
             <ChangePassword />
           </div>
         </div>

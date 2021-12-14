@@ -36,7 +36,7 @@ const ResetPassword = ({ history, match }) => {
   useEffect(() => {
     const data = { userId: userId, token: token };
     dispatch(VerifyEmailAction(data, setLoadingVerify));
-  }, [dispatch]);
+  }, [dispatch, token, userId]);
 
   return (
     <div className="d-flex bg-dark">

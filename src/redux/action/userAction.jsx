@@ -77,17 +77,12 @@ export const getAllUserDetails = (data) => ({
 
 export const getAllUserDetailsAction =
   (setUserDetailsLoading, value) => async (dispatch) => {
-    setUserDetailsLoading(true);
     try {
       const response = await getUserDetailsApi(value);
       if (response.success) {
         dispatch(getAllUserDetails(response.user));
-        setUserDetailsLoading(false);
-      } else {
-        setUserDetailsLoading(false);
       }
     } catch (error) {
-      setUserDetailsLoading(false);
       Swal.fire("Error!", "Something went wrong. Try again!", "error");
       setTimeout(Swal.close, 2000);
     }

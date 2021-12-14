@@ -23,7 +23,6 @@ const insialState = {
 };
 
 const ProgramForm = ({ history, mode, programId, userId, match }) => {
-  const [uploadImg, setUploadImg] = useState("");
   const [loading, setLoader] = useState(false);
   const dispatch = useDispatch();
   const programDetails = useSelector((state) => state.List.programDetails);
@@ -102,9 +101,6 @@ const ProgramForm = ({ history, mode, programId, userId, match }) => {
   const UploadImg = (e) => {
     const type = "programs";
     dispatch(uploadImage(e, setLoader, type));
-    let img = e.target.files[0];
-    let image = URL.createObjectURL(img);
-    setUploadImg(image);
   };
 
   return (

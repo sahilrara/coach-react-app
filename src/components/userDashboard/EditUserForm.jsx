@@ -18,7 +18,6 @@ const EditUserForm = ({ match, history }) => {
   const dispatch = useDispatch();
   const allUserDetails = useSelector((state) => state.List.allUserDetails);
   const [userDetails, setUserDetails] = useState(insialState);
-  const [userDetailsLoading, setUserDetailsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [updateDetailsLoading, setUpdateUserLoading] = useState(false);
 
@@ -30,9 +29,9 @@ const EditUserForm = ({ match, history }) => {
 
   useEffect(() => {
     if (userId) {
-      dispatch(getAllUserDetailsAction(setUserDetailsLoading, userId));
+      dispatch(getAllUserDetailsAction(userId));
     }
-  }, [userId]);
+  }, [userId, dispatch]);
 
   const updateUserDetails = () => {
     setError(true);
