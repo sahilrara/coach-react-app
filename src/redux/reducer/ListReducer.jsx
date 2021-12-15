@@ -4,7 +4,11 @@ import {
   GET_CONTACT_DETAILS,
   GET_CONTACT_LIST,
 } from "../action/Contact";
-import { GET_ALL_GALLERY_LIST } from "../action/Gallery";
+import {
+  CREATE_GALLERY_LIST,
+  DELETE_GALLERY_DETAILS_BY_ID,
+  GET_ALL_GALLERY_LIST,
+} from "../action/Gallery";
 import {
   DELETE_PROGRAM_DETAILS_BY_ID,
   GET_ALL_PROGRAME_LIST,
@@ -185,6 +189,27 @@ export default function ListReducer(state = initialState, action) {
       return {
         ...state,
         allGalleryList: action.data,
+      };
+    }
+    //Add NEW Gallery
+    case CREATE_GALLERY_LIST: {
+      const allGalleryListArray = [...state.allGalleryList];
+      allGalleryListArray.push(action.data);
+      return {
+        ...state,
+        allGalleryList: allGalleryListArray,
+      };
+    }
+
+    case DELETE_GALLERY_DETAILS_BY_ID: {
+      const allGalleryDeleteList = [...state.allGalleryList];
+      const deleteArray = allGalleryDeleteList.findIndex(
+        (user) => user._id === action.data
+      );
+      allGalleryDeleteList.splice(deleteArray, 1);
+      return {
+        ...state,
+        allGalleryList: allGalleryDeleteList,
       };
     }
 

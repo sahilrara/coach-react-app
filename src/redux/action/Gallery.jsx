@@ -8,6 +8,7 @@ import { RemoveFileUrlAction } from "../UploadFile";
 
 export const GET_ALL_GALLERY_LIST = "GET_ALL_GALLERY_LIST";
 export const DELETE_GALLERY_DETAILS_BY_ID = "DELETE_GALLERY_DETAILS_BY_ID";
+export const CREATE_GALLERY_LIST = "CREATE_GALLERY_LIST";
 
 /**
  * Get all program List Action Creator Function
@@ -41,6 +42,10 @@ export const GetAllGalleryListAction =
  * Create New Program Action Creator Function
  * @returns
  */
+export const CreateGalleryList = (data) => ({
+  type: CREATE_GALLERY_LIST,
+  data,
+});
 
 export const CreateGalleryListAction =
   (setCreateGalleryLoading, data, setShow) => async (dispatch) => {
@@ -52,6 +57,7 @@ export const CreateGalleryListAction =
         Swal.fire("Success!", "Gallery Created successfully.", "success");
         setTimeout(Swal.close, 2000);
         setShow(false);
+        dispatch(CreateGalleryList(response.gallery));
         dispatch(RemoveFileUrlAction());
       }
     } catch (error) {

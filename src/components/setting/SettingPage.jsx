@@ -1,4 +1,3 @@
-import AdminHeader from "../common/AdminHeader";
 import SettingForm from "./SettingForm";
 import ChangePassword from "./ChangePassword";
 import { useEffect, useState } from "react";

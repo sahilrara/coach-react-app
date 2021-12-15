@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
-import AdminHeader from "../common/AdminHeader";
 import UserDashboardTable from "./UserDashboardTable";
 import { GetAllUserListAction } from "../../redux/action/userAction";
 import { Next, Prev } from "../../assets/icon/PaginationIcons";

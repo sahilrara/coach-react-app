@@ -19,7 +19,7 @@ const Gallery = () => {
     dispatch(
       GetAllGalleryListAction(setGalleryListLoading, page, setTotalGallery)
     );
-  }, [dispatch]);
+  }, [dispatch, page]);
 
   const handlePageClick = (e) => {
     const selectedPage = e.selected;
