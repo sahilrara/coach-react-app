@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import ReactPlayer from "react-player";
-import { DeleteIcon } from "../icons/Icons";
+import { DeleteIcon, VideoIcon } from "../icons/Icons";
 import { withRouter } from "react-router-dom";
 
 const MyGallery = ({ history }) => {
@@ -50,6 +50,7 @@ const MyGallery = ({ history }) => {
                           onClick={() => DeleteClick(index)}
                         >
                           <DeleteIcon />
+                          <VideoIcon />
                         </div>
                       </div>
                     </div>
