@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { CreateGalleryListAction } from "../../redux/action/Gallery";
 import { uploadImage } from "../../redux/UploadFile";
 import Loader from "../common/loader/Loader";
 import { UploadImgIcon } from "../icons/Icons";
 
 const AddNewImageInGallery = ({ show, setShow }) => {
   const dispatch = useDispatch();
+  const fileUrl = useSelector((state) => state.List.fileUrl);
   const [upload, setUpload] = useState("");
-  const [loading, setLoader] = useState("");
+  const [loading, setLoader] = useState(false);
+  const [createGalleryLoading, setCreateGalleryLoading] = useState(false);
 
   const UploadImg = (e) => {
     const type = "gallery";
@@ -23,6 +26,12 @@ const AddNewImageInGallery = ({ show, setShow }) => {
     setShow(false);
   };
 
+  const CreateNewGallery = () => {
+    const data = {
+      file: fileUrl,
+    };
+    dispatch(CreateGalleryListAction(setCreateGalleryLoading, data, setShow));
+  };
   return (
     <Modal
       className="dash-edit-modal"
@@ -74,17 +83,13 @@ const AddNewImageInGallery = ({ show, setShow }) => {
         </Modal.Body>
         <Modal.Footer>
           <div className="modal-footer mx-auto   pb-3 d-flex flex-row justify-content-center">
-            {upload ? (
+            {fileUrl ? (
               <button
                 type="button"
-                className="btn rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px w-xs-110 bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
+                onClick={() => CreateNewGallery()}
+                className="btn rounded-1px fw-700 fs-20 text-white fs-xs-16 px-4 h-50px w-xs-110 bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
               >
-                <label
-                  for="upload"
-                  className="position-absolute skew-text text-white"
-                >
-                  {loading ? <Loader /> : "Edit"}
-                </label>
+                {createGalleryLoading ? <Loader /> : "Edit"}
               </button>
             ) : (
               <button
@@ -95,7 +100,7 @@ const AddNewImageInGallery = ({ show, setShow }) => {
                   for="upload"
                   className="position-absolute skew-text text-white"
                 >
-                  Upload
+                  {loading ? <Loader /> : "Upload"}
                 </label>
               </button>
             )}

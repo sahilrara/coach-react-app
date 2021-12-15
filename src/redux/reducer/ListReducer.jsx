@@ -17,7 +17,7 @@ import {
   UPDATE_USER_DETAILS,
 } from "../action/userAction";
 import { GET_USER_PROGRAM_LIST } from "../action/userProgramsAction";
-import { UPLOAD_IAMGE } from "../UploadFile";
+import { REMOVE_FILE_URL, UPLOAD_IAMGE } from "../UploadFile";
 
 const initialState = {
   allUserList: [],
@@ -150,6 +150,13 @@ export default function ListReducer(state = initialState, action) {
       return {
         ...state,
         fileUrl: action.file,
+      };
+    }
+    //REMOVE FILE URL
+    case REMOVE_FILE_URL: {
+      return {
+        ...state,
+        fileUrl: "",
       };
     }
     /**USER PROGRAM LIST */

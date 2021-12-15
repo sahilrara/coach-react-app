@@ -4,6 +4,8 @@ import AddNewImageInGallery from "./AddNewImageInGallery";
 import { useDispatch } from "react-redux";
 import { GetAllGalleryListAction } from "../../redux/action/Gallery";
 import BubblesLoader from "../common/loader/BubblesLoader";
+import ReactPaginate from "react-paginate";
+import { Next, Prev } from "../../assets/icon/PaginationIcons";
 
 const Gallery = () => {
   const dispatch = useDispatch();
@@ -18,6 +20,11 @@ const Gallery = () => {
       GetAllGalleryListAction(setGalleryListLoading, page, setTotalGallery)
     );
   }, [dispatch]);
+
+  const handlePageClick = (e) => {
+    const selectedPage = e.selected;
+    setPage(selectedPage);
+  };
 
   return (
     <>
@@ -39,6 +46,24 @@ const Gallery = () => {
         </div>
       ) : (
         <MyGallery />
+      )}
+      {totalGallery > 10 ? (
+        <ReactPaginate
+          previousLabel={<Prev />}
+          nextLabel={<Next />}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={Math.ceil(totalGallery / 10)}
+          marginPagesDisplayed={3}
+          pageRangeDisplayed={2}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination paginationContainerStyle"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"activePage"}
+          initialPage={page}
+        />
+      ) : (
+        ""
       )}
       <AddNewImageInGallery show={show} setShow={setShow} />
     </>

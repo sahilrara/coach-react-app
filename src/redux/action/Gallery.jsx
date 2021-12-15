@@ -4,6 +4,7 @@ import {
   DeleteGalleryListApi,
   GetAllGalleryListApi,
 } from "../apis/Gallery";
+import { RemoveFileUrlAction } from "../UploadFile";
 
 export const GET_ALL_GALLERY_LIST = "GET_ALL_GALLERY_LIST";
 export const DELETE_GALLERY_DETAILS_BY_ID = "DELETE_GALLERY_DETAILS_BY_ID";
@@ -24,7 +25,7 @@ export const GetAllGalleryListAction =
       const response = await GetAllGalleryListApi(page);
       if (response.success) {
         dispatch(GetAllGalleryList(response.galleryList));
-        setTotalGallery(response.totalPrograms);
+        setTotalGallery(response.totalGallery);
         setGalleryListLoading(false);
       } else {
         setGalleryListLoading(false);
@@ -42,24 +43,16 @@ export const GetAllGalleryListAction =
  */
 
 export const CreateGalleryListAction =
-  (setCreateGalleryLoading, data, history, match) => async (dispatch) => {
+  (setCreateGalleryLoading, data, setShow) => async (dispatch) => {
     setCreateGalleryLoading(true);
     try {
       const response = await CreateGalleryListApi(data);
       if (response.success) {
         setCreateGalleryLoading(false);
-        Swal.fire("Success!", "Program Created successfully.", "success");
+        Swal.fire("Success!", "Gallery Created successfully.", "success");
         setTimeout(Swal.close, 2000);
-        if (
-          match.path ===
-          "/admin/dashboard/userlist/create-user/programs/:userId"
-        ) {
-          history.push(`/admin/dashboard/edit-user/userlist/${data.userId}`);
-        } else {
-          history.push("/admin/dashboard/program");
-        }
-      } else {
-        setCreateGalleryLoading(false);
+        setShow(false);
+        dispatch(RemoveFileUrlAction());
       }
     } catch (error) {
       setCreateGalleryLoading(false);

@@ -2,6 +2,11 @@ import Swal from "sweetalert2";
 import { uploadImageApi } from "./apis/userProgramsApi";
 
 export const UPLOAD_IAMGE = "UPLOAD_IAMGE";
+export const REMOVE_FILE_URL = "REMOVE_FILE_URL";
+
+export const RemoveFileUrlAction = () => ({
+  type: REMOVE_FILE_URL,
+});
 
 const uploadImageSuccess = (file) => ({
   type: UPLOAD_IAMGE,
