@@ -24,5 +24,5 @@ export const CreateGalleryListApi = async (data) => {
  * @returns
  */
 export const DeleteGalleryListApi = async (galleryId) => {
-  return await axiosRequest("POST", `/admin/delete/gallery/${galleryId}`);
+  return await axiosRequest("DELETE", `/admin/delete/gallery/${galleryId}`);
 };
