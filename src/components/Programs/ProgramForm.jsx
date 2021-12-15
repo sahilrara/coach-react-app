@@ -179,6 +179,27 @@ const ProgramForm = ({ history, mode, programId, userId, match }) => {
             {error && editProgram.event === "" ? <p> Event is Required</p> : ""}
           </span>
         </div>
+        <div className="col-lg-6 col-12 mt-2">
+          <input
+            className="w-100 edit-input"
+            type="text"
+            value={editProgram.location}
+            placeholder="Location"
+            onChange={(e) =>
+              setEditProgram({
+                ...editProgram,
+                location: e.target.value,
+              })
+            }
+          />
+          <span className="text-danger text-start">
+            {error && editProgram.location === "" ? (
+              <p> Location is Required</p>
+            ) : (
+              ""
+            )}
+          </span>
+        </div>
       </div>
       <p className="mb-3 mt-5">Event Details</p>
       <div className="row">
