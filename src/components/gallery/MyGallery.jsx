@@ -1,14 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ReactPlayer from "react-player";
 import { DeleteIcon, VideoIcon } from "../icons/Icons";
-import { withRouter } from "react-router-dom";
+import { DeleteGalleryListAction } from "../../redux/action/Gallery";
 
-const MyGallery = ({ history }) => {
+const MyGallery = () => {
+  const dispatch = useDispatch();
   const allGalleryList = useSelector((state) => state.List.allGalleryList);
-  const DeleteClick = (index) => {
-    console.log("index", index);
+
+  const DeleteClick = (id) => {
+    dispatch(DeleteGalleryListAction(id));
   };
+
   return (
     <div className="edit-form px-4 pt-4">
       <div className="row">
@@ -26,7 +29,7 @@ const MyGallery = ({ history }) => {
                         />
                         <div
                           className="image-gallery-shadow position-absolute h-100 w-100 d-flex justify-content-center align-items-center cursor-pointer"
-                          onClick={() => DeleteClick(index)}
+                          onClick={() => DeleteClick(gallery._id)}
                         >
                           <DeleteIcon />
                         </div>
@@ -42,15 +45,13 @@ const MyGallery = ({ history }) => {
                           stopOnUnmount={true}
                           controls={true}
                           url={gallery.file}
-                          // playIcon={<playicon />}
+                          playIcon={<VideoIcon />}
                           playing={false}
                         />
-                        <div
-                          className="image-gallery-shadow position-absolute h-100 w-100 d-flex justify-content-center align-items-center cursor-pointer"
-                          onClick={() => DeleteClick(index)}
-                        >
-                          <DeleteIcon />
-                          <VideoIcon />
+                        <div className="image-gallery-shadow position-absolute h-100 w-100 d-flex justify-content-center align-items-center cursor-pointer">
+                          <span onClick={() => DeleteClick(gallery._id)}>
+                            <DeleteIcon />
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -66,5 +67,4 @@ const MyGallery = ({ history }) => {
     </div>
   );
 };
-
-export default withRouter(MyGallery);
+export default MyGallery;
