@@ -6,6 +6,9 @@ import { withRouter } from "react-router-dom";
 
 const MyGallery = ({ history }) => {
   const allGalleryList = useSelector((state) => state.List.allGalleryList);
+  const DeleteClick = (index) => {
+    console.log("index", index);
+  };
   return (
     <div className="edit-form px-4 pt-4">
       <div className="row">
@@ -23,7 +26,7 @@ const MyGallery = ({ history }) => {
                         />
                         <div
                           className="image-gallery-shadow position-absolute h-100 w-100 d-flex justify-content-center align-items-center cursor-pointer"
-                          onClick={() => history.push(`${index}`)}
+                          onClick={() => DeleteClick(index)}
                         >
                           <DeleteIcon />
                         </div>
@@ -31,16 +34,24 @@ const MyGallery = ({ history }) => {
                     </div>
                   ) : gallery.isVideo ? (
                     <div className="col-lg-3 col-md-6  my-3">
-                      <ReactPlayer
-                        width="100%"
-                        className="br-10"
-                        height="100%"
-                        stopOnUnmount={true}
-                        controls={true}
-                        url={gallery.file}
-                        // playIcon={<playicon />}
-                        playing={false}
-                      />
+                      <div className="image-border image-border-height p-2 position-relative">
+                        <ReactPlayer
+                          width="100%"
+                          className="br-10"
+                          height="100%"
+                          stopOnUnmount={true}
+                          controls={true}
+                          url={gallery.file}
+                          // playIcon={<playicon />}
+                          playing={false}
+                        />
+                        <div
+                          className="image-gallery-shadow position-absolute h-100 w-100 d-flex justify-content-center align-items-center cursor-pointer"
+                          onClick={() => DeleteClick(index)}
+                        >
+                          <DeleteIcon />
+                        </div>
+                      </div>
                     </div>
                   ) : (
                     ""
