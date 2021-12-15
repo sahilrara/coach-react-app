@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "react-bootstrap";
 import ContactTableContent from "./ContactTableContent";
-
+import NoData from "../../assets/img/nodata.svg";
 const ContactTable = ({ ViewContactDetails, contactList }) => {
   return (
     <>
@@ -23,7 +23,14 @@ const ContactTable = ({ ViewContactDetails, contactList }) => {
           </tbody>
         </Table>
       ) : (
-        <p className="text-center">You have no contacts list yet.</p>
+        <>
+          <img
+            className="nodata-img d-block mx-auto"
+            src={NoData}
+            alt="NoData"
+          />
+          <p className="text-center fw-bold"> You have no contacts list yet.</p>
+        </>
       )}
     </>
   );

@@ -1,7 +1,7 @@
 import { Table } from "react-bootstrap";
 import UserDashboardTableContent from "./UserDashboardTableContent";
 import BubblesLoader from "../common/loader/BubblesLoader";
-
+import NoData from "../../assets/img/nodata.svg";
 const UserDashboardTable = ({ userList, userLoading }) => {
   return (
     <>
@@ -38,7 +38,14 @@ const UserDashboardTable = ({ userList, userLoading }) => {
               </tbody>
             </Table>
           ) : (
-            ""
+            <>
+              <img
+                className="nodata-img d-block mx-auto"
+                src={NoData}
+                alt="NoData"
+              />
+              <p className="text-center fw-bold"> You don't have any users</p>
+            </>
           )}
         </>
       )}

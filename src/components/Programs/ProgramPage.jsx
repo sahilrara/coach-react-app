@@ -49,10 +49,7 @@ const ProgramPage = ({ history }) => {
           {allProgramList && allProgramList.length > 0 ? (
             <ProgramTable allProgramList={allProgramList} />
           ) : (
-            <p className="text-center fw-bold">
-              {" "}
-              You don't have any program list.
-            </p>
+            <p className="text-center fw-bold"> You have no program list.</p>
           )}
         </>
       )}
