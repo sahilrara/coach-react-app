@@ -424,3 +424,6 @@ input:focus {
   top: 0px;
   right: 0px;
 }
+.nodata-img {
+  width: 300px;
+}
