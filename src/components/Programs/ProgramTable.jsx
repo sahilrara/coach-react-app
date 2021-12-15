@@ -6,7 +6,7 @@ import NoData from "../../assets/img/nodata.svg";
 const ProgramTable = ({ allProgramList }) => {
   return (
     <>
-      {allProgramList && allProgramList > 0 ? (
+      {allProgramList && allProgramList.length > 0 ? (
         <Table responsive>
           <thead className="Dashboard-table-head  cursor-pointer">
             <tr>
