@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { uploadImage } from "../../redux/UploadFile";
+import Loader from "../common/loader/Loader";
 import { UploadImgIcon } from "../icons/Icons";
 
 const AddNewImageInGallery = ({ show, setShow }) => {
+  const dispatch = useDispatch();
   const [upload, setUpload] = useState("");
+  const [loading, setLoader] = useState("");
 
   const UploadImg = (e) => {
+    const type = "gallery";
+    dispatch(uploadImage(e, setLoader, type));
     let img = e.target.files[0];
     let image = URL.createObjectURL(img);
     setUpload(image);
@@ -67,17 +74,31 @@ const AddNewImageInGallery = ({ show, setShow }) => {
         </Modal.Body>
         <Modal.Footer>
           <div className="modal-footer mx-auto   pb-3 d-flex flex-row justify-content-center">
-            <button
-              type="button"
-              className="btn rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px w-xs-110 bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
-            >
-              <label
-                for="upload"
-                className="position-absolute skew-text text-white"
+            {upload ? (
+              <button
+                type="button"
+                className="btn rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px w-xs-110 bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
               >
-                {upload ? "Edit" : "  Upload"}
-              </label>
-            </button>
+                <label
+                  for="upload"
+                  className="position-absolute skew-text text-white"
+                >
+                  {loading ? <Loader /> : "Edit"}
+                </label>
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px w-xs-110 bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center"
+              >
+                <label
+                  for="upload"
+                  className="position-absolute skew-text text-white"
+                >
+                  Upload
+                </label>
+              </button>
+            )}
             <button
               onClick={() => handleClose()}
               type="button"

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import SideBar from "../Sidebar";
 import AdminHeader from "../common/AdminHeader";
 import ContactTable from "./ContactTable";
 import { useDispatch, useSelector } from "react-redux";
@@ -38,47 +37,39 @@ const Contact = () => {
 
   return (
     <>
-      <div className="d-flex bg-dark-grey">
-        <SideBar />
-        <div className="h-100vh-overflow-auto w-100 ">
-          <div className="container mb-5 container-xl">
-            <AdminHeader />
-            <div className="row">
-              <div className="col-6">
-                <h1 className="dashboar-text mt-5 mb-4">Contact</h1>
-              </div>
-            </div>
-            {contactLoading ? (
-              <div className="d-flex justify-content-center align-items-center">
-                <BubblesLoader />
-              </div>
-            ) : (
-              <ContactTable
-                ViewContactDetails={ViewContactDetails}
-                contactList={contactList}
-              />
-            )}
-            {totalContact > 10 ? (
-              <ReactPaginate
-                previousLabel={<Prev />}
-                nextLabel={<Next />}
-                breakLabel={"..."}
-                breakClassName={"break-me"}
-                pageCount={Math.ceil(totalContact / 10)}
-                marginPagesDisplayed={3}
-                pageRangeDisplayed={2}
-                onPageChange={handlePageClick}
-                containerClassName={"pagination paginationContainerStyle"}
-                subContainerClassName={"pages pagination"}
-                activeClassName={"activePage"}
-                initialPage={page}
-              />
-            ) : (
-              ""
-            )}
-          </div>
+      <div className="row">
+        <div className="col-6">
+          <h1 className="dashboar-text mt-5 mb-4">Contact</h1>
         </div>
       </div>
+      {contactLoading ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <BubblesLoader />
+        </div>
+      ) : (
+        <ContactTable
+          ViewContactDetails={ViewContactDetails}
+          contactList={contactList}
+        />
+      )}
+      {totalContact > 10 ? (
+        <ReactPaginate
+          previousLabel={<Prev />}
+          nextLabel={<Next />}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={Math.ceil(totalContact / 10)}
+          marginPagesDisplayed={3}
+          pageRangeDisplayed={2}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination paginationContainerStyle"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"activePage"}
+          initialPage={page}
+        />
+      ) : (
+        ""
+      )}
       <ViewContact
         show={show}
         setShow={setShow}

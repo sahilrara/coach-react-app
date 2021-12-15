@@ -1,6 +1,4 @@
-import SideBar from "../Sidebar";
 import { withRouter } from "react-router-dom";
-import AdminHeader from "../common/AdminHeader";
 import ProgramForm from "./ProgramForm";
 import { useEffect, useState } from "react";
 import { getProgramDetailsAction } from "../../redux/action/ProgramAction";
@@ -27,44 +25,37 @@ function EditProgram({ history, match }) {
     }
   };
   return (
-    <div className="d-flex bg-dark-grey ">
-      <SideBar />
-      <div className="h-100vh-overflow-auto w-100 ">
-        <div className="container container-xl ">
-          {/* HEADER PART STARTS FROM HERE */}
-          <AdminHeader />
-          {/* ENDS HERE... */}
-          <div className="row mt-5 mb-3 ">
-            <div className="col-12 d-flex justify-content-between align-items-center">
-              <h2 className="edit-program-text">
-                {mode ? "Edit Program" : "Create New Program"}
-              </h2>
-              <button
-                onClick={() => backHandler()}
-                type="button"
-                className="btn ms-2 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px  bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center "
-              >
-                <span className=" skew-text text-white">Back</span>
-              </button>
-            </div>
-          </div>
-          {detailsLoader ? (
-            <div className="d-flex justify-content-center align-items-center">
-              <BubblesLoader />
-            </div>
-          ) : (
-            <ProgramForm
-              history={history}
-              mode={mode}
-              programId={programId}
-              userId={userId}
-              match={match}
-              detailsLoader={detailsLoader}
-            />
-          )}
+    <>
+      {/* ENDS HERE... */}
+      <div className="row mt-5 mb-3 ">
+        <div className="col-12 d-flex justify-content-between align-items-center">
+          <h2 className="edit-program-text">
+            {mode ? "Edit Program" : "Create New Program"}
+          </h2>
+          <button
+            onClick={() => backHandler()}
+            type="button"
+            className="btn ms-2 rounded-1px fw-700 fs-20 fs-xs-16 px-4 h-50px  bg-dark black-btn-skew btn-skew border-unset d-flex align-items-center justify-content-center "
+          >
+            <span className=" skew-text text-white">Back</span>
+          </button>
         </div>
       </div>
-    </div>
+      {detailsLoader ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <BubblesLoader />
+        </div>
+      ) : (
+        <ProgramForm
+          history={history}
+          mode={mode}
+          programId={programId}
+          userId={userId}
+          match={match}
+          detailsLoader={detailsLoader}
+        />
+      )}
+    </>
   );
 }
 export default withRouter(EditProgram);

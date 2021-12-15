@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./components/style.css";
 import "./components/common.css";
 import ProfileJoyrideProvider from "./components//useContext/SidebarProvider";
@@ -8,12 +8,13 @@ import BubblesLoader from "./components/common/loader/BubblesLoader";
 import { getLocalStorageToken } from "./redux/action/AuthAction";
 import { getUserDetailsAction } from "./redux/action/userAction";
 import LoaderImg from "./assets/img/loaderimg.png";
+import AuthRouter from "./components/common/AuthRouter";
 
 function App() {
   const token = localStorage.getItem("coach-champion-admin");
   const dispatch = useDispatch();
   const [userLoading, setUserLoading] = useState(false);
-
+  const auth = useSelector((state) => state.Auth);
   useEffect(() => {
     if (token) {
       const value = "me";
@@ -35,7 +36,11 @@ function App() {
             </div>
           ) : (
             <ProfileJoyrideProvider>
-              <Router />
+              {auth.token !== "null" && auth.auth === true ? (
+                <Router />
+              ) : (
+                <AuthRouter />
+              )}
             </ProfileJoyrideProvider>
           )}
         </>

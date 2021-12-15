@@ -4,6 +4,7 @@ import {
   GET_CONTACT_DETAILS,
   GET_CONTACT_LIST,
 } from "../action/Contact";
+import { GET_ALL_GALLERY_LIST } from "../action/Gallery";
 import {
   DELETE_PROGRAM_DETAILS_BY_ID,
   GET_ALL_PROGRAME_LIST,
@@ -28,6 +29,7 @@ const initialState = {
   coachDetails: {},
   fileUrl: "",
   userProgramList: [],
+  allGalleryList: [],
 };
 
 export default function ListReducer(state = initialState, action) {
@@ -170,6 +172,15 @@ export default function ListReducer(state = initialState, action) {
         userProgramList: deleteProgramList,
       };
     }
+
+    /** Gallery List */
+    case GET_ALL_GALLERY_LIST: {
+      return {
+        ...state,
+        allGalleryList: action.data,
+      };
+    }
+
     default:
       return state;
   }

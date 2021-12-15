@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SideBar from "../Sidebar";
 import ReactPaginate from "react-paginate";
-import AdminHeader from "../common/AdminHeader";
 import EditUserTable from "./EditUserTable";
 import EditUserForm from "./EditUserForm";
 import { withRouter } from "react-router";
@@ -36,56 +34,47 @@ const EditUser = ({ match }) => {
   };
 
   return (
-    <div className="d-flex bg-dark-grey">
-      <SideBar />
-      <div className="h-100vh-overflow-auto w-100 ">
-        <div className="container mb-5 container-xl">
-          <AdminHeader />
-          <div className="row">
-            <div className="col-12 d-flex justify-content-between align-items-center">
-              <h1 className="dashboar-text mt-5 mb-4">Edit User</h1>
-            </div>
-          </div>
-          <EditUserForm />
-          {userProgramLoading ? (
-            <div className="d-flex justify-content-center align-items-center">
-              <BubblesLoader />
-            </div>
-          ) : (
-            <>
-              {userProgramList && userProgramList.length > 0 ? (
-                <EditUserTable
-                  userId={userId}
-                  userProgramList={userProgramList}
-                />
-              ) : (
-                <p className="text-center fw-bold pt-5">
-                  You don't have any program list.
-                </p>
-              )}
-            </>
-          )}
-          {totalUserProgram > 10 ? (
-            <ReactPaginate
-              previousLabel={<Prev />}
-              nextLabel={<Next />}
-              breakLabel={"..."}
-              breakClassName={"break-me"}
-              pageCount={Math.ceil(totalUserProgram / 10)}
-              marginPagesDisplayed={3}
-              pageRangeDisplayed={2}
-              onPageChange={handlePageClick}
-              containerClassName={"pagination paginationContainerStyle"}
-              subContainerClassName={"pages pagination"}
-              activeClassName={"activePage"}
-              initialPage={page}
-            />
-          ) : (
-            ""
-          )}
+    <>
+      <div className="row">
+        <div className="col-12 d-flex justify-content-between align-items-center">
+          <h1 className="dashboar-text mt-5 mb-4">Edit User</h1>
         </div>
       </div>
-    </div>
+      <EditUserForm />
+      {userProgramLoading ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <BubblesLoader />
+        </div>
+      ) : (
+        <>
+          {userProgramList && userProgramList.length > 0 ? (
+            <EditUserTable userId={userId} userProgramList={userProgramList} />
+          ) : (
+            <p className="text-center fw-bold pt-5">
+              You don't have any program list.
+            </p>
+          )}
+        </>
+      )}
+      {totalUserProgram > 10 ? (
+        <ReactPaginate
+          previousLabel={<Prev />}
+          nextLabel={<Next />}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={Math.ceil(totalUserProgram / 10)}
+          marginPagesDisplayed={3}
+          pageRangeDisplayed={2}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination paginationContainerStyle"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"activePage"}
+          initialPage={page}
+        />
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 export default withRouter(EditUser);

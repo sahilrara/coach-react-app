@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
-import SideBar from "../Sidebar";
 import AdminHeader from "../common/AdminHeader";
 import UserDashboardTable from "./UserDashboardTable";
 import { GetAllUserListAction } from "../../redux/action/userAction";
@@ -23,38 +22,32 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="d-flex bg-dark-grey">
-      <SideBar />
-      <div className="h-100vh-overflow-auto w-100 ">
-        <div className="container mb-5 container-xl">
-          <AdminHeader />
-          <div className="row">
-            <div className="col-6">
-              <h1 className="dashboar-text mt-5 mb-4">Dashboard</h1>
-            </div>
-          </div>
-          <UserDashboardTable userList={userList} userLoading={userLoading} />
-          {totalUsers > 10 ? (
-            <ReactPaginate
-              previousLabel={<Prev />}
-              nextLabel={<Next />}
-              breakLabel={"..."}
-              breakClassName={"break-me"}
-              pageCount={Math.ceil(totalUsers / 10)}
-              marginPagesDisplayed={3}
-              pageRangeDisplayed={2}
-              onPageChange={handlePageClick}
-              containerClassName={"pagination paginationContainerStyle"}
-              subContainerClassName={"pages pagination "}
-              activeClassName={"activePage"}
-              initialPage={page}
-            />
-          ) : (
-            ""
-          )}
+    <>
+      <div className="row">
+        <div className="col-6">
+          <h1 className="dashboar-text mt-5 mb-4">Dashboard</h1>
         </div>
       </div>
-    </div>
+      <UserDashboardTable userList={userList} userLoading={userLoading} />
+      {totalUsers > 10 ? (
+        <ReactPaginate
+          previousLabel={<Prev />}
+          nextLabel={<Next />}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={Math.ceil(totalUsers / 10)}
+          marginPagesDisplayed={3}
+          pageRangeDisplayed={2}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination paginationContainerStyle"}
+          subContainerClassName={"pages pagination "}
+          activeClassName={"activePage"}
+          initialPage={page}
+        />
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 
