@@ -2,6 +2,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import ContactTableContent from "./ContactTableContent";
 import NoData from "../../assets/img/nodata.svg";
+
 const ContactTable = ({ ViewContactDetails, contactList }) => {
   return (
     <>
